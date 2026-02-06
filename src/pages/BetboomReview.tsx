@@ -98,19 +98,6 @@ const BetboomReview = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="bg-gradient-to-br from-accent to-primary text-white p-6 rounded-lg text-center">
-                <div className="text-sm mb-2 opacity-90">Эксклюзивный бонус</div>
-                <div className="text-4xl font-bold mb-3">10 000 ₽</div>
-                <div className="bg-white/20 px-4 py-2 rounded mb-4 flex items-center gap-2 justify-center">
-                  <span className="text-xs">Промокод:</span>
-                  <span className="font-bold">SOVSPORT10</span>
-                  <Icon name="Copy" size={14} className="cursor-pointer hover:scale-110 transition-transform" />
-                </div>
-                <Button className="w-full bg-white text-primary hover:bg-white/90 font-bold">
-                  ИГРАТЬ С БОНУСОМ
-                </Button>
-              </div>
             </div>
           </Card>
         </div>
