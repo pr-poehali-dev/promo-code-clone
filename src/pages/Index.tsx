@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -81,6 +82,7 @@ const bookmakers: Bookmaker[] = [
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   const filteredBookmakers = bookmakers.filter(bk =>
     bk.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -146,7 +148,10 @@ const Index = () => {
                     <div className="text-xs text-muted-foreground mb-1">Бонус</div>
                     <div className="text-xl font-bold text-accent">{bk.bonus}</div>
                   </div>
-                  <div className="bg-muted rounded-lg p-3">
+                  <div 
+                    className="bg-muted rounded-lg p-3 cursor-pointer hover:bg-accent/10 transition-colors"
+                    onClick={() => navigate(`/reviews/${encodeURIComponent(bk.name)}`)}
+                  >
                     <div className="text-xs text-muted-foreground mb-1">Отзывы</div>
                     <div className="flex items-center gap-1">
                       <Icon name="MessageCircle" size={16} className="text-accent" />
