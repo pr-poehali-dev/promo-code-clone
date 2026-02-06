@@ -99,6 +99,16 @@ const promos: Promo[] = [
     discount: '300₽',
     type: 'fixed',
     expiresAt: '15.02.2025'
+  },
+  {
+    id: 9,
+    store: 'BetBoom',
+    logo: '🎰',
+    code: 'BOOM10000',
+    description: 'Бонус на первый депозит',
+    discount: '10000₽',
+    type: 'fixed',
+    expiresAt: '31.03.2025'
   }
 ];
 
@@ -192,19 +202,28 @@ const Index = () => {
               </CardHeader>
               <CardContent className="space-y-3">
                 <p className="text-sm text-muted-foreground">{promo.description}</p>
-                <div className="flex items-center gap-2">
-                  <div className="flex-1 bg-muted px-4 py-2 rounded-md font-mono text-sm font-semibold text-center border-2 border-dashed border-border">
-                    {promo.code}
-                  </div>
-                  <Button
-                    size="icon"
-                    variant="outline"
+                {promo.store === 'BetBoom' ? (
+                  <Button 
+                    className="w-full font-bold text-base"
                     onClick={() => copyPromoCode(promo.code, promo.store)}
-                    className="shrink-0"
                   >
-                    <Icon name="Copy" size={18} />
+                    ЗАБРАТЬ 10 000₽
                   </Button>
-                </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 bg-muted px-4 py-2 rounded-md font-mono text-sm font-semibold text-center border-2 border-dashed border-border">
+                      {promo.code}
+                    </div>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      onClick={() => copyPromoCode(promo.code, promo.store)}
+                      className="shrink-0"
+                    >
+                      <Icon name="Copy" size={18} />
+                    </Button>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
