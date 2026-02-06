@@ -82,9 +82,9 @@ const promos: Promo[] = [
   },
   {
     id: 7,
-    store: 'Delivery Club',
+    store: 'Яндекс Еда',
     logo: '🍕',
-    code: 'DELCLUB',
+    code: 'YANDEXEDA',
     description: 'Бесплатная доставка еды',
     discount: 'Доставка',
     type: 'free_delivery',
