@@ -11,7 +11,7 @@ interface Bookmaker {
   logo: string;
   rating: number;
   bonus: string;
-  license: string;
+  reviews: number;
   minDeposit: string;
   features: string[];
 }
@@ -23,7 +23,7 @@ const bookmakers: Bookmaker[] = [
     logo: '🎰',
     rating: 5.0,
     bonus: '10 000₽',
-    license: 'ФНС №17',
+    reviews: 847,
     minDeposit: '50₽',
     features: ['Высокие коэффициенты', 'Быстрый вывод', 'Мобильное приложение']
   },
@@ -33,7 +33,7 @@ const bookmakers: Bookmaker[] = [
     logo: '⚽',
     rating: 4.8,
     bonus: '15 000₽',
-    license: 'ФНС №4',
+    reviews: 623,
     minDeposit: '100₽',
     features: ['Широкая линия', 'Live-ставки', 'Кэшбэк']
   },
@@ -43,7 +43,7 @@ const bookmakers: Bookmaker[] = [
     logo: '🏆',
     rating: 4.9,
     bonus: '15 000₽',
-    license: 'ФНС №7',
+    reviews: 912,
     minDeposit: '100₽',
     features: ['Надежная БК', 'Пункты приема ставок', 'Акции и бонусы']
   },
@@ -53,7 +53,7 @@ const bookmakers: Bookmaker[] = [
     logo: '🎯',
     rating: 4.7,
     bonus: '8 000₽',
-    license: 'ФНС №16',
+    reviews: 456,
     minDeposit: '50₽',
     features: ['Киберспорт', 'Казино', 'Промокоды']
   },
@@ -63,7 +63,7 @@ const bookmakers: Bookmaker[] = [
     logo: '🦁',
     rating: 4.6,
     bonus: '20 000₽',
-    license: 'ФНС №5',
+    reviews: 734,
     minDeposit: '100₽',
     features: ['Удобный интерфейс', 'Бонусы новичкам', 'Стабильная работа']
   },
@@ -73,7 +73,7 @@ const bookmakers: Bookmaker[] = [
     logo: '💎',
     rating: 4.5,
     bonus: '5 000₽',
-    license: 'ФНС №12',
+    reviews: 289,
     minDeposit: '100₽',
     features: ['Простая регистрация', 'Быстрая верификация', 'Поддержка 24/7']
   }
@@ -147,10 +147,10 @@ const Index = () => {
                     <div className="text-xl font-bold text-accent">{bk.bonus}</div>
                   </div>
                   <div className="bg-muted rounded-lg p-3">
-                    <div className="text-xs text-muted-foreground mb-1">Лицензия</div>
+                    <div className="text-xs text-muted-foreground mb-1">Отзывы</div>
                     <div className="flex items-center gap-1">
-                      <Icon name="Shield" size={16} className="text-accent" />
-                      <span className="text-sm font-semibold">{bk.license}</span>
+                      <Icon name="MessageCircle" size={16} className="text-accent" />
+                      <span className="text-sm font-semibold">{bk.reviews}</span>
                     </div>
                   </div>
                   <div className="bg-muted rounded-lg p-3">
