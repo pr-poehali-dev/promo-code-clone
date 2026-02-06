@@ -30,7 +30,7 @@ const bookmakers: Bookmaker[] = [
   },
   {
     id: 2,
-    name: '1xСтавка',
+    name: '1xBet',
     logo: '⚽',
     rating: 4.8,
     bonus: '15 000₽',
@@ -40,7 +40,7 @@ const bookmakers: Bookmaker[] = [
   },
   {
     id: 3,
-    name: 'Фонбет',
+    name: 'Fonbet',
     logo: '🏆',
     rating: 4.9,
     bonus: '15 000₽',
@@ -50,7 +50,7 @@ const bookmakers: Bookmaker[] = [
   },
   {
     id: 4,
-    name: 'Мелбет',
+    name: 'Melbet',
     logo: '🎯',
     rating: 4.7,
     bonus: '8 000₽',
@@ -60,7 +60,7 @@ const bookmakers: Bookmaker[] = [
   },
   {
     id: 5,
-    name: 'Леон',
+    name: 'Leon',
     logo: '🦁',
     rating: 4.6,
     bonus: '20 000₽',
@@ -70,7 +70,7 @@ const bookmakers: Bookmaker[] = [
   },
   {
     id: 6,
-    name: 'Винлайн',
+    name: 'Winline',
     logo: '💎',
     rating: 4.5,
     bonus: '5 000₽',
