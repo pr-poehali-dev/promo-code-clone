@@ -107,6 +107,27 @@ const Index = () => {
       </div>
 
       <main className="max-w-4xl mx-auto px-4 py-8">
+        <Card className="mb-8 p-6 bg-gradient-to-r from-accent/10 to-primary/10 border-accent/20">
+          <div className="flex items-start gap-4">
+            <div className="bg-accent/20 p-3 rounded-lg">
+              <Icon name="Newspaper" size={32} className="text-accent" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold mb-2 text-accent">Новости</h3>
+              <p className="text-foreground mb-3">Свежие новости о спорте</p>
+              <a 
+                href="https://ria.ru/sport/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-accent hover:text-primary transition-colors font-medium"
+              >
+                Читать на РИА Новости
+                <Icon name="ExternalLink" size={16} />
+              </a>
+            </div>
+          </div>
+        </Card>
+
         <div className="mb-6 flex justify-center">
           <div className="relative w-full max-w-md">
             <Icon name="Search" className="absolute left-3 top-3 text-muted-foreground" size={20} />
