@@ -2,245 +2,206 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useToast } from '@/hooks/use-toast';
+import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
-type DiscountType = 'percent' | 'fixed' | 'free_delivery';
-
-interface Promo {
+interface Bookmaker {
   id: number;
-  store: string;
+  name: string;
   logo: string;
-  code: string;
-  description: string;
-  discount: string;
-  type: DiscountType;
-  expiresAt: string;
+  rating: number;
+  bonus: string;
+  license: string;
+  minDeposit: string;
+  features: string[];
 }
 
-const promos: Promo[] = [
+const bookmakers: Bookmaker[] = [
   {
     id: 1,
-    store: 'Ozon',
-    logo: '🛒',
-    code: 'SAVE2024',
-    description: 'Скидка на первый заказ',
-    discount: '15%',
-    type: 'percent',
-    expiresAt: '31.12.2024'
+    name: 'BetBoom',
+    logo: '🎰',
+    rating: 5.0,
+    bonus: '10 000₽',
+    license: 'ФНС №17',
+    minDeposit: '50₽',
+    features: ['Высокие коэффициенты', 'Быстрый вывод', 'Мобильное приложение']
   },
   {
     id: 2,
-    store: 'Wildberries',
-    logo: '🛍️',
-    code: 'WB1000',
-    description: 'Скидка 1000₽ на заказ от 5000₽',
-    discount: '1000₽',
-    type: 'fixed',
-    expiresAt: '15.01.2025'
+    name: '1xСтавка',
+    logo: '⚽',
+    rating: 4.8,
+    bonus: '15 000₽',
+    license: 'ФНС №4',
+    minDeposit: '100₽',
+    features: ['Широкая линия', 'Live-ставки', 'Кэшбэк']
   },
   {
     id: 3,
-    store: 'Lamoda',
-    logo: '👗',
-    code: 'FREESHIP',
-    description: 'Бесплатная доставка при заказе от 2000₽',
-    discount: 'Доставка',
-    type: 'free_delivery',
-    expiresAt: '28.02.2025'
+    name: 'Фонбет',
+    logo: '🏆',
+    rating: 4.9,
+    bonus: '15 000₽',
+    license: 'ФНС №7',
+    minDeposit: '100₽',
+    features: ['Надежная БК', 'Пункты приема ставок', 'Акции и бонусы']
   },
   {
     id: 4,
-    store: 'Яндекс Маркет',
-    logo: '🏪',
-    code: 'YANDEX20',
-    description: 'Скидка на электронику',
-    discount: '20%',
-    type: 'percent',
-    expiresAt: '10.03.2025'
+    name: 'Мелбет',
+    logo: '🎯',
+    rating: 4.7,
+    bonus: '8 000₽',
+    license: 'ФНС №16',
+    minDeposit: '50₽',
+    features: ['Киберспорт', 'Казино', 'Промокоды']
   },
   {
     id: 5,
-    store: 'М.Видео',
-    logo: '📱',
-    code: 'MVIDEO500',
-    description: 'Скидка на смартфоны',
-    discount: '500₽',
-    type: 'fixed',
-    expiresAt: '05.02.2025'
+    name: 'Леон',
+    logo: '🦁',
+    rating: 4.6,
+    bonus: '20 000₽',
+    license: 'ФНС №5',
+    minDeposit: '100₽',
+    features: ['Удобный интерфейс', 'Бонусы новичкам', 'Стабильная работа']
   },
   {
     id: 6,
-    store: 'СберМегаМаркет',
-    logo: '🛒',
-    code: 'SBER25',
-    description: 'Скидка для новых покупателей',
-    discount: '25%',
-    type: 'percent',
-    expiresAt: '20.03.2025'
-  },
-  {
-    id: 7,
-    store: 'Яндекс Еда',
-    logo: '🍕',
-    code: 'YANDEXEDA',
-    description: 'Бесплатная доставка еды',
-    discount: 'Доставка',
-    type: 'free_delivery',
-    expiresAt: '31.01.2025'
-  },
-  {
-    id: 8,
-    store: 'Читай-город',
-    logo: '📚',
-    code: 'BOOK300',
-    description: 'Скидка на книги',
-    discount: '300₽',
-    type: 'fixed',
-    expiresAt: '15.02.2025'
-  },
-  {
-    id: 9,
-    store: 'BetBoom',
-    logo: '🎰',
-    code: 'BOOM10000',
-    description: 'Бонус на первый депозит',
-    discount: '10000₽',
-    type: 'fixed',
-    expiresAt: '31.03.2025'
+    name: 'Винлайн',
+    logo: '💎',
+    rating: 4.5,
+    bonus: '5 000₽',
+    license: 'ФНС №12',
+    minDeposit: '100₽',
+    features: ['Простая регистрация', 'Быстрая верификация', 'Поддержка 24/7']
   }
 ];
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTypes, setSelectedTypes] = useState<DiscountType[]>([]);
-  const { toast } = useToast();
 
-  const toggleType = (type: DiscountType) => {
-    setSelectedTypes(prev =>
-      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-    );
-  };
-
-  const copyPromoCode = (code: string, store: string) => {
-    navigator.clipboard.writeText(code);
-    toast({
-      title: 'Промокод скопирован!',
-      description: `${store}: ${code}`,
-    });
-  };
-
-  const filteredPromos = promos.filter(promo => {
-    const matchesSearch = promo.store.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesType = selectedTypes.length === 0 || selectedTypes.includes(promo.type);
-    return matchesSearch && matchesType;
-  });
-
-  const getTypeLabel = (type: DiscountType) => {
-    const labels = {
-      percent: 'Процент',
-      fixed: 'Рубли',
-      free_delivery: 'Доставка'
-    };
-    return labels[type];
-  };
+  const filteredBookmakers = bookmakers.filter(bk =>
+    bk.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-secondary text-secondary-foreground py-6 shadow-sm">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold">ПромоКоды</h1>
-          <p className="text-sm mt-2 opacity-90">Актуальные промокоды от популярных магазинов</p>
+      <header className="bg-white border-b shadow-sm sticky top-0 z-10">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-bold text-foreground">Рейтинг Букмекеров</h1>
+              <Badge variant="outline" className="text-xs">Партнерский проект</Badge>
+            </div>
+          </div>
         </div>
       </header>
 
+      <div className="bg-muted py-8">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-2">Легальные букмекерские конторы</h2>
+          <p className="text-muted-foreground">Рейтинг лучших лицензированных БК России</p>
+        </div>
+      </div>
+
       <main className="container mx-auto px-4 py-8">
-        <div className="mb-8 space-y-4">
-          <div className="relative">
+        <div className="mb-6">
+          <div className="relative max-w-md">
             <Icon name="Search" className="absolute left-3 top-3 text-muted-foreground" size={20} />
             <Input
               type="text"
-              placeholder="Поиск по магазину..."
+              placeholder="Поиск букмекера..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
             />
           </div>
-
-          <div className="flex flex-wrap gap-2">
-            <span className="text-sm font-medium text-foreground mr-2 self-center">Тип скидки:</span>
-            {(['percent', 'fixed', 'free_delivery'] as DiscountType[]).map(type => (
-              <Badge
-                key={type}
-                variant={selectedTypes.includes(type) ? 'default' : 'outline'}
-                className="cursor-pointer hover:bg-accent transition-colors"
-                onClick={() => toggleType(type)}
-              >
-                {getTypeLabel(type)}
-              </Badge>
-            ))}
-          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPromos.map(promo => (
-            <Card key={promo.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="text-4xl">{promo.logo}</div>
-                    <div>
-                      <CardTitle className="text-lg">{promo.store}</CardTitle>
-                      <CardDescription className="text-xs">до {promo.expiresAt}</CardDescription>
+        <div className="space-y-4">
+          {filteredBookmakers.map((bk, index) => (
+            <Card key={bk.id} className="p-6 hover:shadow-lg transition-shadow">
+              <div className="flex flex-col lg:flex-row gap-6">
+                <div className="flex items-center gap-4 lg:w-1/3">
+                  <div className="bg-muted rounded-lg w-16 h-16 flex items-center justify-center text-3xl shrink-0">
+                    {bk.logo}
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="bg-accent text-accent-foreground text-xs font-bold px-2 py-0.5 rounded">
+                        #{index + 1}
+                      </span>
+                      <h3 className="text-xl font-bold">{bk.name}</h3>
+                    </div>
+                    <div className="flex items-center gap-1 text-sm">
+                      <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                      <span className="font-semibold">{bk.rating}</span>
+                      <span className="text-muted-foreground">/5</span>
                     </div>
                   </div>
-                  <Badge variant="secondary" className="text-base font-bold">
-                    {promo.discount}
-                  </Badge>
                 </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">{promo.description}</p>
-                {promo.store === 'BetBoom' ? (
-                  <Button 
-                    className="w-full font-bold text-base"
-                    onClick={() => copyPromoCode(promo.code, promo.store)}
-                  >
-                    ЗАБРАТЬ 10 000₽
-                  </Button>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 bg-muted px-4 py-2 rounded-md font-mono text-sm font-semibold text-center border-2 border-dashed border-border">
-                      {promo.code}
-                    </div>
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() => copyPromoCode(promo.code, promo.store)}
-                      className="shrink-0"
-                    >
-                      <Icon name="Copy" size={18} />
-                    </Button>
+
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="bg-muted rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">Бонус</div>
+                    <div className="text-xl font-bold text-accent">{bk.bonus}</div>
                   </div>
-                )}
-              </CardContent>
+                  <div className="bg-muted rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">Лицензия</div>
+                    <div className="flex items-center gap-1">
+                      <Icon name="Shield" size={16} className="text-accent" />
+                      <span className="text-sm font-semibold">{bk.license}</span>
+                    </div>
+                  </div>
+                  <div className="bg-muted rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">Мин. депозит</div>
+                    <div className="text-lg font-bold">{bk.minDeposit}</div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 lg:w-48">
+                  <Button className="w-full font-semibold">
+                    Перейти на сайт
+                    <Icon name="ExternalLink" size={16} className="ml-2" />
+                  </Button>
+                  <Button variant="secondary" className="w-full">
+                    Читать обзор
+                  </Button>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-4 border-t">
+                <div className="flex flex-wrap gap-2">
+                  {bk.features.map((feature, idx) => (
+                    <Badge key={idx} variant="outline" className="text-xs">
+                      <Icon name="Check" size={14} className="mr-1 text-accent" />
+                      {feature}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
             </Card>
           ))}
         </div>
 
-        {filteredPromos.length === 0 && (
+        {filteredBookmakers.length === 0 && (
           <div className="text-center py-12">
             <Icon name="SearchX" size={64} className="mx-auto text-muted-foreground mb-4" />
-            <p className="text-lg text-muted-foreground">Промокоды не найдены</p>
-            <p className="text-sm text-muted-foreground mt-2">Попробуйте изменить параметры поиска</p>
+            <p className="text-lg text-muted-foreground">Букмекер не найден</p>
           </div>
         )}
       </main>
 
-      <footer className="bg-secondary text-secondary-foreground py-6 mt-12">
-        <div className="container mx-auto px-4 text-center text-sm">
-          <p>© 2024 ПромоКоды. Все права защищены.</p>
+      <footer className="bg-muted border-t py-8 mt-12">
+        <div className="container mx-auto px-4">
+          <div className="text-center text-sm text-muted-foreground space-y-2">
+            <p>© 2024 Рейтинг Букмекеров. Информационный портал.</p>
+            <p className="text-xs">
+              Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать зависимость.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
