@@ -90,10 +90,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-white border-b shadow-sm sticky top-0 z-10">
+      <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-center gap-3">
-            <h1 className="text-2xl font-bold text-foreground">Рейтинг Букмекеров</h1>
+            <h1 className="text-2xl font-bold text-accent">Рейтинг Букмекеров</h1>
             <Badge variant="outline" className="text-xs">Партнерский проект</Badge>
           </div>
         </div>

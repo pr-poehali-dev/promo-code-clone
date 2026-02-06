@@ -75,14 +75,14 @@ const Reviews = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-white border-b shadow-sm sticky top-0 z-10">
+      <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" onClick={() => navigate('/')}>
               <Icon name="ArrowLeft" size={20} />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Отзывы о {bookmakerName}</h1>
+              <h1 className="text-2xl font-bold text-accent">Отзывы о {bookmakerName}</h1>
               <p className="text-sm text-muted-foreground">Реальные отзывы пользователей</p>
             </div>
           </div>
