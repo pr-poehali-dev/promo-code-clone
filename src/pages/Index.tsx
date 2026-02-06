@@ -89,26 +89,24 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-white border-b shadow-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold text-foreground">Рейтинг Букмекеров</h1>
-              <Badge variant="outline" className="text-xs">Партнерский проект</Badge>
-            </div>
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-center gap-3">
+            <h1 className="text-2xl font-bold text-foreground">Рейтинг Букмекеров</h1>
+            <Badge variant="outline" className="text-xs">Партнерский проект</Badge>
           </div>
         </div>
       </header>
 
       <div className="bg-muted py-8">
-        <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-2">Легальные букмекерские конторы</h2>
           <p className="text-muted-foreground">Рейтинг лучших лицензированных БК России</p>
         </div>
       </div>
 
-      <main className="container mx-auto px-4 py-8">
-        <div className="mb-6">
-          <div className="relative max-w-md">
+      <main className="max-w-4xl mx-auto px-4 py-8">
+        <div className="mb-6 flex justify-center">
+          <div className="relative w-full max-w-md">
             <Icon name="Search" className="absolute left-3 top-3 text-muted-foreground" size={20} />
             <Input
               type="text"
@@ -195,7 +193,7 @@ const Index = () => {
       </main>
 
       <footer className="bg-muted border-t py-8 mt-12">
-        <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4">
           <div className="text-center text-sm text-muted-foreground space-y-2">
             <p>© 2024 Рейтинг Букмекеров. Информационный портал.</p>
             <p className="text-xs">
