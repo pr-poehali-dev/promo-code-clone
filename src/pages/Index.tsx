@@ -190,7 +190,11 @@ const Index = () => {
                     Перейти на сайт
                     <Icon name="ExternalLink" size={16} className="ml-2" />
                   </Button>
-                  <Button variant="secondary" className="w-full">
+                  <Button 
+                    variant="secondary" 
+                    className="w-full"
+                    onClick={() => bk.id === 1 && navigate('/betboom')}
+                  >
                     Читать обзор
                   </Button>
                 </div>
