@@ -112,6 +112,14 @@ const Index = () => {
         <Icon name="Heart" className="absolute top-[850px] right-1/3 text-muted-foreground/10" size={42} />
         <Icon name="Shield" className="absolute top-[550px] right-1/2 text-muted-foreground/10" size={75} />
         <Icon name="Diamond" className="absolute top-[1500px] left-1/3 text-muted-foreground/10" size={38} />
+        <Icon name="Trophy" className="absolute top-[1700px] right-1/4 text-muted-foreground/10" size={68} />
+        <Icon name="Target" className="absolute top-[1900px] left-20 text-muted-foreground/10" size={52} />
+        <Icon name="Star" className="absolute top-[2100px] right-10 text-muted-foreground/10" size={46} />
+        <Icon name="Award" className="absolute top-[2300px] left-1/2 text-muted-foreground/10" size={78} />
+        <Icon name="Medal" className="absolute top-[2500px] right-1/3 text-muted-foreground/10" size={58} />
+        <Icon name="Crown" className="absolute top-[2700px] left-1/4 text-muted-foreground/10" size={64} />
+        <Icon name="Zap" className="absolute top-[2900px] right-20 text-muted-foreground/10" size={72} />
+        <Icon name="Flame" className="absolute top-[3100px] left-10 text-muted-foreground/10" size={44} />
       </div>
 
       <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10">
