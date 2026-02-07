@@ -190,7 +190,7 @@ const Index = () => {
                 </div>
 
                 <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 items-start">
-                  <div className="bg-muted rounded-lg p-3">
+                  <div className={`bg-muted rounded-lg p-3 ${bk.id !== 6 ? 'text-center' : ''}`}>
                     <div className="text-xs text-muted-foreground mb-1">Бонус</div>
                     <div className="text-xl font-bold text-accent whitespace-nowrap">{bk.bonus}</div>
                   </div>
