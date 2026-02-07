@@ -77,9 +77,11 @@ const FonbetReview = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="text-center md:text-left flex-1">
                 <div className="mb-4">
-                  <div className="w-24 h-24 mx-auto md:mx-0 rounded-lg bg-blue-500 flex items-center justify-center text-5xl">
-                    🏆
-                  </div>
+                  <img 
+                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/7b16f118-18f8-465f-af61-6fb278326782.png"
+                    alt="Fonbet"
+                    className="w-24 h-24 mx-auto md:mx-0 rounded-lg"
+                  />
                 </div>
                 <h2 className="text-2xl font-bold mb-2">Fonbet</h2>
                 <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
