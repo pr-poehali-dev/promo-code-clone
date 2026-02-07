@@ -25,7 +25,7 @@ const bookmakers: Bookmaker[] = [
     rating: 5.0,
     bonus: '10 000₽',
     reviews: 847,
-    minDeposit: '50₽',
+    minDeposit: '100₽',
     features: ['Высокие коэффициенты', 'Быстрый вывод', 'Мобильное приложение']
   },
   {
