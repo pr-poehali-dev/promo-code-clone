@@ -192,7 +192,7 @@ const Index = () => {
                 <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 items-start">
                   <div className="bg-muted rounded-lg p-3">
                     <div className="text-xs text-muted-foreground mb-1">Бонус</div>
-                    <div className="text-xl font-bold text-accent">{bk.bonus}</div>
+                    <div className="text-xl font-bold text-accent whitespace-nowrap">{bk.bonus}</div>
                   </div>
                   <div 
                     className="bg-muted rounded-lg p-3 cursor-pointer hover:bg-accent/10 transition-colors"
