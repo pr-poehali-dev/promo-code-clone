@@ -241,7 +241,7 @@ const Index = () => {
       <footer className="bg-muted border-t py-8 mt-12">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center text-sm text-muted-foreground space-y-2">
-            <p>© 2024 Рейтинг Букмекеров. Информационный портал.</p>
+            <p>© 2026 Рейтинг Букмекеров. Информационный портал.</p>
             <p className="text-xs">
               Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать зависимость.
             </p>
