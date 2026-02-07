@@ -77,7 +77,13 @@ const BetboomReview = () => {
           <Card className="p-8 bg-card/95 backdrop-blur">
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="text-center md:text-left flex-1">
-                <div className="text-6xl mb-4">🎰</div>
+                <div className="mb-4">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/ecdfc38d-666a-4afd-8fa4-fbf1572ebaca.png"
+                    alt="BetBoom"
+                    className="w-24 h-24 mx-auto md:mx-0 rounded-lg"
+                  />
+                </div>
                 <h2 className="text-2xl font-bold mb-2">BetBoom</h2>
                 <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
                   <Icon name="Star" className="text-yellow-500 fill-yellow-500" size={20} />
