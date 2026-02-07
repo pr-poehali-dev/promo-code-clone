@@ -143,7 +143,12 @@ const Index = () => {
 
         <div className="space-y-4">
           {filteredBookmakers.map((bk, index) => (
-            <Card key={bk.id} className="p-6 hover:shadow-lg transition-shadow">
+            <Card key={bk.id} className={`p-6 hover:shadow-lg transition-shadow relative ${index < 3 ? 'border-2 border-red-500' : ''}`}>
+              {index < 3 && (
+                <div className="absolute top-4 left-4 bg-red-500 text-white rounded-full p-2 z-10">
+                  <Icon name="Star" size={20} className="fill-white" />
+                </div>
+              )}
               <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
                 <div className="lg:w-1/3 flex flex-col">
                   {(bk.id === 1 || bk.id === 2 || bk.id === 3 || bk.id === 4 || bk.id === 5 || bk.id === 6) && (
