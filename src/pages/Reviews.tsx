@@ -89,23 +89,6 @@ const Reviews = () => {
         </div>
       </header>
 
-      {bookmakerName === 'Leon' && (
-        <div className="max-w-4xl mx-auto px-4 mt-6">
-          <a 
-            href="https://leon.ru" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <img 
-              src="https://cdn.poehali.dev/files/9bcb8676-5a96-45e4-a4d0-dde603a8a11d.jpg"
-              alt="Приветственный фрибет 40000₽"
-              className="w-full h-auto"
-            />
-          </a>
-        </div>
-      )}
-
       <main className="max-w-4xl mx-auto px-4 py-8">
         <div className="space-y-4">
           {reviews.map((review) => (

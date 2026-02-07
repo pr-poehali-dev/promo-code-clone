@@ -212,7 +212,10 @@ const Index = () => {
                   <Button 
                     variant="secondary" 
                     className="w-full"
-                    onClick={() => bk.id === 1 && navigate('/betboom')}
+                    onClick={() => {
+                      if (bk.id === 1) navigate('/betboom');
+                      if (bk.id === 5) navigate('/leon');
+                    }}
                   >
                     Читать обзор
                   </Button>

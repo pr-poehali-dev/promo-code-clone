@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Reviews from "./pages/Reviews";
 import BetboomReview from "./pages/BetboomReview";
+import LeonReview from "./pages/LeonReview";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import CookieNotice from "./components/CookieNotice";
@@ -23,6 +24,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/betboom" element={<BetboomReview />} />
+          <Route path="/leon" element={<LeonReview />} />
           <Route path="/reviews/:bookmakerName" element={<Reviews />} />
           <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
