@@ -146,7 +146,7 @@ const Index = () => {
             <Card key={bk.id} className="p-6 hover:shadow-lg transition-shadow">
               <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
                 <div className="lg:w-1/3 flex flex-col">
-                  {(bk.id === 1 || bk.id === 2 || bk.id === 3 || bk.id === 5) && (
+                  {(bk.id === 1 || bk.id === 2 || bk.id === 3 || bk.id === 4 || bk.id === 5) && (
                     <div className="mb-3">
                       <img 
                         src={
@@ -156,6 +156,8 @@ const Index = () => {
                             ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/74bcc5ab-af45-435f-99f4-0beafea5f677.png"
                             : bk.id === 3
                             ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/1d922555-6ad2-4d31-bf86-eff6d9be1ce3.png"
+                            : bk.id === 4
+                            ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/f948aba1-e94e-4d49-a651-7ee198bae5c2.png"
                             : "https://cdn.poehali.dev/files/8e047f42-e896-48db-b62c-a31e06e44850.jpg"
                         }
                         alt={bk.name}
@@ -164,7 +166,7 @@ const Index = () => {
                     </div>
                   )}
                   <div className="flex items-center gap-4">
-                    {bk.id !== 1 && bk.id !== 2 && bk.id !== 3 && bk.id !== 5 && (
+                    {bk.id !== 1 && bk.id !== 2 && bk.id !== 3 && bk.id !== 4 && bk.id !== 5 && (
                       <div className="bg-muted rounded-lg w-20 h-20 flex items-center justify-center text-3xl shrink-0">
                         {bk.logo}
                       </div>
