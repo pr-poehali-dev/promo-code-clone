@@ -175,7 +175,15 @@ const Index = () => {
 
         <div className="space-y-4">
           {filteredBookmakers.map((bk, index) => (
-            <Card key={bk.id} className={`p-6 hover:shadow-lg transition-shadow relative ${index < 3 ? 'border-2 border-red-500' : ''}`}>
+            <Card 
+              key={bk.id} 
+              className={`p-6 hover:shadow-lg transition-all relative ${index < 3 ? 'border-2 border-red-500' : ''} animate-in fade-in slide-in-from-bottom-4`}
+              style={{ 
+                animationDelay: `${index * 150}ms`,
+                animationDuration: '500ms',
+                animationFillMode: 'both'
+              }}
+            >
               {index < 3 && (
                 <div className="absolute top-4 left-4 bg-red-500 text-white rounded-full p-2 z-10">
                   <Icon name="Star" size={20} className="fill-white" />
