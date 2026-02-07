@@ -144,8 +144,8 @@ const Index = () => {
         <div className="space-y-4">
           {filteredBookmakers.map((bk, index) => (
             <Card key={bk.id} className="p-6 hover:shadow-lg transition-shadow">
-              <div className="flex flex-col lg:flex-row gap-6">
-                <div className="lg:w-1/3">
+              <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
+                <div className="lg:w-1/3 flex flex-col">
                   {bk.id === 1 && (
                     <div className="mb-3">
                       <img 
@@ -177,7 +177,7 @@ const Index = () => {
                   </div>
                 </div>
 
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 items-start">
                   <div className="bg-muted rounded-lg p-3">
                     <div className="text-xs text-muted-foreground mb-1">Бонус</div>
                     <div className="text-xl font-bold text-accent">{bk.bonus}</div>
