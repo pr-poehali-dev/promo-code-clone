@@ -190,9 +190,11 @@ const Index = () => {
                 </div>
 
                 <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 items-start">
-                  <div className={`bg-muted rounded-lg p-3 ${bk.id !== 6 ? 'text-center' : ''}`}>
-                    <div className="text-xs text-muted-foreground mb-1">Бонус</div>
-                    <div className="text-xl font-bold text-accent whitespace-nowrap">{bk.bonus}</div>
+                  <div className="bg-muted rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1 text-center">Бонус</div>
+                    <div className={`text-xl font-bold text-accent ${bk.id !== 6 ? 'flex justify-center' : ''}`}>
+                      <span className="whitespace-nowrap">{bk.bonus}</span>
+                    </div>
                   </div>
                   <div 
                     className="bg-muted rounded-lg p-3 cursor-pointer hover:bg-accent/10 transition-colors"
