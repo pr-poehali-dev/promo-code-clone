@@ -145,29 +145,34 @@ const Index = () => {
           {filteredBookmakers.map((bk, index) => (
             <Card key={bk.id} className="p-6 hover:shadow-lg transition-shadow">
               <div className="flex flex-col lg:flex-row gap-6">
-                <div className="flex items-center gap-4 lg:w-1/3">
-                  <div className="bg-muted rounded-lg w-20 h-20 flex items-center justify-center overflow-hidden shrink-0">
-                    {bk.id === 1 ? (
+                <div className="lg:w-1/3">
+                  {bk.id === 1 && (
+                    <div className="mb-3">
                       <img 
                         src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/e2f36443-708d-4f6a-8306-cbbfcbb4668a.png" 
                         alt={bk.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto rounded-lg"
                       />
-                    ) : (
-                      <span className="text-3xl">{bk.logo}</span>
-                    )}
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="bg-accent text-accent-foreground text-xs font-bold px-2 py-0.5 rounded">
-                        #{index + 1}
-                      </span>
-                      <h3 className="text-xl font-bold">{bk.name}</h3>
                     </div>
-                    <div className="flex items-center gap-1 text-sm">
-                      <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
-                      <span className="font-semibold">{bk.rating}</span>
-                      <span className="text-muted-foreground">/5</span>
+                  )}
+                  <div className="flex items-center gap-4">
+                    {bk.id !== 1 && (
+                      <div className="bg-muted rounded-lg w-20 h-20 flex items-center justify-center text-3xl shrink-0">
+                        {bk.logo}
+                      </div>
+                    )}
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="bg-accent text-accent-foreground text-xs font-bold px-2 py-0.5 rounded">
+                          #{index + 1}
+                        </span>
+                        <h3 className="text-xl font-bold">{bk.name}</h3>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm">
+                        <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                        <span className="font-semibold">{bk.rating}</span>
+                        <span className="text-muted-foreground">/5</span>
+                      </div>
                     </div>
                   </div>
                 </div>
