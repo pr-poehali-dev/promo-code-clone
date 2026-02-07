@@ -152,7 +152,7 @@ const Index = () => {
         </div>
 
         {/* Мини-игра слева */}
-        <div className="absolute top-[600px] left-4 w-64 h-80 pointer-events-auto z-20">
+        <div className="absolute top-[600px] left-20 w-64 h-80 pointer-events-auto z-20">
           <div className="relative w-full h-full">
             {/* Баскетбольное кольцо */}
             <div className="absolute top-8 right-8 w-16 h-16">
