@@ -74,43 +74,30 @@ const WinlineReview = () => {
       <div className="bg-gradient-to-r from-primary to-accent py-12">
         <div className="max-w-4xl mx-auto px-4">
           <Card className="p-8 bg-card/95 backdrop-blur">
-            <div className="flex flex-col md:flex-row gap-8 items-center">
-              <div className="text-center md:text-left flex-1">
+            <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
+              <div className="text-center">
                 <div className="mb-4">
-                  <div className="w-24 h-24 mx-auto md:mx-0 rounded-lg bg-orange-500 flex items-center justify-center text-5xl">
-                    💎
-                  </div>
+                  <img 
+                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/5711b303-6c97-4aaa-ba0a-76036a5f4f4f.png"
+                    alt="Winline"
+                    className="w-32 h-32 mx-auto rounded-lg"
+                  />
                 </div>
                 <h2 className="text-2xl font-bold mb-2">Winline</h2>
-                <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
+                <div className="flex items-center gap-2 justify-center mb-4">
                   <Icon name="Star" className="text-yellow-500 fill-yellow-500" size={20} />
                   <span className="text-2xl font-bold">4.5</span>
                 </div>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
+                  <div className="flex items-center gap-2 justify-center">
                     <Icon name="Globe" size={16} />
                     <span>winline.ru</span>
                   </div>
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
+                  <div className="flex items-center gap-2 justify-center">
                     <Icon name="CheckCircle" size={16} className="text-green-600" />
                     <span>Лицензия: Есть</span>
                   </div>
                 </div>
-              </div>
-              
-              <div className="flex-1">
-                <a 
-                  href="https://winline.ru" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <img 
-                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/caa91320-7d93-44b6-acd8-f896732946a0.png"
-                    alt="Фрибет 3000 новым игрокам"
-                    className="w-full h-auto"
-                  />
-                </a>
               </div>
             </div>
           </Card>
