@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Reviews from "./pages/Reviews";
 import BetboomReview from "./pages/BetboomReview";
 import NotFound from "./pages/NotFound";
+import Privacy from "./pages/Privacy";
 import CookieNotice from "./components/CookieNotice";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/betboom" element={<BetboomReview />} />
           <Route path="/reviews/:bookmakerName" element={<Reviews />} />
+          <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
