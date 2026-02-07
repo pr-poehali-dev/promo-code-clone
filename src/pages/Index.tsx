@@ -120,6 +120,24 @@ const Index = () => {
         <Icon name="Crown" className="absolute top-[2700px] left-1/4 text-muted-foreground/10" size={64} />
         <Icon name="Zap" className="absolute top-[2900px] right-20 text-muted-foreground/10" size={72} />
         <Icon name="Flame" className="absolute top-[3100px] left-10 text-muted-foreground/10" size={44} />
+        
+        {/* Футбольный мяч с градиентом */}
+        <div className="absolute top-[1000px] -right-32 w-96 h-96 pointer-events-none">
+          <div className="relative w-full h-full">
+            <div 
+              className="absolute inset-0 bg-gradient-to-l from-transparent via-background/50 to-background z-10"
+              style={{ 
+                maskImage: 'linear-gradient(to left, transparent 0%, black 60%)',
+                WebkitMaskImage: 'linear-gradient(to left, transparent 0%, black 60%)'
+              }}
+            />
+            <img 
+              src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/60d09ce0-e6c7-4d5d-9540-344e6e699e8a.png"
+              alt="Football"
+              className="w-full h-full object-cover opacity-40"
+            />
+          </div>
+        </div>
       </div>
 
       <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10">
