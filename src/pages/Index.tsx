@@ -228,6 +228,7 @@ const Index = () => {
                     onClick={() => {
                       if (bk.id === 1) navigate('/betboom');
                       if (bk.id === 5) navigate('/leon');
+                      if (bk.id === 6) navigate('/winline');
                     }}
                   >
                     Читать обзор
