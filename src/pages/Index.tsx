@@ -89,7 +89,21 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Декоративные спортивные иконки на фоне */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <Icon name="Trophy" className="absolute top-20 left-10 text-muted-foreground/10" size={80} />
+        <Icon name="Target" className="absolute top-40 right-20 text-muted-foreground/10" size={60} />
+        <Icon name="Award" className="absolute top-96 left-1/4 text-muted-foreground/10" size={70} />
+        <Icon name="Medal" className="absolute bottom-96 right-1/3 text-muted-foreground/10" size={65} />
+        <Icon name="Flame" className="absolute bottom-60 left-20 text-muted-foreground/10" size={75} />
+        <Icon name="Zap" className="absolute top-1/2 right-10 text-muted-foreground/10" size={85} />
+        <Icon name="Star" className="absolute bottom-40 right-1/4 text-muted-foreground/10" size={55} />
+        <Icon name="Crown" className="absolute top-1/3 left-1/3 text-muted-foreground/10" size={70} />
+        <Icon name="TrendingUp" className="absolute bottom-1/3 right-1/2 text-muted-foreground/10" size={60} />
+        <Icon name="Sparkles" className="absolute top-2/3 left-1/2 text-muted-foreground/10" size={65} />
+      </div>
+
       <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-center gap-3">
