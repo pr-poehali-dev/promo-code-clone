@@ -224,7 +224,20 @@ const Index = () => {
         }
       `}</style>
 
-      <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10">
+      <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10 relative overflow-hidden">
+        {/* Новогодняя мишура */}
+        <div className="absolute top-0 left-0 right-0 h-2 flex justify-around opacity-60">
+          <div className="w-3 h-3 rounded-full bg-red-500 -mt-1"></div>
+          <div className="w-2 h-2 rounded-full bg-yellow-400 mt-0"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500 -mt-1"></div>
+          <div className="w-2 h-2 rounded-full bg-blue-500 mt-0"></div>
+          <div className="w-3 h-3 rounded-full bg-red-500 -mt-1"></div>
+          <div className="w-2 h-2 rounded-full bg-yellow-400 mt-0"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500 -mt-1"></div>
+          <div className="w-2 h-2 rounded-full bg-blue-500 mt-0"></div>
+          <div className="w-3 h-3 rounded-full bg-red-500 -mt-1"></div>
+        </div>
+        
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-center gap-3">
             <h1 className="text-2xl font-bold text-accent">Рейтинг Букмекеров</h1>
