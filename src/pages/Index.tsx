@@ -283,7 +283,7 @@ const Index = () => {
           {filteredBookmakers.map((bk, index) => (
             <Card 
               key={bk.id} 
-              className={`p-6 hover:shadow-lg transition-all relative min-h-[420px] ${index < 3 ? 'border-2 border-red-500' : ''} animate-in fade-in slide-in-from-bottom-4`}
+              className={`p-6 hover:shadow-lg transition-all relative min-h-[360px] ${index < 3 ? 'border-2 border-red-500' : ''} animate-in fade-in slide-in-from-bottom-4`}
               style={{ 
                 animationDelay: `${index * 150}ms`,
                 animationDuration: '500ms',
