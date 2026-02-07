@@ -146,17 +146,20 @@ const Index = () => {
             <Card key={bk.id} className="p-6 hover:shadow-lg transition-shadow">
               <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
                 <div className="lg:w-1/3 flex flex-col">
-                  {bk.id === 1 && (
+                  {(bk.id === 1 || bk.id === 2) && (
                     <div className="mb-3">
                       <img 
-                        src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/e2f36443-708d-4f6a-8306-cbbfcbb4668a.png" 
+                        src={bk.id === 1 
+                          ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/e2f36443-708d-4f6a-8306-cbbfcbb4668a.png"
+                          : "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/74bcc5ab-af45-435f-99f4-0beafea5f677.png"
+                        }
                         alt={bk.name}
                         className="w-full h-auto rounded-lg"
                       />
                     </div>
                   )}
                   <div className="flex items-center gap-4">
-                    {bk.id !== 1 && (
+                    {bk.id !== 1 && bk.id !== 2 && (
                       <div className="bg-muted rounded-lg w-20 h-20 flex items-center justify-center text-3xl shrink-0">
                         {bk.logo}
                       </div>
