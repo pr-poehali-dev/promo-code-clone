@@ -53,7 +53,7 @@ const bookmakers: Bookmaker[] = [
     name: 'Melbet',
     logo: '🎯',
     rating: 4.7,
-    bonus: '8 000₽',
+    bonus: '30 000₽',
     reviews: 456,
     minDeposit: '50₽',
     features: ['Киберспорт', 'Казино', 'Промокоды']
