@@ -74,45 +74,30 @@ const FonbetReview = () => {
       <div className="bg-gradient-to-r from-primary to-accent py-12">
         <div className="max-w-4xl mx-auto px-4">
           <Card className="p-8 bg-card/95 backdrop-blur">
-            <div className="flex flex-col md:flex-row gap-8 items-center">
-              <div className="text-center md:text-left flex-1">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="text-left">
                 <div className="mb-4">
                   <img 
                     src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/7b16f118-18f8-465f-af61-6fb278326782.png"
                     alt="Fonbet"
-                    className="w-24 h-24 mx-auto md:mx-0 rounded-lg"
+                    className="w-24 h-24 rounded-lg"
                   />
                 </div>
                 <h2 className="text-2xl font-bold mb-2">Fonbet</h2>
-                <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
+                <div className="flex items-center gap-2 mb-4">
                   <Icon name="Star" className="text-yellow-500 fill-yellow-500" size={20} />
                   <span className="text-2xl font-bold">4.9</span>
                 </div>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
+                  <div className="flex items-center gap-2">
                     <Icon name="Globe" size={16} />
                     <span>fonbet.ru</span>
                   </div>
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
+                  <div className="flex items-center gap-2">
                     <Icon name="CheckCircle" size={16} className="text-green-600" />
                     <span>Лицензия: Есть</span>
                   </div>
                 </div>
-              </div>
-              
-              <div className="flex-1">
-                <a 
-                  href="https://fonbet.ru" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <img 
-                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/d56a441e-e2f5-4402-8134-152b3264f798.png"
-                    alt="До 15 000₽ без депозита"
-                    className="w-full h-auto"
-                  />
-                </a>
               </div>
             </div>
           </Card>
