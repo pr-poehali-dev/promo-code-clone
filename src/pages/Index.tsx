@@ -32,7 +32,7 @@ const bookmakers: Bookmaker[] = [
     id: 6,
     name: 'Winline',
     logo: '💎',
-    rating: 4.5,
+    rating: 4.9,
     bonus: '3 000₽',
     reviews: 289,
     minDeposit: '100₽',
