@@ -42,7 +42,7 @@ const bookmakers: Bookmaker[] = [
     id: 1,
     name: 'BetBoom',
     logo: '🎰',
-    rating: 5.0,
+    rating: 4.9,
     bonus: '10 000₽',
     reviews: 847,
     minDeposit: '100₽',
