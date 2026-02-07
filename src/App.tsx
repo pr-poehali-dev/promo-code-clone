@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Reviews from "./pages/Reviews";
 import BetboomReview from "./pages/BetboomReview";
 import NotFound from "./pages/NotFound";
+import CookieNotice from "./components/CookieNotice";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <CookieNotice />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
