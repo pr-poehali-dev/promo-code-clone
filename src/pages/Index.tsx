@@ -83,6 +83,23 @@ const bookmakers: Bookmaker[] = [
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+  const [gameState, setGameState] = useState<'idle' | 'throwing' | 'success' | 'fail'>('idle');
+  const [ballPosition, setBallPosition] = useState({ x: 0, y: 0 });
+
+  const handleThrow = () => {
+    if (gameState !== 'idle') return;
+    
+    setGameState('throwing');
+    const success = Math.random() > 0.4; // 60% шанс попадания
+    
+    // Анимация броска
+    setTimeout(() => {
+      setGameState(success ? 'success' : 'fail');
+      setTimeout(() => {
+        setGameState('idle');
+      }, 2000);
+    }, 800);
+  };
 
   const filteredBookmakers = bookmakers.filter(bk =>
     bk.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -133,7 +150,79 @@ const Index = () => {
             }}
           />
         </div>
+
+        {/* Мини-игра слева */}
+        <div className="absolute top-[600px] -left-8 w-64 h-80 pointer-events-auto z-20">
+          <div className="relative w-full h-full">
+            {/* Баскетбольное кольцо */}
+            <div className="absolute top-8 right-8 w-16 h-16">
+              <div className="w-full h-2 bg-orange-500 rounded-full"></div>
+              <div className="w-full h-12 border-4 border-orange-500 rounded-b-full mt-1"></div>
+            </div>
+
+            {/* Футболист */}
+            <div 
+              className="absolute bottom-12 left-8 cursor-pointer transition-transform hover:scale-110"
+              onClick={handleThrow}
+            >
+              <div className="text-center">
+                <div className="text-6xl mb-2">
+                  {gameState === 'success' ? '😊' : gameState === 'fail' ? '😢' : '⚽'}
+                </div>
+                <div className="text-4xl">🧍</div>
+              </div>
+            </div>
+
+            {/* Летящий мяч */}
+            {gameState === 'throwing' && (
+              <div 
+                className="absolute bottom-24 left-16 text-3xl animate-bounce"
+                style={{
+                  animation: 'throw 0.8s ease-out forwards',
+                }}
+              >
+                ⚽
+              </div>
+            )}
+
+            {/* Текст подсказки */}
+            {gameState === 'idle' && (
+              <div className="absolute bottom-2 left-0 right-0 text-center text-xs text-muted-foreground bg-background/80 rounded px-2 py-1">
+                Кликни, чтобы бросить!
+              </div>
+            )}
+
+            {gameState === 'success' && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-green-600 animate-pulse">
+                Гол! 🎉
+              </div>
+            )}
+
+            {gameState === 'fail' && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-red-600 animate-pulse">
+                Мимо!
+              </div>
+            )}
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes throw {
+          0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(80px, -120px) scale(0.6);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(120px, -80px) scale(0.4);
+            opacity: 0;
+          }
+        }
+      `}</style>
 
       <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4">
