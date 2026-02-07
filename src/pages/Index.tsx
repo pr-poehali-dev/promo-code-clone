@@ -123,20 +123,15 @@ const Index = () => {
         
         {/* Футбольный мяч с градиентом */}
         <div className="absolute top-[1000px] -right-32 w-96 h-96 pointer-events-none">
-          <div className="relative w-full h-full">
-            <div 
-              className="absolute inset-0 bg-gradient-to-l from-transparent via-background/50 to-background z-10"
-              style={{ 
-                maskImage: 'linear-gradient(to left, transparent 0%, black 60%)',
-                WebkitMaskImage: 'linear-gradient(to left, transparent 0%, black 60%)'
-              }}
-            />
-            <img 
-              src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/60d09ce0-e6c7-4d5d-9540-344e6e699e8a.png"
-              alt="Football"
-              className="w-full h-full object-cover opacity-40"
-            />
-          </div>
+          <img 
+            src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/60d09ce0-e6c7-4d5d-9540-344e6e699e8a.png"
+            alt="Football"
+            className="w-full h-full object-cover opacity-30"
+            style={{ 
+              maskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)',
+              WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)'
+            }}
+          />
         </div>
       </div>
 
