@@ -90,6 +90,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Футбольный мяч с градиентом */}
+      <div className="absolute top-[1000px] -right-32 w-96 h-96 pointer-events-none">
+        <img 
+          src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/60d09ce0-e6c7-4d5d-9540-344e6e699e8a.png"
+          alt="Football"
+          className="w-full h-full object-cover opacity-30"
+          style={{ 
+            maskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)'
+          }}
+        />
+      </div>
 
       <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10 relative overflow-hidden">
         {/* Новогодняя мишура */}
