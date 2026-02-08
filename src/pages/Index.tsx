@@ -92,14 +92,12 @@ const Index = () => {
     <div className="min-h-screen bg-background relative overflow-hidden">
       {/* Декоративные спортивные иконки на фоне */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <Icon name="Trophy" className="absolute top-20 left-10 text-muted-foreground/10" size={80} />
         <Icon name="Target" className="absolute top-40 right-20 text-muted-foreground/10" size={60} />
         <Icon name="Award" className="absolute top-96 left-1/4 text-muted-foreground/10" size={70} />
         <Icon name="Medal" className="absolute top-[500px] right-1/3 text-muted-foreground/10" size={65} />
         <Icon name="Flame" className="absolute top-[700px] left-20 text-muted-foreground/10" size={75} />
         <Icon name="Zap" className="absolute top-[800px] right-10 text-muted-foreground/10" size={85} />
         <Icon name="Star" className="absolute top-[1000px] right-1/4 text-muted-foreground/10" size={55} />
-        <Icon name="Crown" className="absolute top-[300px] left-1/3 text-muted-foreground/10" size={70} />
         <Icon name="TrendingUp" className="absolute top-[1200px] right-1/2 text-muted-foreground/10" size={60} />
         <Icon name="Sparkles" className="absolute top-[900px] left-1/2 text-muted-foreground/10" size={65} />
         <Icon name="Swords" className="absolute top-[150px] right-1/4 text-muted-foreground/10" size={45} />
@@ -117,7 +115,6 @@ const Index = () => {
         <Icon name="Star" className="absolute top-[2100px] right-10 text-muted-foreground/10" size={46} />
         <Icon name="Award" className="absolute top-[2300px] left-1/2 text-muted-foreground/10" size={78} />
         <Icon name="Medal" className="absolute top-[2500px] right-1/3 text-muted-foreground/10" size={58} />
-        <Icon name="Crown" className="absolute top-[2700px] left-1/4 text-muted-foreground/10" size={64} />
         <Icon name="Zap" className="absolute top-[2900px] right-20 text-muted-foreground/10" size={72} />
         <Icon name="Flame" className="absolute top-[3100px] left-10 text-muted-foreground/10" size={44} />
         
