@@ -78,9 +78,9 @@ const FonbetReview = () => {
               <div className="text-left">
                 <div className="mb-4">
                   <img 
-                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/a8c422d7-c45b-4deb-a479-02576562fd08.png"
+                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/7b16f118-18f8-465f-af61-6fb278326782.png"
                     alt="Fonbet"
-                    className="w-full rounded-lg"
+                    className="w-24 h-24 rounded-lg"
                   />
                 </div>
                 <h2 className="text-2xl font-bold mb-2">Fonbet</h2>
