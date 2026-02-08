@@ -192,7 +192,7 @@ const Index = () => {
                             : bk.id === 4
                             ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/f948aba1-e94e-4d49-a651-7ee198bae5c2.png"
                             : bk.id === 5
-                            ? "https://cdn.poehali.dev/files/8e047f42-e896-48db-b62c-a31e06e44850.jpg"
+                            ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0bb38841-4e9e-45a3-b471-eb977d7f0d05.png"
                             : "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/d7e9f98a-d9ca-41c8-aa60-604944c82c3e.png"
                         }
                         alt={bk.name}
