@@ -90,48 +90,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Декоративные спортивные иконки на фоне */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <Icon name="Target" className="absolute top-40 right-20 text-muted-foreground/10" size={60} />
-        <Icon name="Award" className="absolute top-96 left-1/4 text-muted-foreground/10" size={70} />
-        <Icon name="Medal" className="absolute top-[500px] right-1/3 text-muted-foreground/10" size={65} />
-        <Icon name="Flame" className="absolute top-[700px] left-20 text-muted-foreground/10" size={75} />
-        <Icon name="Zap" className="absolute top-[800px] right-10 text-muted-foreground/10" size={85} />
-        <Icon name="Star" className="absolute top-[1000px] right-1/4 text-muted-foreground/10" size={55} />
-        <Icon name="TrendingUp" className="absolute top-[1200px] right-1/2 text-muted-foreground/10" size={60} />
-        <Icon name="Sparkles" className="absolute top-[900px] left-1/2 text-muted-foreground/10" size={65} />
-        <Icon name="Swords" className="absolute top-[150px] right-1/4 text-muted-foreground/10" size={45} />
-        <Icon name="Dumbbell" className="absolute top-[600px] left-1/2 text-muted-foreground/10" size={90} />
-        <Icon name="Bike" className="absolute top-[1100px] left-10 text-muted-foreground/10" size={50} />
-        <Icon name="CircleDot" className="absolute top-[400px] right-10 text-muted-foreground/10" size={40} />
-        <Icon name="Flag" className="absolute top-[1300px] left-1/4 text-muted-foreground/10" size={55} />
-        <Icon name="Timer" className="absolute top-[250px] left-1/2 text-muted-foreground/10" size={48} />
-        <Icon name="Rocket" className="absolute top-[1400px] right-20 text-muted-foreground/10" size={70} />
-        <Icon name="Heart" className="absolute top-[850px] right-1/3 text-muted-foreground/10" size={42} />
-        <Icon name="Shield" className="absolute top-[550px] right-1/2 text-muted-foreground/10" size={75} />
-        <Icon name="Diamond" className="absolute top-[1500px] left-1/3 text-muted-foreground/10" size={38} />
-        <Icon name="Trophy" className="absolute top-[1700px] right-1/4 text-muted-foreground/10" size={68} />
-        <Icon name="Target" className="absolute top-[1900px] left-20 text-muted-foreground/10" size={52} />
-        <Icon name="Star" className="absolute top-[2100px] right-10 text-muted-foreground/10" size={46} />
-        <Icon name="Award" className="absolute top-[2300px] left-1/2 text-muted-foreground/10" size={78} />
-        <Icon name="Medal" className="absolute top-[2500px] right-1/3 text-muted-foreground/10" size={58} />
-        <Icon name="Zap" className="absolute top-[2900px] right-20 text-muted-foreground/10" size={72} />
-        <Icon name="Flame" className="absolute top-[3100px] left-10 text-muted-foreground/10" size={44} />
-        
-        {/* Футбольный мяч с градиентом */}
-        <div className="absolute top-[1000px] -right-32 w-96 h-96 pointer-events-none">
-          <img 
-            src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/60d09ce0-e6c7-4d5d-9540-344e6e699e8a.png"
-            alt="Football"
-            className="w-full h-full object-cover opacity-30"
-            style={{ 
-              maskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)',
-              WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)'
-            }}
-          />
-        </div>
-
-      </div>
 
       <header className="bg-secondary border-b border-border shadow-sm sticky top-0 z-10 relative overflow-hidden">
         {/* Новогодняя мишура */}
