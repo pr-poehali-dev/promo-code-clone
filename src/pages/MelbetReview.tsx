@@ -106,10 +106,10 @@ const MelbetReview = () => {
         </div>
       </div>
 
-      <main className="max-w-4xl mx-auto px-4 py-12 space-y-8">
-        <div>
+      <main className="max-w-4xl mx-auto px-4 py-8">
+        <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Общая информация</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {generalInfo.map((item, index) => (
               <Card key={index} className="p-4 text-center">
                 <div className="text-sm text-muted-foreground mb-1">{item.label}</div>
@@ -119,29 +119,40 @@ const MelbetReview = () => {
           </div>
         </div>
 
-        <Card className="p-6">
-          <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Icon name="Info" className="text-accent" />
-            О букмекерской конторе Melbet
-          </h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Melbet — популярная букмекерская контора с одним из самых низких минимальных депозитов на рынке (всего 50 рублей). 
-            Особенно хороша линия по киберспорту и наличие встроенного онлайн-казино. 
-            Приветственный бонус до 30 000 рублей и регулярные промокоды делают игру выгодной для всех категорий игроков. 
-            Букмекер имеет лицензию ФНС России и работает легально на территории РФ.
-          </p>
-        </Card>
-
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Детальный рейтинг</h2>
           <Card className="p-6">
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-green-600">
-              <Icon name="ThumbsUp" />
+            <div className="space-y-4">
+              {ratings.map((category, index) => (
+                <div key={index}>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium">{category.name}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {category.score}/{category.maxScore}
+                    </span>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-2">
+                    <div 
+                      className="bg-accent h-2 rounded-full transition-all"
+                      style={{ width: `${(category.score / category.maxScore) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <Card className="p-6">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <Icon name="ThumbsUp" className="text-green-600" />
               Преимущества
-            </h3>
+            </h2>
             <ul className="space-y-2">
               {pros.map((pro, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <Icon name="Check" size={20} className="text-green-600 mt-0.5 shrink-0" />
+                <li key={index} className="flex items-start gap-2 text-sm">
+                  <Icon name="Check" className="text-green-600 mt-0.5 flex-shrink-0" size={16} />
                   <span>{pro}</span>
                 </li>
               ))}
@@ -149,14 +160,14 @@ const MelbetReview = () => {
           </Card>
 
           <Card className="p-6">
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-red-600">
-              <Icon name="ThumbsDown" />
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <Icon name="ThumbsDown" className="text-red-600" />
               Недостатки
-            </h3>
+            </h2>
             <ul className="space-y-2">
               {cons.map((con, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <Icon name="X" size={20} className="text-red-600 mt-0.5 shrink-0" />
+                <li key={index} className="flex items-start gap-2 text-sm">
+                  <Icon name="X" className="text-red-600 mt-0.5 flex-shrink-0" size={16} />
                   <span>{con}</span>
                 </li>
               ))}
@@ -164,34 +175,29 @@ const MelbetReview = () => {
           </Card>
         </div>
 
-        <Card className="p-6">
-          <h3 className="text-2xl font-bold mb-6">Детальная оценка</h3>
-          <div className="space-y-4">
-            {ratings.map((rating, index) => (
-              <div key={index}>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">{rating.name}</span>
-                  <span className="text-muted-foreground">{rating.score}/{rating.maxScore}</span>
-                </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-accent transition-all"
-                    style={{ width: `${(rating.score / rating.maxScore) * 100}%` }}
-                  />
-                </div>
-              </div>
-            ))}
+        <Card className="p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4">О компании</h2>
+          <div className="prose prose-sm max-w-none text-muted-foreground">
+            <p className="mb-3">
+              Melbet — популярная букмекерская контора с одним из самых низких минимальных депозитов на рынке. 
+              Компания работает с 2012 года и имеет официальную лицензию ФНС России.
+            </p>
+            <p className="mb-3">
+              Букмекер предлагает широкую линию по киберспорту, футболу, хоккею, 
+              баскетболу и другим видам спорта. Доступны прематч и live-ставки, а также онлайн-казино.
+            </p>
+            <p>
+              Melbet известен низким минимальным депозитом (50 рублей), регулярными промокодами и щедрыми бонусами. 
+              Новым клиентам предоставляется приветственный бонус до 30 000 рублей.
+            </p>
           </div>
         </Card>
 
-        <Card className="p-6 bg-accent/5 border-accent">
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <Icon name="Trophy" className="text-accent" />
-            Топовые категории
-          </h3>
+        <Card className="p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4">Топ подборки</h2>
           <ul className="space-y-2">
             {topCategories.map((category, index) => (
-              <li key={index} className="flex items-center gap-2 text-muted-foreground">
+              <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Icon name="Trophy" size={16} className="text-accent" />
                 <span>{category}</span>
               </li>
