@@ -282,7 +282,9 @@ const Index = () => {
                   className="w-full sm:w-auto px-8"
                   onClick={() => {
                     if (bk.id === 1) navigate('/betboom');
+                    if (bk.id === 2) navigate('/1xbet');
                     if (bk.id === 3) navigate('/fonbet');
+                    if (bk.id === 4) navigate('/melbet');
                     if (bk.id === 5) navigate('/leon');
                     if (bk.id === 6) navigate('/winline');
                   }}
