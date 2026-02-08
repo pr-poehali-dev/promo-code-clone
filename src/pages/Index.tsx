@@ -133,11 +133,7 @@ const Index = () => {
 
       <div className="bg-muted py-8">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-4 mb-2">
-            <Icon name="Circle" className="text-accent" size={32} />
-            <h2 className="text-3xl font-bold">Легальные букмекерские конторы</h2>
-            <Icon name="Circle" className="text-accent" size={32} />
-          </div>
+          <h2 className="text-3xl font-bold mb-2">Легальные букмекерские конторы</h2>
           <p className="text-muted-foreground">Рейтинг лучших лицензированных БК России</p>
         </div>
       </div>
