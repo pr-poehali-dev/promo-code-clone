@@ -202,7 +202,14 @@ const BetboomReview = () => {
           </Card>
         </section>
 
-        <section className="text-center">
+        <section className="text-center flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            onClick={() => navigate('/reviews/BetBoom')}
+            className="gap-2"
+          >
+            <Icon name="MessageCircle" size={16} />
+            Смотреть отзывы
+          </Button>
           <Button 
             onClick={() => navigate('/')}
             variant="outline"
