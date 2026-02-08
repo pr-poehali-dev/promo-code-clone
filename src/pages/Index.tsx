@@ -25,7 +25,7 @@ const bookmakers: Bookmaker[] = [
     rating: 4.9,
     bonus: '15 000₽',
     reviews: 912,
-    minDeposit: '500₽',
+    minDeposit: '100₽',
     features: ['Надежная БК', 'Пункты приема ставок', 'Акции и бонусы']
   },
   {
@@ -35,7 +35,7 @@ const bookmakers: Bookmaker[] = [
     rating: 4.9,
     bonus: '3 000₽',
     reviews: 289,
-    minDeposit: '100₽',
+    minDeposit: '500₽',
     features: ['Простая регистрация', 'Быстрая верификация', 'Поддержка 24/7']
   },
   {
