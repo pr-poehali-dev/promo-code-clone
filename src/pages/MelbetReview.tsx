@@ -100,12 +100,7 @@ const MelbetReview = () => {
                 </div>
               </div>
 
-              <div className="flex-1 flex items-center justify-center">
-                <Button size="lg" className="w-full max-w-md">
-                  Перейти на сайт
-                  <Icon name="ExternalLink" size={18} className="ml-2" />
-                </Button>
-              </div>
+
             </div>
           </Card>
         </div>
