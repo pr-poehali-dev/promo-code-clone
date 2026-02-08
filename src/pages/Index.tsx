@@ -184,7 +184,7 @@ const Index = () => {
                       <img 
                         src={
                           bk.id === 1 
-                            ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/e2f36443-708d-4f6a-8306-cbbfcbb4668a.png"
+                            ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/90f32309-e331-487f-b31c-be4d770d94d7.png"
                             : bk.id === 2
                             ? "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/74bcc5ab-af45-435f-99f4-0beafea5f677.png"
                             : bk.id === 3
