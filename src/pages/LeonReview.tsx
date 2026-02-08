@@ -205,7 +205,7 @@ const LeonReview = () => {
           </ul>
         </Card>
 
-        <div className="text-center">
+        <div className="text-center flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
             size="lg" 
             onClick={() => navigate('/reviews/Leon')}
@@ -213,6 +213,15 @@ const LeonReview = () => {
           >
             Смотреть отзывы
             <Icon name="MessageSquare" size={18} />
+          </Button>
+          <Button 
+            size="lg"
+            onClick={() => navigate('/')}
+            variant="outline"
+            className="gap-2"
+          >
+            <Icon name="ArrowLeft" size={16} />
+            Вернуться к списку букмекеров
           </Button>
         </div>
       </main>
