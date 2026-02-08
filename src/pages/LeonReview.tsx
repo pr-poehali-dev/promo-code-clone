@@ -77,9 +77,11 @@ const LeonReview = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="text-center md:text-left flex-1">
                 <div className="mb-4">
-                  <div className="w-24 h-24 mx-auto md:mx-0 rounded-lg bg-orange-500 flex items-center justify-center text-5xl">
-                    🦁
-                  </div>
+                  <img 
+                    src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/2efe5f14-9b44-4dc5-adfa-aba3287097ab.png"
+                    alt="Leon"
+                    className="w-24 h-24 mx-auto md:mx-0 rounded-lg object-contain"
+                  />
                 </div>
                 <h2 className="text-2xl font-bold mb-2">Leon</h2>
                 <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
