@@ -5,6 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 interface Bookmaker {
   id: number;
@@ -224,7 +230,18 @@ const Index = () => {
                 {/* Рейтинг */}
                 <div className="flex items-center gap-2 lg:min-w-[140px]">
                   <div className="text-3xl font-bold text-yellow-500">{(bk.rating * 10).toFixed(1)}</div>
-                  <Icon name="Info" size={18} className="text-muted-foreground" />
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div>
+                          <Icon name="Info" size={18} className="text-muted-foreground cursor-help" />
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Рейтинг букмекера</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
 
                 {/* Кнопка */}
