@@ -111,18 +111,13 @@ const BetboomReview = () => {
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-8">
         <section>
-          <h2 className="text-2xl font-bold mb-4">Места в рейтингах (6)</h2>
+          <h2 className="text-2xl font-bold mb-4">Общая информация</h2>
           <Card className="p-6">
-            <div className="grid gap-3">
-              {topCategories.map((category, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-accent text-accent-foreground w-10 h-10 rounded flex items-center justify-center font-bold">
-                      6
-                    </div>
-                    <span className="text-sm">{category}</span>
-                  </div>
-                  <Icon name="ExternalLink" size={16} className="text-muted-foreground" />
+            <div className="grid md:grid-cols-2 gap-4">
+              {generalInfo.map((info, index) => (
+                <div key={index} className="flex justify-between items-center p-3 bg-muted/50 rounded">
+                  <span className="text-muted-foreground">{info.label}</span>
+                  <span className="font-semibold">{info.value}</span>
                 </div>
               ))}
             </div>
@@ -165,13 +160,18 @@ const BetboomReview = () => {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-4">Общая информация</h2>
+          <h2 className="text-2xl font-bold mb-4">Места в рейтингах (6)</h2>
           <Card className="p-6">
-            <div className="grid md:grid-cols-2 gap-4">
-              {generalInfo.map((info, index) => (
-                <div key={index} className="flex justify-between items-center p-3 bg-muted/50 rounded">
-                  <span className="text-muted-foreground">{info.label}</span>
-                  <span className="font-semibold">{info.value}</span>
+            <div className="grid gap-3">
+              {topCategories.map((category, index) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-accent text-accent-foreground w-10 h-10 rounded flex items-center justify-center font-bold">
+                      6
+                    </div>
+                    <span className="text-sm">{category}</span>
+                  </div>
+                  <Icon name="ExternalLink" size={16} className="text-muted-foreground" />
                 </div>
               ))}
             </div>
