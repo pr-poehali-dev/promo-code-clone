@@ -201,26 +201,28 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {filteredBookmakers.map((bk, index) => (
             <Card 
               key={bk.id} 
-              className={`p-6 hover:shadow-lg transition-all relative min-h-[360px] ${index < 3 ? 'border-2 border-red-500' : ''} animate-in fade-in slide-in-from-bottom-4`}
+              className="p-4 hover:shadow-lg transition-all relative animate-in fade-in slide-in-from-bottom-4"
               style={{ 
                 animationDelay: `${index * 150}ms`,
                 animationDuration: '500ms',
                 animationFillMode: 'both'
               }}
             >
-              {index < 3 && (
-                <div className="absolute top-4 left-4 bg-red-500 text-white rounded-full p-2 z-10">
-                  <Icon name="Star" size={20} className="fill-white" />
-                </div>
-              )}
-              <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
-                <div className="lg:w-1/3 flex flex-col">
-                  {(bk.id === 1 || bk.id === 2 || bk.id === 3 || bk.id === 4 || bk.id === 5 || bk.id === 6) && (
-                    <div className="mb-3">
+              <div className="flex flex-col lg:flex-row gap-4 items-center lg:items-center">
+                {/* Левая часть: Номер + Логотип + Название + Рейтинг */}
+                <div className="flex items-center gap-4 lg:min-w-[320px]">
+                  {/* Номер */}
+                  <div className="text-2xl font-bold text-muted-foreground/60 w-8 text-center shrink-0">
+                    {index + 1}
+                  </div>
+
+                  {/* Логотип */}
+                  {(bk.id === 1 || bk.id === 2 || bk.id === 3 || bk.id === 4 || bk.id === 5 || bk.id === 6) ? (
+                    <div className="w-16 h-16 shrink-0">
                       <img 
                         src={
                           bk.id === 1 
@@ -236,38 +238,40 @@ const Index = () => {
                             : "https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/caa91320-7d93-44b6-acd8-f896732946a0.png"
                         }
                         alt={bk.name}
-                        className="w-full h-auto rounded-lg"
+                        className="w-full h-full object-contain rounded-lg"
                       />
                     </div>
-                  )}
-                  <div className="flex items-center gap-4">
-                    {bk.id !== 1 && bk.id !== 2 && bk.id !== 3 && bk.id !== 4 && bk.id !== 5 && bk.id !== 6 && (
-                      <div className="bg-muted rounded-lg w-20 h-20 flex items-center justify-center text-3xl shrink-0">
-                        {bk.logo}
-                      </div>
-                    )}
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="bg-accent text-accent-foreground text-xs font-bold px-2 py-0.5 rounded">
-                          #{index + 1}
-                        </span>
-                        <h3 className="text-xl font-bold">{bk.name}</h3>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm">
-                        <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
-                        <span className="font-semibold">{bk.rating}</span>
-                        <span className="text-muted-foreground">/5</span>
-                      </div>
+                  ) : (
+                    <div className="bg-muted rounded-lg w-16 h-16 flex items-center justify-center text-2xl shrink-0">
+                      {bk.logo}
                     </div>
-                  </div>
+                  )}
+
+                  {/* Название */}
+                  <h3 className="text-xl font-bold">{bk.name}</h3>
                 </div>
 
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 items-start">
+                {/* Рейтинг */}
+                <div className="flex items-center gap-2 lg:min-w-[140px]">
+                  <div className="text-3xl font-bold text-yellow-500">{(bk.rating * 10).toFixed(1)}</div>
+                  <Icon name="Info" size={18} className="text-muted-foreground" />
+                </div>
+
+                {/* Кнопка */}
+                <div className="flex-1 flex justify-end">
+                  <Button className="px-8 font-semibold bg-yellow-600 hover:bg-yellow-700">
+                    Перейти на сайт
+                  </Button>
+                </div>
+              </div>
+
+              {/* Дополнительная информация под основной строкой */}
+              <div className="mt-4 flex flex-col sm:flex-row gap-4 items-start">
+                {/* Блоки с информацией */}
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="bg-muted rounded-lg p-3">
-                    <div className="text-xs text-muted-foreground mb-1 text-center">Бонус</div>
-                    <div className={`text-xl font-bold text-accent ${bk.id !== 6 ? 'flex justify-center' : ''}`}>
-                      <span className="whitespace-nowrap">{bk.bonus}</span>
-                    </div>
+                    <div className="text-xs text-muted-foreground mb-1">Бонус</div>
+                    <div className="text-lg font-bold text-accent">{bk.bonus}</div>
                   </div>
                   <div 
                     className="bg-muted rounded-lg p-3 cursor-pointer hover:bg-accent/10 transition-colors"
@@ -285,35 +289,19 @@ const Index = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2 lg:w-48">
-                  <Button className="w-full font-semibold">
-                    Перейти на сайт
-                    <Icon name="ExternalLink" size={16} className="ml-2" />
-                  </Button>
-                  <Button 
-                    variant="secondary" 
-                    className="w-full"
-                    onClick={() => {
-                      if (bk.id === 1) navigate('/betboom');
-                      if (bk.id === 3) navigate('/fonbet');
-                      if (bk.id === 5) navigate('/leon');
-                      if (bk.id === 6) navigate('/winline');
-                    }}
-                  >
-                    Читать обзор
-                  </Button>
-                </div>
-              </div>
-
-              <div className="mt-4 pt-4 border-t">
-                <div className="flex flex-wrap gap-2">
-                  {bk.features.map((feature, idx) => (
-                    <Badge key={idx} variant="outline" className="text-xs">
-                      <Icon name="Check" size={14} className="mr-1 text-accent" />
-                      {feature}
-                    </Badge>
-                  ))}
-                </div>
+                {/* Кнопка "Читать обзор" */}
+                <Button 
+                  variant="secondary" 
+                  className="w-full sm:w-auto px-8"
+                  onClick={() => {
+                    if (bk.id === 1) navigate('/betboom');
+                    if (bk.id === 3) navigate('/fonbet');
+                    if (bk.id === 5) navigate('/leon');
+                    if (bk.id === 6) navigate('/winline');
+                  }}
+                >
+                  Читать обзор
+                </Button>
               </div>
             </Card>
           ))}
