@@ -98,20 +98,7 @@ const LeonReview = () => {
                 </div>
               </div>
               
-              <div className="flex-1">
-                <a 
-                  href="https://leon.ru" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <img 
-                    src="https://cdn.poehali.dev/files/9bcb8676-5a96-45e4-a4d0-dde603a8a11d.jpg"
-                    alt="Приветственный фрибет 40000₽"
-                    className="w-full h-auto"
-                  />
-                </a>
-              </div>
+
             </div>
           </Card>
         </div>
