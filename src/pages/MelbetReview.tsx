@@ -100,16 +100,8 @@ const MelbetReview = () => {
                 </div>
               </div>
 
-              <div className="flex-1">
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  {generalInfo.map((info, index) => (
-                    <div key={index} className="bg-muted p-4 rounded-lg">
-                      <div className="text-sm text-muted-foreground mb-1">{info.label}</div>
-                      <div className="font-semibold">{info.value}</div>
-                    </div>
-                  ))}
-                </div>
-                <Button size="lg" className="w-full">
+              <div className="flex-1 flex items-center justify-center">
+                <Button size="lg" className="w-full max-w-md">
                   Перейти на сайт
                   <Icon name="ExternalLink" size={18} className="ml-2" />
                 </Button>
@@ -120,6 +112,18 @@ const MelbetReview = () => {
       </div>
 
       <main className="max-w-4xl mx-auto px-4 py-12 space-y-8">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Общая информация</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {generalInfo.map((item, index) => (
+              <Card key={index} className="p-4 text-center">
+                <div className="text-sm text-muted-foreground mb-1">{item.label}</div>
+                <div className="font-bold text-lg">{item.value}</div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         <Card className="p-6">
           <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <Icon name="Info" className="text-accent" />
