@@ -384,7 +384,7 @@ const Index = () => {
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold">Фрибет до <span className="text-yellow-400">100000</span>₽ от</div>
                   <div className="text-xs text-gray-400"></div>
-                  <div className="text-xs text-gray-500 mt-1">Реклама 1cig.info ...</div>
+                  <div className="text-xs text-gray-500 mt-1"></div>
                 </div>
               </div>
               <Button className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
