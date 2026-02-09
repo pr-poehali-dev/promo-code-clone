@@ -355,7 +355,7 @@ const Index = () => {
                   <div className="text-xs text-gray-500 mt-1"></div>
                 </div>
               </div>
-              <Button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
                 ЗАБРАТЬ
               </Button>
             </div>
@@ -374,7 +374,7 @@ const Index = () => {
                   <div className="text-xs text-gray-500 mt-1"></div>
                 </div>
               </div>
-              <Button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
                 ЗАБРАТЬ
               </Button>
             </div>
@@ -393,7 +393,7 @@ const Index = () => {
                   <div className="text-xs text-gray-500 mt-1"></div>
                 </div>
               </div>
-              <Button className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
                 ЗАБРАТЬ
               </Button>
             </div>
