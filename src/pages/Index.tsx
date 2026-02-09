@@ -369,7 +369,7 @@ const Index = () => {
                   className="w-10 h-10 object-contain shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold">СУПЕР-фрибет <span className="text-orange-500">3000</span></div>
+                  <div className="text-sm font-semibold">Фрибет до <span className="text-orange-500">15 000</span>₽</div>
                   <div className="text-xs text-gray-400"></div>
                   <div className="text-xs text-gray-500 mt-1"></div>
                 </div>
