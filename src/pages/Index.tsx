@@ -344,9 +344,11 @@ const Index = () => {
             {/* Фрибет */}
             <div className="bg-[#242424] rounded-lg p-4 flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 flex-1">
-                <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shrink-0">
-                  F
-                </div>
+                <img 
+                  src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/08eaa524-4591-4f3f-b092-aa225e369049.png" 
+                  alt="Winline"
+                  className="w-10 h-10 object-contain shrink-0"
+                />
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold">Фрибет <span className="text-red-500">15000</span> рублей без</div>
                   <div className="text-xs text-gray-400"></div>
