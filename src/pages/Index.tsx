@@ -11,6 +11,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 interface Bookmaker {
   id: number;
@@ -88,6 +94,7 @@ const bookmakers: Bookmaker[] = [
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [bonusDialogOpen, setBonusDialogOpen] = useState(false);
   const navigate = useNavigate();
 
   const filteredBookmakers = bookmakers.filter(bk =>
@@ -124,9 +131,22 @@ const Index = () => {
         </div>
         
         <div className="max-w-4xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-center gap-3">
-            <h1 className="text-2xl font-bold text-accent">Рейтинг Букмекеров</h1>
-            <Badge variant="outline" className="text-xs">Партнерский проект</Badge>
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => setBonusDialogOpen(true)}
+              className="relative p-2 hover:bg-accent/10 rounded-lg transition-colors"
+              aria-label="Акции и бонусы"
+            >
+              <Icon name="Gift" size={24} className="text-accent" />
+              <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-secondary"></span>
+            </button>
+            
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-bold text-accent">Рейтинг Букмекеров</h1>
+              <Badge variant="outline" className="text-xs">Партнерский проект</Badge>
+            </div>
+            
+            <div className="w-10"></div>
           </div>
         </div>
       </header>
@@ -310,6 +330,70 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <Dialog open={bonusDialogOpen} onOpenChange={setBonusDialogOpen}>
+        <DialogContent className="bg-[#1a1a1a] border-gray-800 text-white max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-white">
+              <Icon name="Home" size={20} />
+              Акции и бонусы от букмекеров
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-3 mt-4">
+            {/* Фрибет */}
+            <div className="bg-[#242424] rounded-lg p-4 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 flex-1">
+                <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shrink-0">
+                  F
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-semibold">Фрибет <span className="text-red-500">15000</span> рублей без</div>
+                  <div className="text-xs text-gray-400">депозита – ставь без риска!</div>
+                  <div className="text-xs text-gray-500 mt-1">Реклама bee-bet ...</div>
+                </div>
+              </div>
+              <Button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
+                ЗАБРАТЬ
+              </Button>
+            </div>
+
+            {/* СУПЕР-фрибет */}
+            <div className="bg-[#242424] rounded-lg p-4 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 flex-1">
+                <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg border border-orange-500 shrink-0">
+                  W
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-semibold">СУПЕР-фрибет <span className="text-orange-500">3000</span></div>
+                  <div className="text-xs text-gray-400">рублей – не нужно тратить свои!</div>
+                  <div className="text-xs text-gray-500 mt-1">Реклама winline.ru ...</div>
+                </div>
+              </div>
+              <Button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
+                ЗАБРАТЬ
+              </Button>
+            </div>
+
+            {/* Фрибет БетБум */}
+            <div className="bg-[#242424] rounded-lg p-4 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 flex-1">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-black font-bold text-lg shrink-0">
+                  BB
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-semibold">Фрибет до <span className="text-yellow-400">100000</span>₽ от</div>
+                  <div className="text-xs text-gray-400">БетБум, успей сегодня!</div>
+                  <div className="text-xs text-gray-500 mt-1">Реклама 1cig.info ...</div>
+                </div>
+              </div>
+              <Button className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
+                ЗАБРАТЬ
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
