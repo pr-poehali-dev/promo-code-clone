@@ -350,7 +350,7 @@ const Index = () => {
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold">Фрибет <span className="text-red-500">15000</span> рублей без</div>
                   <div className="text-xs text-gray-400">депозита – ставь без риска!</div>
-                  <div className="text-xs text-gray-500 mt-1">Реклама bee-bet ...</div>
+                  <div className="text-xs text-gray-500 mt-1"></div>
                 </div>
               </div>
               <Button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
