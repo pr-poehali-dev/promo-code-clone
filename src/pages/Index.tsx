@@ -366,7 +366,7 @@ const Index = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold">СУПЕР-фрибет <span className="text-orange-500">3000</span></div>
-                  <div className="text-xs text-gray-400">рублей – не нужно тратить свои!</div>
+                  <div className="text-xs text-gray-400"></div>
                   <div className="text-xs text-gray-500 mt-1"></div>
                 </div>
               </div>
