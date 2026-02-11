@@ -152,9 +152,16 @@ const Index = () => {
       </header>
 
       <div className="bg-muted py-8">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-2">Легальные букмекерские конторы</h2>
-          <p className="text-muted-foreground">Рейтинг лучших лицензированных БК России</p>
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="flex items-center gap-6">
+            <div className="text-6xl font-black text-accent tracking-tight">
+              КОД
+            </div>
+            <div className="flex-1 text-center">
+              <h2 className="text-3xl font-bold mb-2">Легальные букмекерские конторы</h2>
+              <p className="text-muted-foreground">Рейтинг лучших лицензированных БК России</p>
+            </div>
+          </div>
         </div>
       </div>
 
