@@ -152,16 +152,9 @@ const Index = () => {
       </header>
 
       <div className="bg-muted py-8">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="flex items-center gap-6">
-            <div className="text-6xl font-black text-gray-400 tracking-tight">
-              КОД
-            </div>
-            <div className="flex-1 text-center">
-              <h2 className="text-3xl font-bold mb-2">Легальные букмекерские конторы</h2>
-              <p className="text-muted-foreground">Рейтинг лучших лицензированных БК России</p>
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-2">Легальные букмекерские конторы</h2>
+          <p className="text-muted-foreground">Рейтинг лучших лицензированных БК России</p>
         </div>
       </div>
 
@@ -329,11 +322,16 @@ const Index = () => {
 
       <footer className="bg-muted border-t py-8 mt-12">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center text-sm text-muted-foreground space-y-2">
-            <p>© 2026 Рейтинг Букмекеров. Информационный портал.</p>
-            <p className="text-xs">
-              Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать зависимость.
-            </p>
+          <div className="flex items-center justify-between">
+            <div className="text-6xl font-black text-gray-400 tracking-tight">
+              КОД
+            </div>
+            <div className="flex-1 text-center text-sm text-muted-foreground space-y-2">
+              <p>© 2026 Рейтинг Букмекеров. Информационный портал.</p>
+              <p className="text-xs">
+                Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать зависимость.
+              </p>
+            </div>
           </div>
         </div>
       </footer>
