@@ -154,7 +154,7 @@ const Index = () => {
       <div className="bg-muted py-8">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-6">
-            <div className="text-6xl font-black text-accent tracking-tight">
+            <div className="text-6xl font-black text-gray-400 tracking-tight">
               КОД
             </div>
             <div className="flex-1 text-center">
