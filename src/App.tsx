@@ -12,6 +12,7 @@ import WinlineReview from "./pages/WinlineReview";
 import FonbetReview from "./pages/FonbetReview";
 import OnexbetReview from "./pages/OnexbetReview";
 import MelbetReview from "./pages/MelbetReview";
+import BookmakerReview from "./pages/BookmakerReview";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import CookieNotice from "./components/CookieNotice";
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/fonbet" element={<FonbetReview />} />
           <Route path="/1xbet" element={<OnexbetReview />} />
           <Route path="/melbet" element={<MelbetReview />} />
+          <Route path="/bk/:slug" element={<BookmakerReview />} />
           <Route path="/reviews/:bookmakerName" element={<Reviews />} />
           <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
