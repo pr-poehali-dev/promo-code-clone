@@ -47,7 +47,8 @@ export const bookmakers: Bookmaker[] = [
     name: 'Winline',
     logo: '💎',
     image:
-      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/d7e9f98a-d9ca-41c8-aa60-604944c82c3e.png',
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/8d6270e2-1647-4fdf-9a47-adce0f72b65c.png',
+    wideLogo: true,
     route: '/winline',
     rating: 4.9,
     bonus: '10 000₽',
