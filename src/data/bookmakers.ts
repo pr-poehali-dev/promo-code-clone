@@ -108,7 +108,7 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0bb38841-4e9e-45a3-b471-eb977d7f0d05.png',
     route: '/leon',
     rating: 4.6,
-    bonus: '40 000₽',
+    bonus: '1 000₽',
     bonusNote: 'приветственный пакет',
     bonusTerms:
       'Пакет из нескольких фрибетов на общую сумму до 40 000₽ выдаётся частями: за регистрацию, за первое пополнение и за первую ставку. Каждый фрибет действует 7 дней.',
