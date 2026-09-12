@@ -21,7 +21,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
 
   return (
     <Card
-      className="p-4 hover:border-accent/40 transition-colors animate-in fade-in slide-in-from-bottom-2"
+      className="p-4 !bg-[hsl(200_10%_20%)] border-white/10 hover:!bg-[hsl(200_10%_24%)] hover:border-accent/40 transition-colors animate-in fade-in slide-in-from-bottom-2"
       style={{
         animationDelay: `${index * 60}ms`,
         animationDuration: '400ms',
