@@ -132,7 +132,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
         </div>
 
         <div className="lg:col-span-2 flex flex-col gap-2">
-          <Button className="font-semibold bg-yellow-600 hover:bg-yellow-700 text-white">
+          <Button className="font-semibold bg-accent hover:bg-accent/90 text-accent-foreground">
             Перейти на сайт
           </Button>
           {bk.route && (
