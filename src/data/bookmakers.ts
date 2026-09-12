@@ -237,6 +237,9 @@ export const bookmakers: Bookmaker[] = [
     id: 12,
     name: 'Олимпбет',
     logo: '🔥',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/622ad6e2-e39f-4b68-8035-b02b03563832.png',
+    wideLogo: true,
     short: 'OB',
     color: 'bg-orange-600',
     rating: 4.4,
