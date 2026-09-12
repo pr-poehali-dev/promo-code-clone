@@ -48,7 +48,7 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/d7e9f98a-d9ca-41c8-aa60-604944c82c3e.png',
     route: '/winline',
     rating: 4.9,
-    bonus: '3 000₽',
+    bonus: '10 000₽',
     bonusNote: 'фрибет новичкам',
     bonusTerms:
       'Фрибет выдаётся после регистрации и первого пополнения от 500₽. Ставку можно сделать на любое событие с коэффициентом от 1.80, выигрыш зачисляется на основной счёт без вычета суммы фрибета.',
