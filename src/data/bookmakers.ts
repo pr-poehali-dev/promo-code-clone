@@ -81,26 +81,6 @@ export const bookmakers: Bookmaker[] = [
     scores: { odds: 4.9, payout: 5.0, app: 4.8, support: 4.7 },
   },
   {
-    id: 2,
-    name: '1xBet',
-    logo: '⚽',
-    image:
-      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/896a0d3c-1d84-4209-b64c-f4d6ecad82b3.png',
-    route: '/1xbet',
-    rating: 4.8,
-    bonus: '15 000₽',
-    bonusNote: 'до 100% на депозит',
-    bonusTerms:
-      'Новичкам начисляют 100% от суммы первого депозита, но не более 15 000₽. Отыгрыш — экспрессами минимум из трёх событий с коэффициентом от 1.40 каждое, срок 30 дней.',
-    promo: 'LINE15',
-    reviews: 623,
-    minDeposit: '100₽',
-    payout: 'до 6 часов',
-    license: 'ЕЦУПС',
-    features: ['Широкая линия', 'Live-ставки', 'Кэшбэк'],
-    scores: { odds: 5.0, payout: 4.5, app: 4.7, support: 4.6 },
-  },
-  {
     id: 5,
     name: 'Leon',
     logo: '🦁',
