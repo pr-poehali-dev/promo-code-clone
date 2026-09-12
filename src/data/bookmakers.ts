@@ -7,6 +7,7 @@ export interface Bookmaker {
   short?: string;
   color?: string;
   route?: string;
+  siteUrl?: string;
   rating: number;
   bonus: string;
   bonusNote: string;
@@ -29,6 +30,7 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/4525a0ea-f40b-4528-b706-3a236ddfe490.png',
     wideLogo: true,
     route: '/bk/fonbet',
+    siteUrl: 'https://fon.bet/?utm_referrer=https%3a%2f%2fyandex.ru%2f',
     rating: 4.9,
     bonus: '15 000₽',
     bonusNote: 'фрибет за первый депозит',

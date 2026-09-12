@@ -136,7 +136,11 @@ const BookmakerRow = ({ bk, index }: Props) => {
             asChild
             className="font-semibold bg-accent hover:bg-accent/90 text-accent-foreground"
           >
-            <a href="https://clck.su/FaemN" target="_blank" rel="noopener noreferrer">
+            <a
+              href={bk.siteUrl ?? 'https://clck.su/FaemN'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Перейти на сайт
             </a>
           </Button>
