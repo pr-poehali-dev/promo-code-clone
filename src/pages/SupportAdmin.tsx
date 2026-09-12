@@ -33,6 +33,7 @@ const SupportAdmin = () => {
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
   const [checking, setChecking] = useState(false);
+  const [loadError, setLoadError] = useState('');
   const adminKey = useRef('');
   const [chats, setChats] = useState<Chat[]>([]);
   const [activeId, setActiveId] = useState<number | null>(null);
@@ -58,13 +59,15 @@ const SupportAdmin = () => {
         );
         if (res.status === 401) {
           localStorage.removeItem(KEY_STORAGE);
+          setAuthError('Сессия истекла, войдите заново');
           setAuthed(false);
           return;
         }
         const data = await res.json();
         setChats(data.chats || []);
+        setLoadError('');
       } catch {
-        /* игнорируем разрыв сети */
+        setLoadError('Нет связи с сервером');
       }
     };
     load();
@@ -227,7 +230,10 @@ const SupportAdmin = () => {
 
       <div className="flex-1 flex min-h-0">
         <aside className="w-72 border-r border-border overflow-y-auto shrink-0">
-          {chats.length === 0 && (
+          {loadError && (
+            <div className="p-4 text-center text-sm text-red-500">{loadError}</div>
+          )}
+          {!loadError && chats.length === 0 && (
             <div className="p-6 text-center text-sm text-muted-foreground">
               Пока нет обращений
             </div>

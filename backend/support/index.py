@@ -154,7 +154,12 @@ def handler(event: dict, context) -> dict:
             )
             return _resp(200, {'ok': True, 'status': status})
 
-        return _resp(200, {'ok': True, 'service': 'support'})
+        return _resp(200, {
+            'ok': True,
+            'service': 'support',
+            'passwordConfigured': bool(admin_password),
+            'keyReceived': bool(admin_key),
+        })
     finally:
         cur.close()
         conn.close()
