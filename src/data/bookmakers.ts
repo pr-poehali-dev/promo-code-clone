@@ -193,6 +193,9 @@ export const bookmakers: Bookmaker[] = [
     id: 10,
     name: 'Марафон',
     logo: '🏃',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/daa7a66f-c360-435e-b09d-51867b3e2d6d.png',
+    wideLogo: true,
     short: 'MB',
     color: 'bg-emerald-700',
     rating: 4.5,
