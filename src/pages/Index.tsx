@@ -35,6 +35,11 @@ const Index = () => {
 
   const num = (s: string) => parseInt(s.replace(/\D/g, ''), 10) || 0;
 
+  const topBonuses = useMemo(
+    () => [...bookmakers].sort((a, b) => num(b.bonus) - num(a.bonus)).slice(0, 6),
+    [],
+  );
+
   const visible = useMemo(() => {
     let list: Bookmaker[] = bookmakers.filter((bk) =>
       bk.name.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -277,35 +282,37 @@ const Index = () => {
             </DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-3 mt-4">
-            {[
-              {
-                img: 'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/08eaa524-4591-4f3f-b092-aa225e369049.png',
-                alt: 'Winline',
-                sum: '3 000',
-              },
-              {
-                img: 'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/b60938bc-d68f-444a-b2b6-9e77a7e3c4a3.png',
-                alt: 'Fonbet',
-                sum: '15 000',
-              },
-              {
-                img: 'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/52da02c2-ed11-41b9-a655-1d48246b1478.png',
-                alt: 'BetBoom',
-                sum: '10 000',
-              },
-            ].map((p) => (
+          <div className="space-y-3 mt-4 max-h-[60vh] overflow-y-auto pr-1">
+            {topBonuses.map((p) => (
               <div
-                key={p.alt}
+                key={p.id}
                 className="bg-[#242424] rounded-lg p-4 flex items-center justify-between gap-3"
               >
-                <div className="flex items-center gap-3 flex-1">
-                  <img src={p.img} alt={p.alt} className="w-10 h-10 object-contain shrink-0" />
-                  <div className="text-sm font-semibold">
-                    Фрибет до <span className="text-orange-300">{p.sum}</span>₽
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="h-8 w-auto max-w-[90px] object-contain shrink-0"
+                    />
+                  ) : (
+                    <div
+                      className={`w-9 h-9 shrink-0 rounded-lg flex items-center justify-center text-white font-black text-xs ${p.color ?? 'bg-muted'}`}
+                    >
+                      {p.short}
+                    </div>
+                  )}
+                  <div className="text-sm font-semibold truncate">
+                    До <span className="text-accent">{p.bonus}</span>
                   </div>
                 </div>
-                <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold text-xs shrink-0">
+                <Button
+                  onClick={() => {
+                    setBonusDialogOpen(false);
+                    if (p.route) navigate(p.route);
+                  }}
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground px-4 py-2 rounded-lg font-semibold text-xs shrink-0"
+                >
                   ЗАБРАТЬ
                 </Button>
               </div>
