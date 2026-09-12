@@ -31,6 +31,7 @@ const SupportChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [text, setText] = useState('');
   const [status, setStatus] = useState('waiting');
+  const [closed, setClosed] = useState(false);
   const lastId = useRef(0);
   const bottom = useRef<HTMLDivElement>(null);
   const reload = useRef<(() => void) | null>(null);
@@ -69,6 +70,10 @@ const SupportChat = () => {
             return [...cleaned, ...fresh];
           });
         }
+        if (data.status === 'closed') {
+          setClosed(true);
+          return;
+        }
         if (data.status) setStatus(data.status);
       } catch {
         /* сеть недоступна — попробуем в следующий раз */
@@ -80,6 +85,23 @@ const SupportChat = () => {
     const timer = setInterval(load, 3000);
     return () => clearInterval(timer);
   }, [chatId, open]);
+
+  useEffect(() => {
+    if (!closed) return;
+    const t = setTimeout(() => resetChat(), 8000);
+    return () => clearTimeout(t);
+  }, [closed]);
+
+  const resetChat = () => {
+    localStorage.removeItem(CHAT_KEY);
+    lastId.current = 0;
+    setChatId(null);
+    setMessages([]);
+    setStarted(false);
+    setClosed(false);
+    setStatus('waiting');
+    setText('');
+  };
 
   const startChat = async () => {
     setConnecting(true);
@@ -154,7 +176,25 @@ const SupportChat = () => {
             </button>
           </div>
 
-          {!started ? (
+          {closed ? (
+            <div className="flex-1 flex flex-col items-center justify-center gap-4 px-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-green-500/15 flex items-center justify-center">
+                <Icon name="CheckCheck" size={30} className="text-green-500" />
+              </div>
+              <div>
+                <h3 className="font-bold mb-1">Диалог завершён</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Спасибо за обращение! Если появятся вопросы — пишите снова.
+                </p>
+              </div>
+              <Button
+                onClick={resetChat}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground w-full"
+              >
+                Новое обращение
+              </Button>
+            </div>
+          ) : !started ? (
             <div className="flex-1 flex flex-col items-center justify-center gap-4 px-6 text-center">
               <div className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center">
                 <Icon name="MessagesSquare" size={30} className="text-accent" />
