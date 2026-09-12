@@ -3,6 +3,7 @@ export interface Bookmaker {
   name: string;
   logo: string;
   image?: string;
+  wideLogo?: boolean;
   short?: string;
   color?: string;
   route?: string;
@@ -25,7 +26,8 @@ export const bookmakers: Bookmaker[] = [
     name: 'Fonbet',
     logo: '🏆',
     image:
-      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/02e93614-f75a-4c7e-b8f9-4d86e2ff2459.png',
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/4525a0ea-f40b-4528-b706-3a236ddfe490.png',
+    wideLogo: true,
     route: '/fonbet',
     rating: 4.9,
     bonus: '15 000₽',

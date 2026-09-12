@@ -44,45 +44,55 @@ const BookmakerRow = ({ bk, index }: Props) => {
             {index + 1}
           </div>
 
-          {bk.image ? (
+          {bk.wideLogo && bk.image ? (
             <img
               src={bk.image}
               alt={bk.name}
-              className="w-14 h-14 object-contain rounded-lg shrink-0"
+              className="h-12 w-auto max-w-[200px] object-contain"
             />
           ) : (
-            <div
-              className={`w-14 h-14 shrink-0 rounded-lg flex items-center justify-center text-white font-black text-lg ${bk.color ?? 'bg-muted'}`}
-            >
-              {bk.short}
-            </div>
-          )}
-
-          <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <h3 className="text-lg font-bold truncate">{bk.name}</h3>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span>
-                      <Icon name="BadgeCheck" size={16} className="text-accent" />
-                    </span>
-                  </TooltipTrigger>
-                  <TooltipContent>Лицензия ФНС, {bk.license}</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-            <div className="flex flex-wrap gap-1 mt-1">
-              {bk.features.slice(0, 2).map((f) => (
-                <span
-                  key={f}
-                  className="text-[11px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground"
+            <>
+              {bk.image ? (
+                <img
+                  src={bk.image}
+                  alt={bk.name}
+                  className="w-14 h-14 object-contain rounded-lg shrink-0"
+                />
+              ) : (
+                <div
+                  className={`w-14 h-14 shrink-0 rounded-lg flex items-center justify-center text-white font-black text-lg ${bk.color ?? 'bg-muted'}`}
                 >
-                  {f}
-                </span>
-              ))}
-            </div>
-          </div>
+                  {bk.short}
+                </div>
+              )}
+
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-bold truncate">{bk.name}</h3>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span>
+                          <Icon name="BadgeCheck" size={16} className="text-accent" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent>Лицензия ФНС, {bk.license}</TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <div className="flex flex-wrap gap-1 mt-1">
+                  {bk.features.slice(0, 2).map((f) => (
+                    <span
+                      key={f}
+                      className="text-[11px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground"
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         <div className="lg:col-span-2">
