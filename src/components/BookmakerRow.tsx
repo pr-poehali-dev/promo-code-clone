@@ -129,9 +129,6 @@ const BookmakerRow = ({ bk, index }: Props) => {
             <Icon name="MessageSquare" size={16} />
             <span className="font-semibold">{bk.reviews}</span>
           </button>
-          <div className="text-xs text-muted-foreground">
-            депозит {bk.minDeposit} · вывод {bk.payout}
-          </div>
         </div>
 
         <div className="lg:col-span-2 flex flex-col gap-2">
