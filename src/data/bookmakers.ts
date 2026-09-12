@@ -174,6 +174,9 @@ export const bookmakers: Bookmaker[] = [
     id: 9,
     name: 'Betcity',
     logo: '🌆',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/671cb343-0526-43bc-9a85-6f37e64a742a.png',
+    wideLogo: true,
     short: 'BC',
     color: 'bg-red-600',
     rating: 4.4,
