@@ -218,6 +218,9 @@ export const bookmakers: Bookmaker[] = [
     id: 11,
     name: 'Zenit',
     logo: '🔵',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/b514a6d5-28ce-4d8a-bf41-ca44d98e6f3f.png',
+    wideLogo: true,
     short: 'ZB',
     color: 'bg-sky-600',
     rating: 4.3,
