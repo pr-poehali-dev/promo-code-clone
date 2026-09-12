@@ -130,6 +130,9 @@ export const bookmakers: Bookmaker[] = [
     id: 7,
     name: 'Париматч',
     logo: '🎪',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/00a4177a-1afb-4e61-b1a8-9a10ef9395ad.png',
+    wideLogo: true,
     short: 'ПМ',
     color: 'bg-amber-500',
     rating: 4.6,
