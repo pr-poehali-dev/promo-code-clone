@@ -152,6 +152,9 @@ export const bookmakers: Bookmaker[] = [
     id: 8,
     name: 'Лига Ставок',
     logo: '🏅',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/b62536c7-77c8-4d46-9a63-86c4f9beeda1.png',
+    wideLogo: true,
     short: 'ЛС',
     color: 'bg-blue-600',
     rating: 4.5,
