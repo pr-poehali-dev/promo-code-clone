@@ -101,7 +101,12 @@ const Index = () => {
             {[
               { v: bookmakers.length.toString(), l: 'БК в рейтинге' },
               { v: '12', l: 'критериев оценки' },
-              { v: '3 861', l: 'отзыв игроков' },
+              {
+                v: bookmakers
+                  .reduce((s, b) => s + b.reviews, 0)
+                  .toLocaleString('ru-RU'),
+                l: 'отзывов игроков',
+              },
               { v: '24/7', l: 'мониторинг выплат' },
             ].map((s) => (
               <div key={s.l} className="bg-card border border-border rounded-lg p-3">
@@ -153,21 +158,21 @@ const Index = () => {
             <div className="col-span-4">Букмекер</div>
             <button
               className="col-span-2 text-left hover:text-accent transition-colors"
-              onClick={() => setSortKey('rating')}
-            >
-              Оценка {sortKey === 'rating' && '▾'}
-            </button>
-            <button
-              className="col-span-2 text-left hover:text-accent transition-colors"
               onClick={() => setSortKey('bonus')}
             >
               Бонус {sortKey === 'bonus' && '▾'}
             </button>
             <button
               className="col-span-2 text-left hover:text-accent transition-colors"
-              onClick={() => setSortKey('deposit')}
+              onClick={() => setSortKey('rating')}
             >
-              Мин. депозит {sortKey === 'deposit' && '▾'}
+              Рейтинг {sortKey === 'rating' && '▾'}
+            </button>
+            <button
+              className="col-span-2 text-left hover:text-accent transition-colors"
+              onClick={() => setSortKey('reviews')}
+            >
+              Отзывы {sortKey === 'reviews' && '▾'}
             </button>
             <div className="col-span-2 text-right">Действия</div>
           </div>

@@ -17,12 +17,13 @@ interface Props {
 
 const BookmakerRow = ({ bk, index }: Props) => {
   const navigate = useNavigate();
+  const score = (bk.rating * 2).toFixed(1);
 
   return (
     <Card
       className="p-4 hover:border-accent/40 transition-colors animate-in fade-in slide-in-from-bottom-2"
       style={{
-        animationDelay: `${index * 80}ms`,
+        animationDelay: `${index * 60}ms`,
         animationDuration: '400ms',
         animationFillMode: 'both',
       }}
@@ -42,11 +43,21 @@ const BookmakerRow = ({ bk, index }: Props) => {
           >
             {index + 1}
           </div>
-          <img
-            src={bk.image}
-            alt={bk.name}
-            className="w-14 h-14 object-contain rounded-lg shrink-0"
-          />
+
+          {bk.image ? (
+            <img
+              src={bk.image}
+              alt={bk.name}
+              className="w-14 h-14 object-contain rounded-lg shrink-0"
+            />
+          ) : (
+            <div
+              className={`w-14 h-14 shrink-0 rounded-lg flex items-center justify-center text-white font-black text-lg ${bk.color ?? 'bg-muted'}`}
+            >
+              {bk.short}
+            </div>
+          )}
+
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <h3 className="text-lg font-bold truncate">{bk.name}</h3>
@@ -74,43 +85,55 @@ const BookmakerRow = ({ bk, index }: Props) => {
           </div>
         </div>
 
-        <div className="lg:col-span-2 flex items-center gap-2">
-          <div className="text-3xl font-bold text-yellow-500">
-            {(bk.rating * 2).toFixed(1)}
-          </div>
-          <div className="text-xs text-muted-foreground leading-tight">
-            из 10
-            <br />
-            <button
-              onClick={() => navigate(`/reviews/${encodeURIComponent(bk.name)}`)}
-              className="text-accent hover:underline"
-            >
-              {bk.reviews} отзывов
-            </button>
-          </div>
-        </div>
-
         <div className="lg:col-span-2">
+          <div className="lg:hidden text-[11px] uppercase text-muted-foreground">Бонус</div>
           <div className="text-lg font-bold text-accent">{bk.bonus}</div>
           <div className="text-xs text-muted-foreground">{bk.bonusNote}</div>
         </div>
 
+        <div className="lg:col-span-2 flex items-center gap-2">
+          <div className="text-3xl font-bold text-yellow-500">{score}</div>
+          <div className="flex flex-col">
+            <div className="flex">
+              {[1, 2, 3, 4, 5].map((s) => (
+                <Icon
+                  key={s}
+                  name="Star"
+                  size={12}
+                  className={
+                    s <= Math.round(bk.rating)
+                      ? 'text-yellow-500 fill-yellow-500'
+                      : 'text-muted-foreground/40'
+                  }
+                />
+              ))}
+            </div>
+            <span className="text-[11px] text-muted-foreground">из 10</span>
+          </div>
+        </div>
+
         <div className="lg:col-span-2">
-          <div className="text-base font-semibold">{bk.minDeposit}</div>
-          <div className="text-xs text-muted-foreground">вывод {bk.payout}</div>
+          <button
+            onClick={() => navigate(`/reviews/${encodeURIComponent(bk.name)}`)}
+            className="inline-flex items-center gap-1.5 text-accent hover:underline"
+          >
+            <Icon name="MessageSquare" size={16} />
+            <span className="font-semibold">{bk.reviews}</span>
+          </button>
+          <div className="text-xs text-muted-foreground">
+            депозит {bk.minDeposit} · вывод {bk.payout}
+          </div>
         </div>
 
         <div className="lg:col-span-2 flex flex-col gap-2">
           <Button className="font-semibold bg-yellow-600 hover:bg-yellow-700 text-white">
             Перейти на сайт
           </Button>
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => navigate(bk.route)}
-          >
-            Читать обзор
-          </Button>
+          {bk.route && (
+            <Button variant="secondary" size="sm" onClick={() => navigate(bk.route!)}>
+              Читать обзор
+            </Button>
+          )}
         </div>
       </div>
     </Card>
