@@ -89,7 +89,8 @@ export const bookmakers: Bookmaker[] = [
     name: 'Leon',
     logo: '🦁',
     image:
-      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0bb38841-4e9e-45a3-b471-eb977d7f0d05.png',
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/7fe075d0-0cb7-4fd7-95d0-c3310a9f6e66.png',
+    wideLogo: true,
     route: '/leon',
     rating: 4.6,
     bonus: '1 000₽',
