@@ -135,6 +135,7 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="bg-gradient-to-b from-[hsl(190_35%_10%)] via-[hsl(215_30%_9%)] to-background">
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div id="rating" className="scroll-mt-20">
           <div className="flex flex-col lg:flex-row gap-3 lg:items-center justify-between mb-5">
@@ -237,6 +238,7 @@ const Index = () => {
 
         <BettingFaq />
       </main>
+      </div>
 
       <footer className="bg-secondary border-t border-border py-10 mt-12">
         <div className="max-w-6xl mx-auto px-4 grid gap-8 md:grid-cols-3 text-sm">
