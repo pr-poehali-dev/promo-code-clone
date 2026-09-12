@@ -1,0 +1,121 @@
+export interface Bookmaker {
+  id: number;
+  name: string;
+  logo: string;
+  image: string;
+  route: string;
+  rating: number;
+  bonus: string;
+  bonusNote: string;
+  reviews: number;
+  minDeposit: string;
+  payout: string;
+  license: string;
+  features: string[];
+  scores: { odds: number; payout: number; app: number; support: number };
+}
+
+export const bookmakers: Bookmaker[] = [
+  {
+    id: 3,
+    name: 'Fonbet',
+    logo: '🏆',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/02e93614-f75a-4c7e-b8f9-4d86e2ff2459.png',
+    route: '/fonbet',
+    rating: 4.9,
+    bonus: '15 000₽',
+    bonusNote: 'фрибет за первый депозит',
+    reviews: 912,
+    minDeposit: '100₽',
+    payout: 'до 2 часов',
+    license: 'ЕЦУПС',
+    features: ['Надежная БК', 'Пункты приема ставок', 'Акции и бонусы'],
+    scores: { odds: 4.8, payout: 5.0, app: 4.9, support: 4.8 },
+  },
+  {
+    id: 6,
+    name: 'Winline',
+    logo: '💎',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/d7e9f98a-d9ca-41c8-aa60-604944c82c3e.png',
+    route: '/winline',
+    rating: 4.9,
+    bonus: '3 000₽',
+    bonusNote: 'фрибет новичкам',
+    reviews: 289,
+    minDeposit: '500₽',
+    payout: 'до 3 часов',
+    license: 'ЕЦУПС',
+    features: ['Простая регистрация', 'Быстрая верификация', 'Поддержка 24/7'],
+    scores: { odds: 4.7, payout: 4.9, app: 5.0, support: 4.9 },
+  },
+  {
+    id: 1,
+    name: 'BetBoom',
+    logo: '🎰',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/90f32309-e331-487f-b31c-be4d770d94d7.png',
+    route: '/betboom',
+    rating: 4.9,
+    bonus: '10 000₽',
+    bonusNote: 'бонус на первый депозит',
+    reviews: 847,
+    minDeposit: '100₽',
+    payout: 'до 1 часа',
+    license: 'ЕЦУПС',
+    features: ['Высокие коэффициенты', 'Быстрый вывод', 'Мобильное приложение'],
+    scores: { odds: 4.9, payout: 5.0, app: 4.8, support: 4.7 },
+  },
+  {
+    id: 2,
+    name: '1xBet',
+    logo: '⚽',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/896a0d3c-1d84-4209-b64c-f4d6ecad82b3.png',
+    route: '/1xbet',
+    rating: 4.8,
+    bonus: '15 000₽',
+    bonusNote: 'до 100% на депозит',
+    reviews: 623,
+    minDeposit: '100₽',
+    payout: 'до 6 часов',
+    license: 'ЕЦУПС',
+    features: ['Широкая линия', 'Live-ставки', 'Кэшбэк'],
+    scores: { odds: 5.0, payout: 4.5, app: 4.7, support: 4.6 },
+  },
+  {
+    id: 5,
+    name: 'Leon',
+    logo: '🦁',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0bb38841-4e9e-45a3-b471-eb977d7f0d05.png',
+    route: '/leon',
+    rating: 4.6,
+    bonus: '40 000₽',
+    bonusNote: 'приветственный пакет',
+    reviews: 734,
+    minDeposit: '100₽',
+    payout: 'до 12 часов',
+    license: 'ЕЦУПС',
+    features: ['Удобный интерфейс', 'Бонусы новичкам', 'Стабильная работа'],
+    scores: { odds: 4.5, payout: 4.4, app: 4.7, support: 4.6 },
+  },
+  {
+    id: 4,
+    name: 'Melbet',
+    logo: '🎯',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/98d00b0c-3ead-488d-b70c-eb83b808115f.png',
+    route: '/melbet',
+    rating: 4.7,
+    bonus: '30 000₽',
+    bonusNote: 'бонус на первый депозит',
+    reviews: 456,
+    minDeposit: '50₽',
+    payout: 'до 24 часов',
+    license: 'ЕЦУПС',
+    features: ['Киберспорт', 'Казино', 'Промокоды'],
+    scores: { odds: 4.7, payout: 4.3, app: 4.6, support: 4.5 },
+  },
+];
