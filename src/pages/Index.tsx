@@ -94,7 +94,7 @@ const Index = () => {
           </h2>
           <p className="text-muted-foreground max-w-2xl mb-6">
             Сравниваем бонусы, коэффициенты, скорость выплат и качество поддержки. Только
-            конторы с лицензией ФНС и членством в ЕЦУПС.
+            конторы с лицензией ФНС и членством в ЕЦУПИС.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl">
