@@ -33,6 +33,7 @@ const SupportChat = () => {
   const [status, setStatus] = useState('waiting');
   const lastId = useRef(0);
   const bottom = useRef<HTMLDivElement>(null);
+  const reload = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem(CHAT_KEY);
@@ -57,7 +58,16 @@ const SupportChat = () => {
         const data = await res.json();
         if (data.messages?.length) {
           lastId.current = data.messages[data.messages.length - 1].id;
-          setMessages((prev) => [...prev, ...data.messages]);
+          setMessages((prev) => {
+            const known = new Set(prev.map((m) => m.id));
+            const fresh = (data.messages as Message[]).filter((m) => !known.has(m.id));
+            if (!fresh.length) return prev;
+            const texts = new Set(fresh.map((m) => `${m.sender}|${m.text}`));
+            const cleaned = prev.filter(
+              (m) => m.id > 0 || !texts.has(`${m.sender}|${m.text}`),
+            );
+            return [...cleaned, ...fresh];
+          });
         }
         if (data.status) setStatus(data.status);
       } catch {
@@ -65,6 +75,7 @@ const SupportChat = () => {
       }
     };
 
+    reload.current = load;
     load();
     const timer = setInterval(load, 3000);
     return () => clearInterval(timer);
@@ -102,6 +113,7 @@ const SupportChat = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chatId, sender: 'user', text: value }),
     });
+    reload.current?.();
   };
 
   return (

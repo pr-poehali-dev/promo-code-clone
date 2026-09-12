@@ -81,6 +81,13 @@ const SupportAdmin = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chatId: activeId, sender: 'operator', text: value }),
     });
+    try {
+      const res = await fetch(`${SUPPORT_URL}?action=messages&chatId=${activeId}&after=0`);
+      const data = await res.json();
+      setMessages(data.messages || []);
+    } catch {
+      /* обновится следующим циклом */
+    }
   };
 
   const closeChat = async () => {
