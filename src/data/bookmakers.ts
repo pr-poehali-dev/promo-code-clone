@@ -116,7 +116,7 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/aabf2f54-1325-4b18-9682-d8138a5d6248.png',
     wideLogo: true,
     route: '/bk/melbet',
-    siteUrl: 'https://clck.su/FaemN',
+    siteUrl: 'https://refpa62148.com/L?tag=s_5231846m_1107c_&site=5231846&ad=1107',
     rating: 4.7,
     bonus: '30 000₽',
     bonusNote: 'бонус на первый депозит',
