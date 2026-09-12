@@ -9,6 +9,8 @@ export interface Bookmaker {
   rating: number;
   bonus: string;
   bonusNote: string;
+  bonusTerms: string;
+  promo?: string;
   reviews: number;
   minDeposit: string;
   payout: string;
@@ -28,6 +30,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.9,
     bonus: '15 000₽',
     bonusNote: 'фрибет за первый депозит',
+    bonusTerms:
+      'Зарегистрируйтесь, пройдите идентификацию и пополните счёт от 100₽ — фрибет начисляется в размере депозита, максимум 15 000₽. Отыграть нужно за 14 дней ставками с коэффициентом от 1.50.',
+    promo: 'BONUS15',
     reviews: 912,
     minDeposit: '100₽',
     payout: 'до 2 часов',
@@ -45,6 +50,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.9,
     bonus: '3 000₽',
     bonusNote: 'фрибет новичкам',
+    bonusTerms:
+      'Фрибет выдаётся после регистрации и первого пополнения от 500₽. Ставку можно сделать на любое событие с коэффициентом от 1.80, выигрыш зачисляется на основной счёт без вычета суммы фрибета.',
+    promo: 'START3000',
     reviews: 289,
     minDeposit: '500₽',
     payout: 'до 3 часов',
@@ -62,6 +70,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.9,
     bonus: '10 000₽',
     bonusNote: 'бонус на первый депозит',
+    bonusTerms:
+      'Бонус удваивает первое пополнение до 10 000₽. Для вывода средств нужно прокрутить сумму бонуса пять раз ординарами или экспрессами с коэффициентом от 1.40 в течение 30 дней.',
+    promo: 'BOOM10',
     reviews: 847,
     minDeposit: '100₽',
     payout: 'до 1 часа',
@@ -79,6 +90,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.8,
     bonus: '15 000₽',
     bonusNote: 'до 100% на депозит',
+    bonusTerms:
+      'Новичкам начисляют 100% от суммы первого депозита, но не более 15 000₽. Отыгрыш — экспрессами минимум из трёх событий с коэффициентом от 1.40 каждое, срок 30 дней.',
+    promo: 'LINE15',
     reviews: 623,
     minDeposit: '100₽',
     payout: 'до 6 часов',
@@ -96,6 +110,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.6,
     bonus: '40 000₽',
     bonusNote: 'приветственный пакет',
+    bonusTerms:
+      'Пакет из нескольких фрибетов на общую сумму до 40 000₽ выдаётся частями: за регистрацию, за первое пополнение и за первую ставку. Каждый фрибет действует 7 дней.',
+    promo: 'LEON40',
     reviews: 734,
     minDeposit: '100₽',
     payout: 'до 12 часов',
@@ -113,6 +130,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.7,
     bonus: '30 000₽',
     bonusNote: 'бонус на первый депозит',
+    bonusTerms:
+      'Стартовый бонус до 30 000₽ начисляется на бонусный счёт после пополнения от 50₽. Отыгрыш пятикратный, засчитываются экспрессы из трёх и более событий с коэффициентом от 1.40.',
+    promo: 'MEL30',
     reviews: 456,
     minDeposit: '50₽',
     payout: 'до 24 часов',
@@ -129,6 +149,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.6,
     bonus: '25 000₽',
     bonusNote: 'фрибет за регистрацию',
+    bonusTerms:
+      'Фрибет до 25 000₽ доступен после регистрации и идентификации. Размер зависит от суммы первого депозита, ставку нужно сделать в течение 7 дней на событие с коэффициентом от 1.50.',
+    promo: 'PM25',
     reviews: 512,
     minDeposit: '100₽',
     payout: 'до 4 часов',
@@ -145,6 +168,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.5,
     bonus: '10 000₽',
     bonusNote: 'страховка первой ставки',
+    bonusTerms:
+      'Если первая ставка до 10 000₽ окажется проигрышной, сумма возвращается фрибетом. Условие — пройденная идентификация и коэффициент события не ниже 1.50.',
+    promo: 'LS10000',
     reviews: 638,
     minDeposit: '50₽',
     payout: 'до 6 часов',
@@ -161,6 +187,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.4,
     bonus: '3 000₽',
     bonusNote: 'фрибет новым игрокам',
+    bonusTerms:
+      'Фрибет 3 000₽ выдаётся за первое пополнение от 100₽. Использовать его нужно одной ставкой на событие с коэффициентом от 2.00, срок действия — 10 дней.',
+    promo: 'BC3000',
     reviews: 374,
     minDeposit: '100₽',
     payout: 'до 8 часов',
@@ -177,6 +206,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.5,
     bonus: '5 000₽',
     bonusNote: 'бонус к депозиту',
+    bonusTerms:
+      'Бонус до 5 000₽ начисляется на первое пополнение. Отыгрыш трёхкратный ставками с коэффициентом от 1.60, срок — 30 дней с момента активации.',
+    promo: 'MB5000',
     reviews: 421,
     minDeposit: '100₽',
     payout: 'до 5 часов',
@@ -193,6 +225,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.3,
     bonus: '7 000₽',
     bonusNote: 'приветственный фрибет',
+    bonusTerms:
+      'Фрибет 7 000₽ доступен после регистрации и пополнения от 100₽. Ставка одна, коэффициент от 1.70, срок использования — 14 дней.',
+    promo: 'ZB7000',
     reviews: 268,
     minDeposit: '100₽',
     payout: 'до 12 часов',
@@ -209,6 +244,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.4,
     bonus: '20 000₽',
     bonusNote: 'до 100% на первый депозит',
+    bonusTerms:
+      'Удвоение первого депозита до 20 000₽. Бонусные средства отыгрываются ставками с коэффициентом от 1.50, оборот — четырёхкратный, срок 21 день.',
+    promo: 'OB20',
     reviews: 349,
     minDeposit: '100₽',
     payout: 'до 6 часов',
@@ -225,6 +263,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.2,
     bonus: '5 000₽',
     bonusNote: 'бонус за первый депозит',
+    bonusTerms:
+      'Бонус до 5 000₽ за первое пополнение от 100₽. Отыгрыш — ставками на теннис и другие виды спорта с коэффициентом от 1.60, оборот трёхкратный.',
+    promo: 'TN5000',
     reviews: 197,
     minDeposit: '100₽',
     payout: 'до 10 часов',
@@ -241,6 +282,9 @@ export const bookmakers: Bookmaker[] = [
     rating: 4.3,
     bonus: '12 000₽',
     bonusNote: 'пакет для новичков',
+    bonusTerms:
+      'Приветственный пакет до 12 000₽ включает фрибет и бонус на депозит от 50₽. Части пакета активируются последовательно, каждая действует 10 дней.',
+    promo: 'BT12000',
     reviews: 223,
     minDeposit: '50₽',
     payout: 'до 8 часов',

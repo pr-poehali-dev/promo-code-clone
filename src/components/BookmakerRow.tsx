@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,7 @@ interface Props {
 
 const BookmakerRow = ({ bk, index }: Props) => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
   const score = (bk.rating * 2).toFixed(1);
 
   return (
@@ -136,6 +138,32 @@ const BookmakerRow = ({ bk, index }: Props) => {
           )}
         </div>
       </div>
+
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="mt-3 inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
+      >
+        <Icon name={open ? 'ChevronUp' : 'ChevronDown'} size={14} />
+        {open ? 'Скрыть условия бонуса' : 'Условия бонуса'}
+      </button>
+
+      {open && (
+        <div className="mt-2 rounded-lg bg-muted/60 border border-border p-3 animate-in fade-in slide-in-from-top-1">
+          <p className="text-sm text-muted-foreground leading-relaxed">{bk.bonusTerms}</p>
+          {bk.promo && (
+            <div className="mt-3 flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">Промокод:</span>
+              <code className="px-2 py-1 rounded border border-dashed border-accent/50 text-accent font-mono text-xs">
+                {bk.promo}
+              </code>
+            </div>
+          )}
+          <p className="mt-3 text-[11px] text-muted-foreground/70">
+            Точные условия акции уточняйте на официальном сайте букмекера — правила могут
+            меняться. 18+
+          </p>
+        </div>
+      )}
     </Card>
   );
 };
