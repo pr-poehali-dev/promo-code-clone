@@ -26,7 +26,14 @@ const statusLabel: Record<string, string> = {
   closed: 'Закрыт',
 };
 
+const KEY_STORAGE = 'support_admin_key';
+
 const SupportAdmin = () => {
+  const [authed, setAuthed] = useState(false);
+  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
+  const [checking, setChecking] = useState(false);
+  const adminKey = useRef('');
   const [chats, setChats] = useState<Chat[]>([]);
   const [activeId, setActiveId] = useState<number | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -34,9 +41,25 @@ const SupportAdmin = () => {
   const bottom = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const saved = localStorage.getItem(KEY_STORAGE);
+    if (saved) {
+      adminKey.current = saved;
+      setAuthed(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!authed) return;
     const load = async () => {
       try {
-        const res = await fetch(`${SUPPORT_URL}?action=chats`);
+        const res = await fetch(`${SUPPORT_URL}?action=chats`, {
+          headers: { 'X-Admin-Key': adminKey.current },
+        });
+        if (res.status === 401) {
+          localStorage.removeItem(KEY_STORAGE);
+          setAuthed(false);
+          return;
+        }
         const data = await res.json();
         setChats(data.chats || []);
       } catch {
@@ -46,10 +69,10 @@ const SupportAdmin = () => {
     load();
     const t = setInterval(load, 4000);
     return () => clearInterval(t);
-  }, []);
+  }, [authed]);
 
   useEffect(() => {
-    if (!activeId) return;
+    if (!activeId || !authed) return;
     const load = async () => {
       try {
         const res = await fetch(`${SUPPORT_URL}?action=messages&chatId=${activeId}&after=0`);
@@ -78,7 +101,7 @@ const SupportAdmin = () => {
     ]);
     await fetch(`${SUPPORT_URL}?action=send`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey.current },
       body: JSON.stringify({ chatId: activeId, sender: 'operator', text: value }),
     });
     try {
@@ -94,13 +117,84 @@ const SupportAdmin = () => {
     if (!activeId) return;
     await fetch(`${SUPPORT_URL}?action=status`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey.current },
       body: JSON.stringify({ chatId: activeId, status: 'closed' }),
     });
   };
 
+  const login = async () => {
+    const value = password.trim();
+    if (!value) return;
+    setChecking(true);
+    setAuthError('');
+    try {
+      const res = await fetch(`${SUPPORT_URL}?action=login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'login', password: value }),
+      });
+      if (res.ok) {
+        adminKey.current = value;
+        localStorage.setItem(KEY_STORAGE, value);
+        setPassword('');
+        setAuthed(true);
+      } else {
+        setAuthError('Неверный пароль');
+      }
+    } catch {
+      setAuthError('Не удалось подключиться');
+    } finally {
+      setChecking(false);
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem(KEY_STORAGE);
+    adminKey.current = '';
+    setAuthed(false);
+    setChats([]);
+    setActiveId(null);
+    setMessages([]);
+  };
+
   const waiting = chats.filter((c) => c.status === 'waiting').length;
   const active = chats.find((c) => c.id === activeId);
+
+  if (!authed) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
+        <div className="w-full max-w-sm bg-card border border-border rounded-xl p-6">
+          <div className="w-12 h-12 rounded-lg bg-accent/15 flex items-center justify-center mb-4">
+            <Icon name="Lock" size={22} className="text-accent" />
+          </div>
+          <h1 className="text-xl font-bold mb-1">Панель поддержки</h1>
+          <p className="text-sm text-muted-foreground mb-5">
+            Введите пароль оператора, чтобы открыть диалоги.
+          </p>
+
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && login()}
+            placeholder="Пароль"
+            className="mb-3"
+            autoFocus
+          />
+
+          {authError && <p className="text-sm text-red-500 mb-3">{authError}</p>}
+
+          <Button
+            onClick={login}
+            disabled={checking}
+            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+          >
+            {checking ? 'Проверяем...' : 'Войти'}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen bg-background flex flex-col">
@@ -116,12 +210,18 @@ const SupportAdmin = () => {
             </p>
           </div>
         </div>
-        {waiting > 0 && (
-          <div className="flex items-center gap-2 text-sm">
-            <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
-            <span className="text-yellow-500 font-semibold">{waiting} ждут ответа</span>
-          </div>
-        )}
+        <div className="flex items-center gap-4">
+          {waiting > 0 && (
+            <div className="flex items-center gap-2 text-sm">
+              <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
+              <span className="text-yellow-500 font-semibold">{waiting} ждут ответа</span>
+            </div>
+          )}
+          <Button variant="ghost" size="sm" onClick={logout} className="gap-1.5">
+            <Icon name="LogOut" size={15} />
+            Выйти
+          </Button>
+        </div>
       </header>
 
       <div className="flex-1 flex min-h-0">

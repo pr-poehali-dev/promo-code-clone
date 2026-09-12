@@ -41,8 +41,16 @@ def handler(event: dict, context) -> dict:
 
     params = event.get('queryStringParameters') or {}
     action = params.get('action', '')
+    if not action:
+        try:
+            action = (json.loads(event.get('body') or '{}') or {}).get('action', '')
+        except Exception:
+            action = ''
     headers = event.get('headers') or {}
     visitor_id = headers.get('X-Visitor-Id') or headers.get('x-visitor-id') or ''
+    admin_key = headers.get('X-Admin-Key') or headers.get('x-admin-key') or ''
+    admin_password = os.environ.get('SUPPORT_ADMIN_PASSWORD', '')
+    is_admin = bool(admin_password) and admin_key == admin_password
 
     body = {}
     if event.get('body'):
@@ -82,7 +90,7 @@ def handler(event: dict, context) -> dict:
             chat_id = int(body.get('chatId') or 0)
             if not text or not chat_id:
                 return _resp(400, {'error': 'text and chatId required'})
-            if sender not in ('user', 'operator'):
+            if sender != 'operator' or not is_admin:
                 sender = 'user'
             cur.execute(
                 f"INSERT INTO support_messages (chat_id, sender, text) "
@@ -114,7 +122,15 @@ def handler(event: dict, context) -> dict:
                 'status': st['status'] if st else 'waiting',
             })
 
+        if action == 'login':
+            provided = body.get('password', '') if method == 'POST' else ''
+            if admin_password and provided == admin_password:
+                return _resp(200, {'ok': True})
+            return _resp(401, {'ok': False, 'error': 'Неверный пароль'})
+
         if method == 'GET' and action == 'chats':
+            if not is_admin:
+                return _resp(401, {'error': 'unauthorized'})
             cur.execute(
                 "SELECT c.id, c.visitor_name, c.status, c.updated_at, "
                 "(SELECT text FROM support_messages m WHERE m.chat_id = c.id ORDER BY m.id DESC LIMIT 1) AS last_text, "
@@ -124,6 +140,8 @@ def handler(event: dict, context) -> dict:
             return _resp(200, {'chats': cur.fetchall()})
 
         if method == 'POST' and action == 'status':
+            if not is_admin:
+                return _resp(401, {'error': 'unauthorized'})
             chat_id = int(body.get('chatId') or 0)
             status = body.get('status', 'active')
             if status not in ('waiting', 'active', 'closed'):
