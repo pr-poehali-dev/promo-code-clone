@@ -52,6 +52,7 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/8d6270e2-1647-4fdf-9a47-adce0f72b65c.png',
     wideLogo: true,
     route: '/bk/winline',
+    siteUrl: 'https://winline.ru/',
     rating: 4.9,
     bonus: '10 000₽',
     bonusNote: 'фрибет новичкам',
