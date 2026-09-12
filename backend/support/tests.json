@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "Service healthcheck",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "List chats for operator",
+      "method": "GET",
+      "path": "/?action=chats",
+      "expectedStatus": 200,
+      "expectedBody": {"chats": "array"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "CORS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
