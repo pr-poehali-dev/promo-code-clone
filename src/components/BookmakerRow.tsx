@@ -88,7 +88,6 @@ const BookmakerRow = ({ bk, index }: Props) => {
         <div className="lg:col-span-2">
           <div className="lg:hidden text-[11px] uppercase text-muted-foreground">Бонус</div>
           <div className="text-lg font-bold text-accent">{bk.bonus}</div>
-          <div className="text-xs text-muted-foreground">{bk.bonusNote}</div>
         </div>
 
         <div className="lg:col-span-2 flex items-center gap-2">
