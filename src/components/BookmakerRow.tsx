@@ -132,8 +132,13 @@ const BookmakerRow = ({ bk, index }: Props) => {
         </div>
 
         <div className="lg:col-span-2 flex flex-col gap-2">
-          <Button className="font-semibold bg-accent hover:bg-accent/90 text-accent-foreground">
-            Перейти на сайт
+          <Button
+            asChild
+            className="font-semibold bg-accent hover:bg-accent/90 text-accent-foreground"
+          >
+            <a href="https://clck.su/FaemN" target="_blank" rel="noopener noreferrer">
+              Перейти на сайт
+            </a>
           </Button>
           {bk.route && (
             <Button variant="secondary" size="sm" onClick={() => navigate(bk.route!)}>
