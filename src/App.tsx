@@ -6,12 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Reviews from "./pages/Reviews";
-import BetboomReview from "./pages/BetboomReview";
-import LeonReview from "./pages/LeonReview";
-import WinlineReview from "./pages/WinlineReview";
-import FonbetReview from "./pages/FonbetReview";
-import OnexbetReview from "./pages/OnexbetReview";
-import MelbetReview from "./pages/MelbetReview";
 import BookmakerReview from "./pages/BookmakerReview";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
@@ -28,12 +22,6 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/betboom" element={<BetboomReview />} />
-          <Route path="/leon" element={<LeonReview />} />
-          <Route path="/winline" element={<WinlineReview />} />
-          <Route path="/fonbet" element={<FonbetReview />} />
-          <Route path="/1xbet" element={<OnexbetReview />} />
-          <Route path="/melbet" element={<MelbetReview />} />
           <Route path="/bk/:slug" element={<BookmakerReview />} />
           <Route path="/reviews/:bookmakerName" element={<Reviews />} />
           <Route path="/privacy" element={<Privacy />} />

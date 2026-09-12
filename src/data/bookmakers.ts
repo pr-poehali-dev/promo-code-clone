@@ -28,7 +28,7 @@ export const bookmakers: Bookmaker[] = [
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/4525a0ea-f40b-4528-b706-3a236ddfe490.png',
     wideLogo: true,
-    route: '/fonbet',
+    route: '/bk/fonbet',
     rating: 4.9,
     bonus: '15 000₽',
     bonusNote: 'фрибет за первый депозит',
@@ -49,7 +49,7 @@ export const bookmakers: Bookmaker[] = [
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/8d6270e2-1647-4fdf-9a47-adce0f72b65c.png',
     wideLogo: true,
-    route: '/winline',
+    route: '/bk/winline',
     rating: 4.9,
     bonus: '10 000₽',
     bonusNote: 'фрибет новичкам',
@@ -70,7 +70,7 @@ export const bookmakers: Bookmaker[] = [
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/ea087e06-1d7a-4562-8333-979f9ef17a88.png',
     wideLogo: true,
-    route: '/betboom',
+    route: '/bk/betboom',
     rating: 4.9,
     bonus: '10 000₽',
     bonusNote: 'бонус на первый депозит',
@@ -91,7 +91,7 @@ export const bookmakers: Bookmaker[] = [
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/7fe075d0-0cb7-4fd7-95d0-c3310a9f6e66.png',
     wideLogo: true,
-    route: '/leon',
+    route: '/bk/leon',
     rating: 4.6,
     bonus: '1 000₽',
     bonusNote: 'приветственный пакет',
@@ -112,7 +112,7 @@ export const bookmakers: Bookmaker[] = [
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/aabf2f54-1325-4b18-9682-d8138a5d6248.png',
     wideLogo: true,
-    route: '/melbet',
+    route: '/bk/melbet',
     rating: 4.7,
     bonus: '30 000₽',
     bonusNote: 'бонус на первый депозит',
