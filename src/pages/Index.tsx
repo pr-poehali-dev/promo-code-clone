@@ -15,6 +15,7 @@ import { bookmakers, type Bookmaker } from '@/data/bookmakers';
 import BookmakerRow from '@/components/BookmakerRow';
 import RatingCriteria from '@/components/RatingCriteria';
 import BettingFaq from '@/components/BettingFaq';
+import WhyUs from '@/components/WhyUs';
 
 type SortKey = 'rating' | 'bonus' | 'reviews' | 'deposit';
 
@@ -84,8 +85,16 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="border-b border-border bg-gradient-to-b from-secondary/60 to-background">
-        <div className="max-w-6xl mx-auto px-4 py-10">
+      <section className="relative border-b border-border overflow-hidden">
+        <img
+          src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/6533da71-bf10-4253-83a7-203519419068.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/92 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+
+        <div className="relative max-w-6xl mx-auto px-4 py-14">
           <Badge variant="outline" className="mb-3 text-accent border-accent/40">
             Обновлено: сентябрь 2026
           </Badge>
@@ -109,7 +118,10 @@ const Index = () => {
               },
               { v: '24/7', l: 'мониторинг выплат' },
             ].map((s) => (
-              <div key={s.l} className="bg-card border border-border rounded-lg p-3">
+              <div
+                key={s.l}
+                className="bg-card/80 backdrop-blur border border-border rounded-lg p-3 hover:border-accent/50 transition-colors"
+              >
                 <div className="text-xl font-bold text-accent">{s.v}</div>
                 <div className="text-xs text-muted-foreground">{s.l}</div>
               </div>
@@ -190,6 +202,8 @@ const Index = () => {
             </div>
           )}
         </div>
+
+        <WhyUs />
 
         <RatingCriteria />
 
