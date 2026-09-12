@@ -52,9 +52,10 @@ const SupportAdmin = () => {
     if (!authed) return;
     const load = async () => {
       try {
-        const res = await fetch(`${SUPPORT_URL}?action=chats`, {
-          headers: { 'X-Admin-Key': adminKey.current },
-        });
+        const res = await fetch(
+          `${SUPPORT_URL}?action=chats&key=${encodeURIComponent(adminKey.current)}`,
+          { headers: { 'X-Admin-Key': adminKey.current } },
+        );
         if (res.status === 401) {
           localStorage.removeItem(KEY_STORAGE);
           setAuthed(false);
@@ -99,7 +100,7 @@ const SupportAdmin = () => {
       ...prev,
       { id: -Date.now(), sender: 'operator', text: value, created_at: new Date().toISOString() },
     ]);
-    await fetch(`${SUPPORT_URL}?action=send`, {
+    await fetch(`${SUPPORT_URL}?action=send&key=${encodeURIComponent(adminKey.current)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey.current },
       body: JSON.stringify({ chatId: activeId, sender: 'operator', text: value }),
@@ -115,7 +116,7 @@ const SupportAdmin = () => {
 
   const closeChat = async () => {
     if (!activeId) return;
-    await fetch(`${SUPPORT_URL}?action=status`, {
+    await fetch(`${SUPPORT_URL}?action=status&key=${encodeURIComponent(adminKey.current)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey.current },
       body: JSON.stringify({ chatId: activeId, status: 'closed' }),

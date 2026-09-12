@@ -46,10 +46,13 @@ def handler(event: dict, context) -> dict:
             action = (json.loads(event.get('body') or '{}') or {}).get('action', '')
         except Exception:
             action = ''
-    headers = event.get('headers') or {}
-    visitor_id = headers.get('X-Visitor-Id') or headers.get('x-visitor-id') or ''
-    admin_key = headers.get('X-Admin-Key') or headers.get('x-admin-key') or ''
-    admin_password = os.environ.get('SUPPORT_ADMIN_PASSWORD', '')
+    raw_headers = event.get('headers') or {}
+    headers = {str(k).lower(): v for k, v in raw_headers.items()}
+    visitor_id = headers.get('x-visitor-id') or ''
+    admin_key = (headers.get('x-admin-key') or '').strip()
+    if not admin_key:
+        admin_key = (params.get('key') or '').strip()
+    admin_password = (os.environ.get('SUPPORT_ADMIN_PASSWORD') or '').strip()
     is_admin = bool(admin_password) and admin_key == admin_password
 
     body = {}
@@ -123,7 +126,7 @@ def handler(event: dict, context) -> dict:
             })
 
         if action == 'login':
-            provided = body.get('password', '') if method == 'POST' else ''
+            provided = (body.get('password', '') if method == 'POST' else '').strip()
             if admin_password and provided == admin_password:
                 return _resp(200, {'ok': True})
             return _resp(401, {'ok': False, 'error': 'Неверный пароль'})
