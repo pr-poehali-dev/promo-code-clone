@@ -109,7 +109,8 @@ export const bookmakers: Bookmaker[] = [
     name: 'Melbet',
     logo: '🎯',
     image:
-      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/98d00b0c-3ead-488d-b70c-eb83b808115f.png',
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/aabf2f54-1325-4b18-9682-d8138a5d6248.png',
+    wideLogo: true,
     route: '/melbet',
     rating: 4.7,
     bonus: '30 000₽',
