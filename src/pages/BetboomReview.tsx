@@ -98,10 +98,6 @@ const BetboomReview = () => {
                     <Icon name="CheckCircle" size={16} className="text-green-600" />
                     <span>Лицензия: Есть</span>
                   </div>
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
-                    <Icon name="Wallet" size={16} />
-                    <span>Мин. депозит: 100 ₽</span>
-                  </div>
                 </div>
               </div>
             </div>
