@@ -74,10 +74,6 @@ const Index = () => {
     if (category === 'top') list = list.filter((bk) => bk.rating >= 4.6);
     if (category === 'new') list = list.filter((bk) => bk.id >= 12);
     if (category === 'fast') list = list.filter((bk) => num(bk.payout) <= 6);
-    if (category === 'esports')
-      list = list.filter((bk) =>
-        bk.features.some((f) => f.toLowerCase().includes('киберспорт')),
-      );
     if (category === 'lowdep') list = list.filter((bk) => num(bk.minDeposit) <= 100);
     if (category === 'odds') list = list.filter((bk) => bk.scores.odds >= 4.5);
     if (category === 'bonus') list = list.filter((bk) => num(bk.bonus) >= 8000);
