@@ -88,14 +88,17 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-20 border-b border-white/5 bg-[hsl(168_46%_9%)]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-3">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
-              <Icon name="TrendingUp" size={18} className="text-white" />
-            </div>
-            <span className="text-lg font-black tracking-tight text-white">
-              БК<span className="text-accent">рейтинг</span>
+          <a href="#rating" className="shrink-0 leading-none">
+            <span className="text-2xl font-black tracking-tighter text-white">
+              БК
+              <span className="bg-gradient-to-r from-accent to-emerald-300 bg-clip-text text-transparent">
+                рейтинг
+              </span>
             </span>
-          </div>
+            <span className="block text-[9px] uppercase tracking-[0.28em] text-white/40">
+              legal bookmakers
+            </span>
+          </a>
 
           <nav className="hidden flex-1 items-center gap-5 text-sm text-white/70 lg:flex">
             {navLinks.map((l) => (
