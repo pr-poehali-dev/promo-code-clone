@@ -25,42 +25,42 @@ const BookmakerRow = ({ bk, index }: Props) => {
         animationFillMode: 'both',
       }}
     >
-      <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-3 px-4 py-4">
+      <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-3 px-5 py-6">
         <div className="col-span-2 lg:col-span-3 flex items-center gap-3">
           {bk.image ? (
             <img
               src={bk.image}
               alt={bk.name}
-              className="h-9 w-auto max-w-[150px] object-contain"
+              className="h-12 w-auto max-w-[190px] object-contain"
             />
           ) : (
             <div
-              className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-black text-white ${bk.color ?? 'bg-muted'}`}
+              className={`flex h-14 w-14 items-center justify-center rounded-xl text-base font-black text-white ${bk.color ?? 'bg-muted'}`}
             >
               {bk.short}
             </div>
           )}
-          <span className="font-bold text-secondary-foreground lg:hidden">{bk.name}</span>
+          <span className="text-lg font-bold text-secondary-foreground lg:hidden">{bk.name}</span>
         </div>
 
         <div className="lg:col-span-2">
           <div className="text-[10px] uppercase text-muted-foreground lg:hidden">Бонус</div>
-          <div className="text-base font-bold text-secondary-foreground">{bk.bonus}</div>
+          <div className="text-xl font-bold text-secondary-foreground">{bk.bonus}</div>
         </div>
 
         <div className="flex items-center gap-1 lg:col-span-2">
-          <span className="text-base font-bold text-secondary-foreground">
+          <span className="text-xl font-bold text-secondary-foreground">
             {bk.rating.toFixed(1)}
           </span>
-          <Icon name="Star" size={15} className="fill-yellow-400 text-yellow-400" />
+          <Icon name="Star" size={18} className="fill-yellow-400 text-yellow-400" />
         </div>
 
         <button
           onClick={() => navigate(`/reviews/${encodeURIComponent(bk.name)}`)}
           className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-[hsl(var(--accent))] lg:col-span-1"
         >
-          <Icon name="MessageSquare" size={15} />
-          <span className="text-sm font-medium">{bk.reviews}</span>
+          <Icon name="MessageSquare" size={17} />
+          <span className="text-base font-medium">{bk.reviews}</span>
         </button>
 
         <div className="col-span-2 flex items-center justify-end gap-2 lg:col-span-4">
@@ -68,7 +68,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             <Button
               variant="outline"
               onClick={() => navigate(bk.route!)}
-              className="h-9 rounded-lg border-border bg-transparent px-5 text-sm font-medium text-secondary-foreground hover:bg-muted"
+              className="h-11 rounded-lg border-border bg-transparent px-6 text-sm font-medium text-secondary-foreground hover:bg-muted"
             >
               Обзор
             </Button>
@@ -77,7 +77,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
           {bk.siteUrl ? (
             <Button
               asChild
-              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-11 rounded-lg px-7 text-sm font-semibold text-white ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'
@@ -89,7 +89,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             </Button>
           ) : (
             <Button
-              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-11 rounded-lg px-7 text-sm font-semibold text-white ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'
@@ -102,7 +102,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Подробнее"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted"
           >
             <Icon
               name="ChevronDown"
