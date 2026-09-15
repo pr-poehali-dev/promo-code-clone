@@ -268,4 +268,27 @@ export const bookmakers: Bookmaker[] = [
     features: ['Удобное приложение', 'Быстрые выплаты', 'Частые акции'],
     scores: { odds: 4.3, payout: 4.4, app: 4.4, support: 4.2 },
   },
+  {
+    id: 16,
+    name: 'Балтбет',
+    route: '/bk/baltbet',
+    logo: '🟢',
+    image:
+      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0dee2a2b-2e22-4083-ae84-a57e8fc9de18.png',
+    wideLogo: true,
+    short: 'ББ',
+    color: 'bg-green-600',
+    rating: 4.4,
+    bonus: '8 000₽',
+    bonusNote: 'фрибет за первый депозит',
+    bonusTerms:
+      'Фрибет до 8 000₽ начисляется после регистрации, идентификации и первого пополнения от 100₽. Ставку нужно сделать в течение 14 дней на событие с коэффициентом от 1.50.',
+    promo: 'BALT8000',
+    reviews: 398,
+    minDeposit: '100₽',
+    payout: 'до 6 часов',
+    license: 'ЕЦУПИС',
+    features: ['Пункты приема ставок', 'Экспресс дня', 'Кэшаут'],
+    scores: { odds: 4.4, payout: 4.5, app: 4.3, support: 4.4 },
+  },
 ];
