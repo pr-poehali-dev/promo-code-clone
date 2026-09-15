@@ -14,6 +14,22 @@ const BookmakerRow = ({ bk, index }: Props) => {
   const [open, setOpen] = useState(false);
   const highlight = index < 3;
 
+  const ratingChips = [
+    { label: 'Оценка пользователей', value: Math.round(bk.rating) },
+    { label: 'Коэффициенты', value: Math.round(bk.scores.odds) },
+    { label: 'Выплаты', value: Math.round(bk.scores.payout) },
+    { label: 'Приложение', value: Math.round(bk.scores.app) },
+    { label: 'Поддержка', value: Math.round(bk.scores.support) },
+  ];
+
+  const advantages = [
+    ...bk.features,
+    `Минимальный депозит от ${bk.minDeposit}`,
+    `Вывод средств ${bk.payout}`,
+    `Лицензия ФНС и членство в ${bk.license}`,
+    bk.bonusNote.charAt(0).toUpperCase() + bk.bonusNote.slice(1) + ` — ${bk.bonus}`,
+  ];
+
   return (
     <div
       className={`relative rounded-2xl bg-secondary transition-all animate-in fade-in slide-in-from-bottom-2 ${
@@ -114,34 +130,37 @@ const BookmakerRow = ({ bk, index }: Props) => {
       </div>
 
       {open && (
-        <div className="grid gap-4 border-t border-border px-4 py-4 text-sm sm:grid-cols-3">
+        <div className="grid gap-6 border-t border-border px-5 py-5 sm:grid-cols-[minmax(0,260px)_1fr]">
           <div>
-            <div className="mb-1 text-[11px] uppercase text-muted-foreground">Бонус</div>
-            <p className="text-secondary-foreground/80 leading-relaxed text-xs">
-              {bk.bonusTerms}
-            </p>
-          </div>
-          <div>
-            <div className="mb-1 text-[11px] uppercase text-muted-foreground">Условия</div>
-            <ul className="space-y-1 text-xs text-secondary-foreground/80">
-              <li>Минимальный депозит: {bk.minDeposit}</li>
-              <li>Вывод средств: {bk.payout}</li>
-              <li>Лицензия: {bk.license}</li>
-              {bk.promo && <li>Промокод: {bk.promo}</li>}
-            </ul>
-          </div>
-          <div>
-            <div className="mb-1 text-[11px] uppercase text-muted-foreground">Особенности</div>
-            <div className="flex flex-wrap gap-1.5">
-              {bk.features.map((f) => (
+            <h4 className="mb-3 font-bold text-secondary-foreground">Рейтинг</h4>
+            <div className="flex flex-wrap gap-2">
+              {ratingChips.map((c) => (
                 <span
-                  key={f}
-                  className="rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground"
+                  key={c.label}
+                  className="inline-flex items-center gap-1 rounded-lg bg-muted px-2.5 py-1.5 text-xs text-secondary-foreground"
                 >
-                  {f}
+                  {c.label}: {c.value}
+                  <Icon name="Star" size={13} className="fill-yellow-400 text-yellow-400" />
                 </span>
               ))}
             </div>
+          </div>
+
+          <div>
+            <h4 className="mb-3 font-bold text-secondary-foreground">
+              Преимущества букмекера
+            </h4>
+            <ul className="space-y-2">
+              {advantages.map((a) => (
+                <li
+                  key={a}
+                  className="flex items-start gap-2 text-sm text-secondary-foreground"
+                >
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
