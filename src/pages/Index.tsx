@@ -86,7 +86,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-20 border-b border-white/5 bg-[hsl(168_46%_9%)]/95 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-white/5 bg-[hsl(168_50%_4%)]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-3">
           <a href="#rating" className="shrink-0 leading-none">
             <span className="text-2xl font-black tracking-tighter text-white">

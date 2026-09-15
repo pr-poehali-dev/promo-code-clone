@@ -23,7 +23,7 @@ const BookmakerReview = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-[hsl(168_46%_9%)] border-b border-white/5 py-5">
+      <header className="bg-[hsl(168_50%_4%)] border-b border-white/5 py-5">
         <div className="max-w-4xl mx-auto px-4 flex items-center gap-4">
           <Button
             variant="ghost"
