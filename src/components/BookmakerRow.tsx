@@ -16,9 +16,9 @@ const BookmakerRow = ({ bk, index }: Props) => {
 
   return (
     <div
-      className={`rounded-2xl bg-secondary transition-all animate-in fade-in slide-in-from-bottom-2 ${
+      className={`relative rounded-2xl bg-secondary transition-all animate-in fade-in slide-in-from-bottom-2 ${
         highlight ? 'ring-2 ring-[hsl(var(--violet))]' : 'ring-1 ring-border'
-      }`}
+      } ${index === 0 ? 'mt-3' : ''}`}
       style={{
         animationDelay: `${index * 50}ms`,
         animationDuration: '400ms',
@@ -26,9 +26,9 @@ const BookmakerRow = ({ bk, index }: Props) => {
       }}
     >
       {index === 0 && (
-        <div className="px-4 pt-3">
-          <span className="inline-block rounded-full bg-[hsl(var(--violet))] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">ФРИБЕТ БЕЗ ДЕПОЗИТА</span>
-        </div>
+        <span className="absolute -top-2.5 left-4 z-10 inline-block rounded-full bg-[hsl(var(--violet))] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+          ФРИБЕТ БЕЗ ДЕПОЗИТА
+        </span>
       )}
 
       <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-3 px-4 py-4">
