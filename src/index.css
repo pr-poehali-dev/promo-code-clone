@@ -4,33 +4,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 95%;
+    --background: 168 46% 7%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 14%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 14%;
 
-    --primary: 180 100% 50%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 165 84% 36%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 210 24% 96%;
+    --secondary-foreground: 215 25% 16%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 210 24% 95%;
+    --muted-foreground: 215 14% 45%;
 
-    --accent: 174 72% 56%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 164 86% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --violet: 265 84% 58%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 174 72% 56%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 164 86% 36%;
 
     --radius: 0.5rem;
 
@@ -111,17 +113,17 @@
     background:
       radial-gradient(
         circle at 20% 50%,
-        rgba(0, 40, 100, 0.3) 0%,
+        rgba(0, 90, 70, 0.28) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 80% 80%,
-        rgba(0, 60, 120, 0.25) 0%,
+        rgba(0, 110, 85, 0.22) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 40% 20%,
-        rgba(0, 50, 110, 0.2) 0%,
+        rgba(10, 70, 60, 0.2) 0%,
         transparent 50%
       );
     animation: moveBackground 20s ease-in-out infinite;

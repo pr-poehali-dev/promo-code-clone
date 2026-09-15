@@ -43,8 +43,8 @@ const criteria = [
 const RatingCriteria = () => (
   <section id="criteria" className="mt-14 scroll-mt-20">
     <div className="mb-5">
-      <h2 className="text-2xl font-bold mb-1">Как мы считаем рейтинг</h2>
-      <p className="text-muted-foreground text-sm max-w-2xl">
+      <h2 className="text-2xl font-bold mb-1 text-white">Как мы считаем рейтинг</h2>
+      <p className="text-white/60 text-sm max-w-2xl">
         Итоговая оценка складывается из шести групп критериев. Данные пересматриваем
         ежемесячно, а также после каждой крупной жалобы игроков.
       </p>
@@ -52,7 +52,7 @@ const RatingCriteria = () => (
 
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {criteria.map((c) => (
-        <Card key={c.title} className="p-4 hover:border-accent/40 transition-colors">
+        <Card key={c.title} className="p-4 rounded-2xl border-border transition-colors hover:border-accent/40">
           <div className="flex items-start gap-3">
             <div className="bg-accent/15 p-2 rounded-lg shrink-0">
               <Icon name={c.icon} size={20} className="text-accent" />

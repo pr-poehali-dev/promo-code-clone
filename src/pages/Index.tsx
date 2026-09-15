@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import { bookmakers, type Bookmaker } from '@/data/bookmakers';
 import BookmakerRow from '@/components/BookmakerRow';
+import RatingCategories from '@/components/RatingCategories';
 import RatingCriteria from '@/components/RatingCriteria';
 import BettingFaq from '@/components/BettingFaq';
 import WhyUs from '@/components/WhyUs';
@@ -26,11 +27,32 @@ const filters = [
   { id: 'top', label: 'Топ-рейтинг', icon: 'Crown' },
 ];
 
+const categories = [
+  { id: 'all', label: 'Все' },
+  { id: 'official', label: 'Официальные' },
+  { id: 'top', label: 'Лучшие букмекеры' },
+  { id: 'new', label: 'Новые букмекеры' },
+  { id: 'fast', label: 'С быстрым выводом' },
+  { id: 'esports', label: 'Киберспортивные букмекеры' },
+  { id: 'lowdep', label: 'Букмекеры с минимальным депозитом' },
+  { id: 'odds', label: 'Конторы с высокими коэффициентами' },
+  { id: 'bonus', label: 'Лучшие бонусы и фрибеты' },
+];
+
+const navLinks = [
+  { label: 'Рейтинг', href: '#rating' },
+  { label: 'Все букмекеры', href: '#rating' },
+  { label: 'Бонусы', href: '#rating' },
+  { label: 'Методика', href: '#criteria' },
+  { label: 'Вопросы', href: '#faq' },
+];
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [bonusDialogOpen, setBonusDialogOpen] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>('rating');
   const [activeFilter, setActiveFilter] = useState('all');
+  const [category, setCategory] = useState('all');
   const navigate = useNavigate();
 
   const num = (s: string) => parseInt(s.replace(/\D/g, ''), 10) || 0;
@@ -49,44 +71,67 @@ const Index = () => {
     if (activeFilter === 'lowdep') list = list.filter((bk) => num(bk.minDeposit) <= 100);
     if (activeFilter === 'top') list = list.filter((bk) => bk.rating >= 4.8);
 
+    if (category === 'top') list = list.filter((bk) => bk.rating >= 4.6);
+    if (category === 'new') list = list.filter((bk) => bk.id >= 12);
+    if (category === 'fast') list = list.filter((bk) => num(bk.payout) <= 6);
+    if (category === 'esports')
+      list = list.filter((bk) =>
+        bk.features.some((f) => f.toLowerCase().includes('киберспорт')),
+      );
+    if (category === 'lowdep') list = list.filter((bk) => num(bk.minDeposit) <= 100);
+    if (category === 'odds') list = list.filter((bk) => bk.scores.odds >= 4.5);
+    if (category === 'bonus') list = list.filter((bk) => num(bk.bonus) >= 8000);
+
     return [...list].sort((a, b) => {
       if (sortKey === 'rating') return b.rating - a.rating;
       if (sortKey === 'bonus') return num(b.bonus) - num(a.bonus);
       if (sortKey === 'reviews') return b.reviews - a.reviews;
       return num(a.minDeposit) - num(b.minDeposit);
     });
-  }, [searchQuery, sortKey, activeFilter]);
+  }, [searchQuery, sortKey, activeFilter, category]);
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-secondary/95 backdrop-blur border-b border-border sticky top-0 z-20">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center">
-              <Icon name="TrendingUp" size={20} className="text-accent-foreground" />
+      <header className="sticky top-0 z-20 border-b border-white/5 bg-[hsl(168_46%_9%)]/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
+              <Icon name="TrendingUp" size={18} className="text-white" />
             </div>
-            <div>
-              <h1 className="text-lg font-bold leading-tight">Рейтинг Букмекеров</h1>
-              <p className="text-[11px] text-muted-foreground leading-tight">
-                независимая оценка легальных БК
-              </p>
-            </div>
+            <span className="text-lg font-black tracking-tight text-white">
+              БК<span className="text-accent">рейтинг</span>
+            </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#rating" className="hover:text-accent transition-colors">Рейтинг</a>
-            <a href="#criteria" className="hover:text-accent transition-colors">Методика</a>
-            <a href="#faq" className="hover:text-accent transition-colors">Вопросы</a>
+          <nav className="hidden flex-1 items-center gap-5 text-sm text-white/70 lg:flex">
+            {navLinks.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className="whitespace-nowrap transition-colors hover:text-accent"
+              >
+                {l.label}
+              </a>
+            ))}
           </nav>
 
-          <button
-            onClick={() => setBonusDialogOpen(true)}
-            className="relative p-2 hover:bg-accent/10 rounded-lg transition-colors"
-            aria-label="Акции и бонусы"
-          >
-            <Icon name="Gift" size={22} className="text-accent" />
-            <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-secondary" />
-          </button>
+          <div className="ml-auto flex items-center gap-1">
+            <button
+              onClick={() => setBonusDialogOpen(true)}
+              className="relative rounded-lg p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-accent"
+              aria-label="Акции и бонусы"
+            >
+              <Icon name="Gift" size={20} />
+              <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-red-500" />
+            </button>
+            <a
+              href="#rating"
+              className="rounded-lg p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-accent"
+              aria-label="Поиск"
+            >
+              <Icon name="Search" size={20} />
+            </a>
+          </div>
         </div>
       </header>
 
@@ -99,14 +144,14 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/92 to-background/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
 
-        <div className="relative max-w-6xl mx-auto px-4 py-14">
+        <div className="relative max-w-7xl mx-auto px-4 py-14">
           <Badge variant="outline" className="mb-3 text-accent border-accent/40">
             Обновлено: сентябрь 2026
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-bold mb-3 max-w-2xl">
             Рейтинг легальных букмекерских контор России
           </h2>
-          <p className="text-muted-foreground max-w-2xl mb-6">
+          <p className="text-white/70 max-w-2xl mb-6">
             Сравниваем бонусы, коэффициенты, скорость выплат и качество поддержки. Только
             конторы с лицензией ФНС и членством в ЕЦУПИС.
           </p>
@@ -125,109 +170,115 @@ const Index = () => {
             ].map((s) => (
               <div
                 key={s.l}
-                className="bg-card/80 backdrop-blur border border-border rounded-lg p-3 hover:border-accent/50 transition-colors"
+                className="rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition-colors hover:border-accent/50"
               >
                 <div className="text-xl font-bold text-accent">{s.v}</div>
-                <div className="text-xs text-muted-foreground">{s.l}</div>
+                <div className="text-xs text-white/60">{s.l}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="bg-gradient-to-b from-[hsl(190_35%_10%)] via-[hsl(215_30%_9%)] to-background">
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        <div id="rating" className="scroll-mt-20">
-          <div className="flex flex-col lg:flex-row gap-3 lg:items-center justify-between mb-5">
-            <div className="flex flex-wrap gap-2">
-              {filters.map((f) => (
-                <button
-                  key={f.id}
-                  onClick={() => setActiveFilter(f.id)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border transition-colors ${
-                    activeFilter === f.id
-                      ? 'bg-accent text-accent-foreground border-accent'
-                      : 'border-border text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <Icon name={f.icon} size={14} />
-                  {f.label}
-                </button>
+      <div className="bg-gradient-to-b from-[hsl(168_40%_9%)] via-[hsl(170_35%_8%)] to-background">
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        <div id="rating" className="scroll-mt-20 grid gap-6 lg:grid-cols-[1fr_300px]">
+          <div>
+            <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex flex-wrap gap-2">
+                {filters.map((f) => (
+                  <button
+                    key={f.id}
+                    onClick={() => setActiveFilter(f.id)}
+                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors ${
+                      activeFilter === f.id
+                        ? 'border-accent bg-accent text-white'
+                        : 'border-white/15 text-white/60 hover:text-white'
+                    }`}
+                  >
+                    <Icon name={f.icon} size={14} />
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="relative w-full lg:w-64">
+                <Icon
+                  name="Search"
+                  className="absolute left-3 top-2.5 text-white/40"
+                  size={18}
+                />
+                <Input
+                  type="text"
+                  placeholder="Поиск букмекера..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="h-10 border-white/15 bg-white/5 pl-10 text-white placeholder:text-white/40"
+                />
+              </div>
+            </div>
+
+            <div className="hidden lg:grid grid-cols-12 gap-3 px-4 pb-2 text-[11px] uppercase tracking-wide text-white/40">
+              <div className="col-span-3">Букмекер</div>
+              <button
+                className="col-span-2 text-left transition-colors hover:text-accent"
+                onClick={() => setSortKey('bonus')}
+              >
+                Бонус {sortKey === 'bonus' && '▾'}
+              </button>
+              <button
+                className="col-span-2 text-left transition-colors hover:text-accent"
+                onClick={() => setSortKey('rating')}
+              >
+                Рейтинг {sortKey === 'rating' && '▾'}
+              </button>
+              <button
+                className="col-span-1 text-left transition-colors hover:text-accent"
+                onClick={() => setSortKey('reviews')}
+              >
+                Отзывы
+              </button>
+              <div className="col-span-4 text-right">Действия</div>
+            </div>
+
+            <div className="space-y-3">
+              {visible.map((bk, index) => (
+                <BookmakerRow key={bk.id} bk={bk} index={index} />
               ))}
             </div>
 
-            <div className="relative w-full lg:w-72">
-              <Icon
-                name="Search"
-                className="absolute left-3 top-2.5 text-muted-foreground"
-                size={18}
-              />
-              <Input
-                type="text"
-                placeholder="Поиск букмекера..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-10"
-              />
-            </div>
+            {visible.length === 0 && (
+              <div className="py-12 text-center">
+                <Icon name="SearchX" size={56} className="mx-auto mb-4 text-white/30" />
+                <p className="text-lg text-white/60">Ничего не найдено</p>
+              </div>
+            )}
           </div>
 
-          <div className="hidden lg:grid grid-cols-12 gap-4 px-4 pb-2 text-xs uppercase tracking-wide text-muted-foreground">
-            <div className="col-span-4">Букмекер</div>
-            <button
-              className="col-span-2 text-left hover:text-accent transition-colors"
-              onClick={() => setSortKey('bonus')}
-            >
-              Бонус {sortKey === 'bonus' && '▾'}
-            </button>
-            <button
-              className="col-span-2 text-left hover:text-accent transition-colors"
-              onClick={() => setSortKey('rating')}
-            >
-              Рейтинг {sortKey === 'rating' && '▾'}
-            </button>
-            <button
-              className="col-span-2 text-left hover:text-accent transition-colors"
-              onClick={() => setSortKey('reviews')}
-            >
-              Отзывы {sortKey === 'reviews' && '▾'}
-            </button>
-            <div className="col-span-2 text-right">Действия</div>
+          <div className="lg:sticky lg:top-20 lg:self-start">
+            <RatingCategories items={categories} active={category} onSelect={setCategory} />
           </div>
-
-          <div className="space-y-3">
-            {visible.map((bk, index) => (
-              <BookmakerRow key={bk.id} bk={bk} index={index} />
-            ))}
-          </div>
-
-          {visible.length === 0 && (
-            <div className="text-center py-12">
-              <Icon name="SearchX" size={56} className="mx-auto text-muted-foreground mb-4" />
-              <p className="text-lg text-muted-foreground">Ничего не найдено</p>
-            </div>
-          )}
         </div>
 
         <WhyUs />
 
         <RatingCriteria />
 
-        <Card className="mt-10 p-6 bg-gradient-to-r from-accent/10 to-primary/10 border-accent/20">
+        <Card className="mt-10 rounded-2xl border-white/10 bg-white/5 p-6">
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <div className="bg-accent/20 p-3 rounded-lg">
+            <div className="bg-accent/20 p-3 rounded-xl">
               <Icon name="Newspaper" size={28} className="text-accent" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-bold mb-1">Спортивные новости</h3>
-              <p className="text-muted-foreground text-sm mb-3">
+              <h3 className="text-lg font-bold mb-1 text-white">Спортивные новости</h3>
+              <p className="text-white/60 text-sm mb-3">
                 Следите за событиями, которые влияют на коэффициенты, до открытия линии.
               </p>
               <a
                 href="https://ria.ru/sport/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-accent hover:text-primary transition-colors font-medium text-sm"
+                className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium text-sm"
               >
                 Читать на РИА Новости
                 <Icon name="ExternalLink" size={15} />
@@ -240,18 +291,18 @@ const Index = () => {
       </main>
       </div>
 
-      <footer className="bg-secondary border-t border-border py-10 mt-12">
-        <div className="max-w-6xl mx-auto px-4 grid gap-8 md:grid-cols-3 text-sm">
+      <footer className="bg-[hsl(168_46%_9%)] border-t border-white/5 py-10 mt-12">
+        <div className="max-w-7xl mx-auto px-4 grid gap-8 md:grid-cols-3 text-sm">
           <div>
-            <div className="font-bold mb-2">Рейтинг Букмекеров</div>
-            <p className="text-muted-foreground text-xs leading-relaxed">
+            <div className="font-bold mb-2 text-white">БКрейтинг</div>
+            <p className="text-white/50 text-xs leading-relaxed">
               Информационный портал о легальных букмекерских конторах. Мы не принимаем ставки
               и не являемся оператором азартных игр.
             </p>
           </div>
           <div>
-            <div className="font-semibold mb-2">Разделы</div>
-            <ul className="space-y-1 text-muted-foreground text-xs">
+            <div className="font-semibold mb-2 text-white">Разделы</div>
+            <ul className="space-y-1 text-white/50 text-xs">
               <li><a href="#rating" className="hover:text-accent">Рейтинг БК</a></li>
               <li><a href="#criteria" className="hover:text-accent">Методика оценки</a></li>
               <li><a href="#faq" className="hover:text-accent">Частые вопросы</a></li>
@@ -263,22 +314,22 @@ const Index = () => {
             </ul>
           </div>
           <div>
-            <div className="font-semibold mb-2">Играйте ответственно</div>
-            <p className="text-muted-foreground text-xs leading-relaxed">
+            <div className="font-semibold mb-2 text-white">Играйте ответственно</div>
+            <p className="text-white/50 text-xs leading-relaxed">
               Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать
               зависимость. Ставьте только те суммы, потеря которых не отразится на бюджете.
             </p>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-border text-center text-xs text-muted-foreground">
-          © 2026 Рейтинг Букмекеров. Все права защищены.
+        <div className="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-white/10 text-center text-xs text-white/40">
+          © 2026 БКрейтинг. Все права защищены.
         </div>
       </footer>
 
       <Dialog open={bonusDialogOpen} onOpenChange={setBonusDialogOpen}>
-        <DialogContent className="bg-[#1a1a1a] border-gray-800 text-white max-w-md">
+        <DialogContent className="max-w-md rounded-2xl bg-card text-card-foreground">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-white">
+            <DialogTitle className="flex items-center gap-2">
               <Icon name="Gift" size={20} />
               Акции и бонусы от букмекеров
             </DialogTitle>
@@ -288,7 +339,7 @@ const Index = () => {
             {topBonuses.map((p) => (
               <div
                 key={p.id}
-                className="bg-[#242424] rounded-lg p-4 flex items-center justify-between gap-3"
+                className="flex items-center justify-between gap-3 rounded-xl bg-secondary p-4"
               >
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   {p.image ? (
@@ -313,7 +364,7 @@ const Index = () => {
                     setBonusDialogOpen(false);
                     if (p.route) navigate(p.route);
                   }}
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground px-4 py-2 rounded-lg font-semibold text-xs shrink-0"
+                  className="shrink-0 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent/90"
                 >
                   ЗАБРАТЬ
                 </Button>

@@ -23,21 +23,24 @@ const BookmakerReview = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-secondary border-b border-border py-5">
+      <header className="bg-[hsl(168_46%_9%)] border-b border-white/5 py-5">
         <div className="max-w-4xl mx-auto px-4 flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={() => navigate('/')}>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate('/')}
+            className="text-white hover:bg-white/10 hover:text-accent"
+          >
             <Icon name="ArrowLeft" size={22} />
           </Button>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold">{data.name}</h1>
-            <p className="text-sm text-muted-foreground">
-              Букмекерская контора: обзор и отзывы
-            </p>
+            <h1 className="text-2xl font-bold text-white">{data.name}</h1>
+            <p className="text-sm text-white/60">Букмекерская контора: обзор и отзывы</p>
           </div>
         </div>
       </header>
 
-      <div className="border-b border-border bg-gradient-to-b from-secondary/60 to-background py-10">
+      <div className="border-b border-white/5 bg-gradient-to-b from-[hsl(168_40%_9%)] to-background py-10">
         <div className="max-w-4xl mx-auto px-4">
           <Card className="p-6 sm:p-8">
             <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
@@ -90,7 +93,7 @@ const BookmakerReview = () => {
 
       <main className="max-w-4xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Общая информация</h2>
+          <h2 className="text-2xl font-bold mb-4 text-white">Общая информация</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {generalInfo.map((item) => (
               <Card key={item.label} className="p-4 text-center">
@@ -102,7 +105,7 @@ const BookmakerReview = () => {
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Детальный рейтинг</h2>
+          <h2 className="text-2xl font-bold mb-4 text-white">Детальный рейтинг</h2>
           <Card className="p-6">
             <div className="space-y-4">
               {data.ratings.map((c) => (
@@ -192,9 +195,9 @@ const BookmakerReview = () => {
         </div>
       </main>
 
-      <footer className="bg-secondary border-t border-border py-8 mt-12">
-        <div className="max-w-4xl mx-auto px-4 text-center text-sm text-muted-foreground space-y-2">
-          <p>© 2026 Рейтинг Букмекеров. Информационный портал.</p>
+      <footer className="bg-[hsl(168_46%_9%)] border-t border-white/5 py-8 mt-12">
+        <div className="max-w-4xl mx-auto px-4 text-center text-sm text-white/50 space-y-2">
+          <p>© 2026 БКрейтинг. Информационный портал.</p>
           <p className="text-xs">
             Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать
             зависимость.
