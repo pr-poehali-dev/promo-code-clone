@@ -75,7 +75,6 @@ const Index = () => {
     if (category === 'new') list = list.filter((bk) => bk.id >= 12);
     if (category === 'fast') list = list.filter((bk) => num(bk.payout) <= 6);
     if (category === 'lowdep') list = list.filter((bk) => num(bk.minDeposit) <= 100);
-    if (category === 'odds') list = list.filter((bk) => bk.scores.odds >= 4.5);
     if (category === 'bonus') list = list.filter((bk) => num(bk.bonus) >= 8000);
 
     return [...list].sort((a, b) => {
