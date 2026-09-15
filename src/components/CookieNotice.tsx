@@ -19,7 +19,7 @@ export default function CookieNotice() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 max-w-sm animate-in slide-in-from-bottom-5 fade-in duration-500">
+    <div className="fixed bottom-6 left-6 z-50 max-w-sm animate-in slide-in-from-left-5 fade-in duration-500">
       <div className="relative bg-card text-card-foreground border border-border rounded-2xl shadow-2xl p-5">
         <button
           onClick={handleAccept}
