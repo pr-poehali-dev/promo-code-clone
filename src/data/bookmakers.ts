@@ -127,7 +127,7 @@ export const bookmakers: Bookmaker[] = [
     minDeposit: '50₽',
     payout: 'до 24 часов',
     license: 'ЕЦУПИС',
-    features: ['Киберспорт', 'Казино', 'Промокоды'],
+    features: ['Киберспорт', 'Live-ставки', 'Промокоды'],
     scores: { odds: 4.7, payout: 4.3, app: 4.6, support: 4.5 },
   },
   {
