@@ -27,9 +27,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
     >
       {index === 0 && (
         <div className="px-4 pt-3">
-          <span className="inline-block rounded-full bg-[hsl(var(--violet))] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
-            Лучший выбор
-          </span>
+          <span className="inline-block rounded-full bg-[hsl(var(--violet))] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">ФРИБЕТ БЕЗ ДЕПОЗИТА</span>
         </div>
       )}
 
