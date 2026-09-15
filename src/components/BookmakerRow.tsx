@@ -16,8 +16,10 @@ const BookmakerRow = ({ bk, index }: Props) => {
 
   return (
     <div
-      className={`relative rounded-2xl bg-secondary transition-all animate-in fade-in slide-in-from-bottom-2 ${
-        highlight ? 'ring-2 ring-[hsl(var(--violet))]' : 'ring-1 ring-border'
+      className={`relative rounded-2xl bg-secondary transition-all duration-200 animate-in fade-in slide-in-from-bottom-2 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/25 ${
+        highlight
+          ? 'ring-2 ring-[hsl(var(--violet))]'
+          : 'ring-1 ring-border hover:ring-accent/60'
       }`}
       style={{
         animationDelay: `${index * 50}ms`,
