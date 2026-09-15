@@ -73,7 +73,6 @@ const Index = () => {
 
     if (category === 'top') list = list.filter((bk) => bk.rating >= 4.6);
     if (category === 'new') list = list.filter((bk) => bk.id >= 12);
-    if (category === 'fast') list = list.filter((bk) => num(bk.payout) <= 6);
     if (category === 'lowdep') list = list.filter((bk) => num(bk.minDeposit) <= 100);
     if (category === 'bonus') list = list.filter((bk) => num(bk.bonus) >= 8000);
 
