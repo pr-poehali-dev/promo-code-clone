@@ -25,10 +25,10 @@ const BookmakerRow = ({ bk, index }: Props) => {
         animationFillMode: 'both',
       }}
     >
-      {highlight && (
+      {index === 0 && (
         <div className="px-4 pt-3">
           <span className="inline-block rounded-full bg-[hsl(var(--violet))] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
-            {index === 0 ? 'Лучший выбор' : 'Эксклюзивный промокод'}
+            Лучший выбор
           </span>
         </div>
       )}
