@@ -74,6 +74,7 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/ea087e06-1d7a-4562-8333-979f9ef17a88.png',
     wideLogo: true,
     route: '/bk/betboom',
+    siteUrl: 'https://clck.ru/3VtMVA',
     rating: 4.9,
     bonus: '10 000₽',
     bonusNote: 'бонус на первый депозит',
