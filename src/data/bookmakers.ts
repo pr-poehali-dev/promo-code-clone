@@ -134,6 +134,7 @@ export const bookmakers: Bookmaker[] = [
     id: 7,
     name: 'Париматч',
     route: '/bk/pari',
+    siteUrl: 'https://clck.ru/3VtMCv',
     logo: '🎪',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/00a4177a-1afb-4e61-b1a8-9a10ef9395ad.png',
