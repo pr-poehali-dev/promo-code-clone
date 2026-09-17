@@ -13,6 +13,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const highlight = index < 3;
+  const siteUrl = bk.siteUrl ?? 'https://golnk.ru/gGvBX';
 
   const ratingChips = [
     { label: 'Оценка пользователей', value: Math.round(bk.rating) },
@@ -90,30 +91,18 @@ const BookmakerRow = ({ bk, index }: Props) => {
             </Button>
           )}
 
-          {bk.siteUrl ? (
-            <Button
-              asChild
-              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
-                highlight
-                  ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
-                  : 'bg-accent hover:bg-accent/90'
-              }`}
-            >
-              <a href={bk.siteUrl} target="_blank" rel="noopener noreferrer">
-                На сайт
-              </a>
-            </Button>
-          ) : (
-            <Button
-              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
-                highlight
-                  ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
-                  : 'bg-accent hover:bg-accent/90'
-              }`}
-            >
+          <Button
+            asChild
+            className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+              highlight
+                ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
+                : 'bg-accent hover:bg-accent/90'
+            }`}
+          >
+            <a href={siteUrl} target="_blank" rel="noopener noreferrer">
               На сайт
-            </Button>
-          )}
+            </a>
+          </Button>
 
           <button
             onClick={() => setOpen((v) => !v)}
