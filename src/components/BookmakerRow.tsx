@@ -91,18 +91,30 @@ const BookmakerRow = ({ bk, index }: Props) => {
             </Button>
           )}
 
-          <Button
-            asChild
-            className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
-              highlight
-                ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
-                : 'bg-accent hover:bg-accent/90'
-            }`}
-          >
-            <a href={siteUrl} target="_blank" rel="noopener noreferrer">
+          {siteUrl ? (
+            <Button
+              asChild
+              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+                highlight
+                  ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
+                  : 'bg-accent hover:bg-accent/90'
+              }`}
+            >
+              <a href={siteUrl} target="_blank" rel="noopener noreferrer">
+                На сайт
+              </a>
+            </Button>
+          ) : (
+            <Button
+              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+                highlight
+                  ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
+                  : 'bg-accent hover:bg-accent/90'
+              }`}
+            >
               На сайт
-            </a>
-          </Button>
+            </Button>
+          )}
 
           <button
             onClick={() => setOpen((v) => !v)}

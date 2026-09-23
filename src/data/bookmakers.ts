@@ -182,6 +182,7 @@ export const bookmakers: Bookmaker[] = [
     id: 9,
     name: 'Betcity',
     route: '/bk/betcity',
+    siteUrl: '',
     logo: '🌆',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/671cb343-0526-43bc-9a85-6f37e64a742a.png',
@@ -229,6 +230,7 @@ export const bookmakers: Bookmaker[] = [
     id: 12,
     name: 'Олимпбет',
     route: '/bk/olimpbet',
+    siteUrl: '',
     logo: '🔥',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/622ad6e2-e39f-4b68-8035-b02b03563832.png',
@@ -252,6 +254,7 @@ export const bookmakers: Bookmaker[] = [
     id: 15,
     name: 'BetM',
     route: '/bk/betm',
+    siteUrl: '',
     logo: '🅱️',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/913163ae-8a81-412e-adfa-f426d36cd2b3.png',
@@ -275,6 +278,7 @@ export const bookmakers: Bookmaker[] = [
     id: 16,
     name: 'Балтбет',
     route: '/bk/baltbet',
+    siteUrl: '',
     logo: '🟢',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0dee2a2b-2e22-4083-ae84-a57e8fc9de18.png',
