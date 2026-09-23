@@ -96,6 +96,7 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/7fe075d0-0cb7-4fd7-95d0-c3310a9f6e66.png',
     wideLogo: true,
     route: '/bk/leon',
+    siteUrl: '',
     rating: 4.6,
     bonus: '1 000₽',
     bonusNote: 'приветственный пакет',
@@ -159,6 +160,7 @@ export const bookmakers: Bookmaker[] = [
     id: 8,
     name: 'Лига Ставок',
     route: '/bk/ligastavok',
+    siteUrl: '',
     logo: '🏅',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/b62536c7-77c8-4d46-9a63-86c4f9beeda1.png',
