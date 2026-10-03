@@ -280,7 +280,7 @@ export const bookmakers: Bookmaker[] = [
     id: 16,
     name: 'Балтбет',
     route: '/bk/baltbet',
-    siteUrl: 'https://www.baltbet.ru',
+    siteUrl: 'https://baltbet.ru/',
     logo: '🟢',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0dee2a2b-2e22-4083-ae84-a57e8fc9de18.png',
