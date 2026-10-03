@@ -75,20 +75,20 @@ const Reviews = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-black border-b border-white/5 sticky top-0 z-10">
+      <header className="bg-white/85 backdrop-blur-md border-b border-border sticky top-0 z-20">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate('/')}
-              className="text-white hover:bg-white/10 hover:text-accent"
+              className="text-foreground hover:bg-muted"
             >
               <Icon name="ArrowLeft" size={20} />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-white">Отзывы о {bookmakerName}</h1>
-              <p className="text-sm text-white/60">Реальные отзывы пользователей</p>
+              <h1 className="text-2xl font-extrabold text-foreground">Отзывы о {bookmakerName}</h1>
+              <p className="text-sm text-muted-foreground">Реальные отзывы пользователей</p>
             </div>
           </div>
         </div>

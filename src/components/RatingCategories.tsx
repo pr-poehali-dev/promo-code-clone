@@ -14,7 +14,7 @@ interface Props {
 const groups = ['По видам спорта', 'Букмекерские конторы', 'Зарубежные букмекеры'];
 
 const RatingCategories = ({ items, active, onSelect }: Props) => (
-  <aside className="rounded-2xl bg-secondary p-5 ring-1 ring-border">
+  <aside className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-border">
     <h3 className="mb-4 text-lg font-bold text-secondary-foreground">Рейтинги букмекеров</h3>
 
     <ul className="space-y-1">

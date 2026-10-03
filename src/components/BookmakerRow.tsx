@@ -33,8 +33,8 @@ const BookmakerRow = ({ bk, index }: Props) => {
 
   return (
     <div
-      className={`relative rounded-2xl bg-secondary transition-all animate-in fade-in slide-in-from-bottom-2 ${
-        highlight ? 'ring-2 ring-[hsl(var(--violet))]' : 'ring-1 ring-border'
+      className={`relative rounded-2xl bg-white shadow-sm transition-all hover:shadow-md animate-in fade-in slide-in-from-bottom-2 ${
+        highlight ? 'ring-2 ring-[hsl(var(--violet))]/70' : 'ring-1 ring-border'
       }`}
       style={{
         animationDelay: `${index * 50}ms`,
@@ -85,7 +85,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             <Button
               variant="outline"
               onClick={() => navigate(bk.route!)}
-              className="h-9 rounded-lg border-border bg-transparent px-5 text-sm font-medium text-secondary-foreground hover:bg-muted"
+              className="h-10 flex-1 lg:flex-none lg:h-9 rounded-lg border-border bg-transparent px-5 text-sm font-medium text-secondary-foreground hover:bg-muted"
             >
               Обзор
             </Button>
@@ -94,7 +94,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
           {siteUrl ? (
             <Button
               asChild
-              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-10 flex-1 lg:flex-none lg:h-9 rounded-lg px-6 text-sm font-semibold text-white ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'
@@ -106,7 +106,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             </Button>
           ) : (
             <Button
-              className={`h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-10 flex-1 lg:flex-none lg:h-9 rounded-lg px-6 text-sm font-semibold text-white ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'

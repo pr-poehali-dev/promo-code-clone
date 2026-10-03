@@ -43,8 +43,8 @@ const criteria = [
 const RatingCriteria = () => (
   <section id="criteria" className="mt-14 scroll-mt-20">
     <div className="mb-5">
-      <h2 className="text-2xl font-bold mb-1 text-white">Как мы считаем рейтинг</h2>
-      <p className="text-white/60 text-sm max-w-2xl">
+      <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-foreground">Как мы считаем рейтинг</h2>
+      <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
         Итоговая оценка складывается из шести групп критериев. Данные пересматриваем
         ежемесячно, а также после каждой крупной жалобы игроков.
       </p>
@@ -52,15 +52,15 @@ const RatingCriteria = () => (
 
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {criteria.map((c) => (
-        <Card key={c.title} className="p-4 rounded-2xl border-border transition-colors hover:border-accent/40">
+        <Card key={c.title} className="p-5 rounded-2xl border-border bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex items-start gap-3">
-            <div className="bg-accent/15 p-2 rounded-lg shrink-0">
-              <Icon name={c.icon} size={20} className="text-accent" />
+            <div className="bg-[hsl(var(--violet))]/10 p-2 rounded-lg shrink-0">
+              <Icon name={c.icon} size={20} className="text-[hsl(var(--violet))]" />
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-semibold">{c.title}</h3>
-                <span className="text-[11px] text-accent font-bold">{c.weight}</span>
+                <span className="text-[11px] text-[hsl(var(--violet))] font-bold">{c.weight}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{c.text}</p>
             </div>

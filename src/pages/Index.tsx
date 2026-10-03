@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import {
@@ -50,6 +49,7 @@ const navLinks = [
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [bonusDialogOpen, setBonusDialogOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>('rating');
   const [activeFilter, setActiveFilter] = useState('all');
   const [category, setCategory] = useState('all');
@@ -86,98 +86,143 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-20 border-b border-white/5 bg-black">
-        <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-3">
-          <a href="#rating" className="shrink-0 leading-none">
-            <span className="text-2xl font-black tracking-tighter text-white">
-              БК
-              <span className="bg-gradient-to-r from-accent to-emerald-300 bg-clip-text text-transparent">
-                рейтинг
-              </span>
+      <header className="sticky top-0 z-30 border-b border-border bg-white/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center gap-8 px-4 py-3">
+          <a href="#rating" className="flex shrink-0 items-center gap-2.5">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--navy))] text-white">
+              <Icon name="ShieldCheck" size={18} />
             </span>
-            <span className="block text-[9px] uppercase tracking-[0.28em] text-white/40">
-              legal bookmakers
+            <span className="leading-none">
+              <span className="block text-lg font-extrabold tracking-tight text-foreground">
+                БК<span className="text-[hsl(var(--violet))]">рейтинг</span>
+              </span>
+              <span className="block text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                легальные букмекеры
+              </span>
             </span>
           </a>
 
-          <nav className="hidden flex-1 items-center gap-5 text-sm text-white/70 lg:flex">
+          <nav className="hidden flex-1 items-center gap-1 text-sm font-medium text-muted-foreground lg:flex">
             {navLinks.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
-                className="whitespace-nowrap transition-colors hover:text-accent"
+                className="whitespace-nowrap rounded-lg px-3 py-2 transition-colors hover:bg-muted hover:text-foreground"
               >
                 {l.label}
               </a>
             ))}
           </nav>
 
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ml-auto flex items-center gap-2">
             <button
               onClick={() => setBonusDialogOpen(true)}
-              className="relative rounded-lg p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-accent"
+              className="relative hidden items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted sm:inline-flex"
+            >
+              <Icon name="Gift" size={16} className="text-[hsl(var(--violet))]" />
+              Бонусы
+              <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full border-2 border-white bg-red-500" />
+            </button>
+            <button
+              onClick={() => setBonusDialogOpen(true)}
+              className="relative rounded-lg p-2 text-foreground transition-colors hover:bg-muted sm:hidden"
               aria-label="Акции и бонусы"
             >
               <Icon name="Gift" size={20} />
               <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-red-500" />
             </button>
-            <a
-              href="#rating"
-              className="rounded-lg p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-accent"
-              aria-label="Поиск"
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              className="rounded-lg p-2 text-foreground transition-colors hover:bg-muted lg:hidden"
+              aria-label="Меню"
             >
-              <Icon name="Search" size={20} />
-            </a>
+              <Icon name={menuOpen ? 'X' : 'Menu'} size={22} />
+            </button>
           </div>
         </div>
+
+        {menuOpen && (
+          <nav className="border-t border-border bg-white px-4 py-3 lg:hidden animate-in fade-in slide-in-from-top-2">
+            {navLinks.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium text-foreground hover:bg-muted"
+              >
+                {l.label}
+                <Icon name="ChevronRight" size={16} className="text-muted-foreground" />
+              </a>
+            ))}
+          </nav>
+        )}
       </header>
 
-      <section className="relative border-b border-border overflow-hidden">
-        <img
-          src="https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/6533da71-bf10-4253-83a7-203519419068.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/92 to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+      <section className="relative overflow-hidden border-b border-border bg-white">
+        <div className="bg-grid absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_top_left,black_20%,transparent_70%)]" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-accent" />
+              Обновлено: октябрь 2026
+            </div>
+            <h1 className="mb-4 text-3xl font-extrabold leading-[1.1] text-foreground sm:text-5xl">
+              Рейтинг легальных
+              <br className="hidden sm:block" />{' '}
+              <span className="text-[hsl(var(--violet))]">букмекеров России</span>
+            </h1>
+            <p className="mb-7 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Сравниваем бонусы, коэффициенты, скорость выплат и качество поддержки. Только
+              конторы с лицензией ФНС и членством в ЕЦУПИС.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button
+                asChild
+                className="h-12 rounded-xl bg-[hsl(var(--navy))] px-6 text-base font-semibold text-white hover:bg-[hsl(var(--navy))]/90"
+              >
+                <a href="#rating">
+                  Смотреть рейтинг
+                  <Icon name="ArrowRight" size={18} className="ml-1" />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setBonusDialogOpen(true)}
+                className="h-12 rounded-xl border-border bg-white px-6 text-base font-semibold text-foreground hover:bg-muted"
+              >
+                <Icon name="Gift" size={18} className="mr-1 text-[hsl(var(--violet))]" />
+                Лучшие бонусы
+              </Button>
+            </div>
+          </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 py-14">
-          <Badge variant="outline" className="mb-3 text-accent border-accent/40">
-            Обновлено: сентябрь 2026
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3 max-w-2xl">
-            Рейтинг легальных букмекерских контор России
-          </h2>
-          <p className="text-white/70 max-w-2xl mb-6">
-            Сравниваем бонусы, коэффициенты, скорость выплат и качество поддержки. Только
-            конторы с лицензией ФНС и членством в ЕЦУПИС.
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl">
+          <div className="grid grid-cols-2 gap-3">
             {[
-              { v: bookmakers.length.toString(), l: 'БК в рейтинге' },
-              { v: '12', l: 'критериев оценки' },
+              { v: bookmakers.length.toString(), l: 'БК в рейтинге', i: 'Building2' },
+              { v: '12', l: 'критериев оценки', i: 'ListChecks' },
               {
-                v: bookmakers
-                  .reduce((s, b) => s + b.reviews, 0)
-                  .toLocaleString('ru-RU'),
+                v: bookmakers.reduce((s, b) => s + b.reviews, 0).toLocaleString('ru-RU'),
                 l: 'отзывов игроков',
+                i: 'MessageSquare',
               },
-              { v: '24/7', l: 'мониторинг выплат' },
+              { v: '24/7', l: 'мониторинг выплат', i: 'Activity' },
             ].map((s) => (
               <div
                 key={s.l}
-                className="rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition-colors hover:border-accent/50"
+                className="rounded-2xl border border-border bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
-                <div className="text-xl font-bold text-accent">{s.v}</div>
-                <div className="text-xs text-white/60">{s.l}</div>
+                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--violet))]/10">
+                  <Icon name={s.i} size={18} className="text-[hsl(var(--violet))]" />
+                </div>
+                <div className="text-2xl font-extrabold text-foreground sm:text-3xl">{s.v}</div>
+                <div className="text-xs font-medium text-muted-foreground sm:text-sm">{s.l}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="bg-gradient-to-b from-[hsl(168_40%_9%)] via-[hsl(170_35%_8%)] to-background">
+      <div>
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div id="rating" className="scroll-mt-20 grid gap-6 lg:grid-cols-[1fr_300px]">
           <div>
@@ -187,10 +232,10 @@ const Index = () => {
                   <button
                     key={f.id}
                     onClick={() => setActiveFilter(f.id)}
-                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors ${
+                    className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-medium transition-colors ${
                       activeFilter === f.id
-                        ? 'border-accent bg-accent text-white'
-                        : 'border-white/15 text-white/60 hover:text-white'
+                        ? 'border-[hsl(var(--navy))] bg-[hsl(var(--navy))] text-white'
+                        : 'border-border bg-white text-muted-foreground hover:border-foreground/30 hover:text-foreground'
                     }`}
                   >
                     <Icon name={f.icon} size={14} />
@@ -202,7 +247,7 @@ const Index = () => {
               <div className="relative w-full lg:w-64">
                 <Icon
                   name="Search"
-                  className="absolute left-3 top-2.5 text-white/40"
+                  className="absolute left-3 top-3 text-muted-foreground"
                   size={18}
                 />
                 <Input
@@ -210,12 +255,12 @@ const Index = () => {
                   placeholder="Поиск букмекера..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="h-10 border-white/15 bg-white/5 pl-10 text-white placeholder:text-white/40"
+                  className="h-11 rounded-xl border-border bg-white pl-10 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
             </div>
 
-            <div className="hidden lg:grid grid-cols-12 gap-3 px-4 pb-2 text-[11px] uppercase tracking-wide text-white/40">
+            <div className="hidden lg:grid grid-cols-12 gap-3 px-4 pb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
               <div className="col-span-3">Букмекер</div>
               <button
                 className="col-span-2 text-left transition-colors hover:text-accent"
@@ -246,8 +291,8 @@ const Index = () => {
 
             {visible.length === 0 && (
               <div className="py-12 text-center">
-                <Icon name="SearchX" size={56} className="mx-auto mb-4 text-white/30" />
-                <p className="text-lg text-white/60">Ничего не найдено</p>
+                <Icon name="SearchX" size={56} className="mx-auto mb-4 text-muted-foreground/50" />
+                <p className="text-lg text-muted-foreground">Ничего не найдено</p>
               </div>
             )}
           </div>
@@ -261,21 +306,21 @@ const Index = () => {
 
         <RatingCriteria />
 
-        <Card className="mt-10 rounded-2xl border-white/10 bg-white/5 p-6">
+        <Card className="mt-10 rounded-2xl border-border bg-white p-6 shadow-sm">
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <div className="bg-accent/20 p-3 rounded-xl">
-              <Icon name="Newspaper" size={28} className="text-accent" />
+            <div className="bg-[hsl(var(--violet))]/10 p-3 rounded-xl">
+              <Icon name="Newspaper" size={28} className="text-[hsl(var(--violet))]" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-bold mb-1 text-white">Спортивные новости</h3>
-              <p className="text-white/60 text-sm mb-3">
+              <h3 className="text-lg font-bold mb-1 text-foreground">Спортивные новости</h3>
+              <p className="text-muted-foreground text-sm mb-3">
                 Следите за событиями, которые влияют на коэффициенты, до открытия линии.
               </p>
               <a
                 href="https://ria.ru/sport/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium text-sm"
+                className="inline-flex items-center gap-2 text-[hsl(var(--violet))] hover:opacity-80 transition-colors font-medium text-sm"
               >
                 Читать на РИА Новости
                 <Icon name="ExternalLink" size={15} />
@@ -288,38 +333,49 @@ const Index = () => {
       </main>
       </div>
 
-      <footer className="bg-[hsl(168_46%_9%)] border-t border-white/5 py-10 mt-12">
-        <div className="max-w-7xl mx-auto px-4 grid gap-8 md:grid-cols-3 text-sm">
+      <footer className="mt-16 bg-[hsl(var(--navy))] text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 text-sm md:grid-cols-[1.4fr_1fr_1.4fr]">
           <div>
-            <div className="font-bold mb-2 text-white">БКрейтинг</div>
-            <p className="text-white/50 text-xs leading-relaxed">
+            <div className="mb-3 flex items-center gap-2.5">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
+                <Icon name="ShieldCheck" size={18} />
+              </span>
+              <span className="text-lg font-extrabold">БКрейтинг</span>
+            </div>
+            <p className="max-w-xs text-sm leading-relaxed text-white/60">
               Информационный портал о легальных букмекерских конторах. Мы не принимаем ставки
               и не являемся оператором азартных игр.
             </p>
           </div>
           <div>
-            <div className="font-semibold mb-2 text-white">Разделы</div>
-            <ul className="space-y-1 text-white/50 text-xs">
-              <li><a href="#rating" className="hover:text-accent">Рейтинг БК</a></li>
-              <li><a href="#criteria" className="hover:text-accent">Методика оценки</a></li>
-              <li><a href="#faq" className="hover:text-accent">Частые вопросы</a></li>
+            <div className="mb-3 font-semibold">Разделы</div>
+            <ul className="space-y-2 text-white/60">
+              <li><a href="#rating" className="transition-colors hover:text-white">Рейтинг БК</a></li>
+              <li><a href="#criteria" className="transition-colors hover:text-white">Методика оценки</a></li>
+              <li><a href="#faq" className="transition-colors hover:text-white">Частые вопросы</a></li>
               <li>
-                <button onClick={() => navigate('/privacy')} className="hover:text-accent">
+                <button onClick={() => navigate('/privacy')} className="transition-colors hover:text-white">
                   Политика конфиденциальности
                 </button>
               </li>
             </ul>
           </div>
           <div>
-            <div className="font-semibold mb-2 text-white">Играйте ответственно</div>
-            <p className="text-white/50 text-xs leading-relaxed">
+            <div className="mb-3 flex items-center gap-2 font-semibold">
+              <span className="rounded-md border border-white/30 px-1.5 py-0.5 text-xs font-bold">18+</span>
+              Играйте ответственно
+            </div>
+            <p className="text-sm leading-relaxed text-white/60">
               Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать
               зависимость. Ставьте только те суммы, потеря которых не отразится на бюджете.
             </p>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-white/10 text-center text-xs text-white/40">
-          © 2026 БКрейтинг. Все права защищены.
+        <div className="border-t border-white/10">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-white/40 sm:flex-row">
+            <span>© 2026 БКрейтинг. Все права защищены.</span>
+            <span>Только легальные букмекеры с лицензией ФНС</span>
+          </div>
         </div>
       </footer>
 
