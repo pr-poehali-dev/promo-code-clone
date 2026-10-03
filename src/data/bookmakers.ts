@@ -256,7 +256,7 @@ export const bookmakers: Bookmaker[] = [
     id: 15,
     name: 'BetM',
     route: '/bk/betm',
-    siteUrl: 'https://betm.ru',
+    siteUrl: 'https://bet-m.ru/',
     logo: '🅱️',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/913163ae-8a81-412e-adfa-f426d36cd2b3.png',
