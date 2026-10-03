@@ -45,7 +45,7 @@ const navLinks = [
   { label: 'Жалобы', href: '/section/complaints' },
   { label: 'Спорт', href: '/section/sport' },
   { label: 'Бизнес', href: '/section/business' },
-  { label: 'Новости', href: 'https://ria.ru/sport/' },
+  { label: 'Новости', href: '/section/news' },
   { label: 'Знания', href: '#faq' },
 ];
 

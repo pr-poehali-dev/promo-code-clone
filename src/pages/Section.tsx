@@ -45,11 +45,6 @@ const Section = () => {
   const navigate = useNavigate();
   const data = slug ? sections[slug] : undefined;
 
-  if (slug === 'news') {
-    window.location.replace('https://ria.ru/sport/');
-    return null;
-  }
-
   if (!data) return <Navigate to="/" replace />;
 
   return (
@@ -78,7 +73,23 @@ const Section = () => {
             Раздел скоро откроется
           </div>
           <h2 className="mb-3 text-2xl font-extrabold text-foreground sm:text-3xl">{data.title}</h2>
-          <p className="mx-auto mb-7 max-w-xl text-muted-foreground">{data.text}</p>
+          <p className="mx-auto mb-7 max-w-xl text-muted-foreground">
+            {data.text}
+            {slug === 'news' && (
+              <>
+                {' '}А пока свежие спортивные новости можно читать на{' '}
+                <a
+                  href="https://ria.ru/sport/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[hsl(var(--violet))] underline underline-offset-2 hover:opacity-80"
+                >
+                  РИА Новости
+                </a>
+                .
+              </>
+            )}
+          </p>
           <Button
             onClick={() => navigate('/')}
             className="h-12 rounded-xl bg-[hsl(var(--navy))] px-6 text-base font-semibold text-white hover:bg-[hsl(var(--navy))]/90"
