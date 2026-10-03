@@ -109,7 +109,13 @@ const BookmakerReview = () => {
             {generalInfo.map((item) => (
               <Card key={item.label} className="p-4 text-center">
                 <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
-                <div className="font-bold text-lg">{item.value}</div>
+                <div
+                  className={`font-bold leading-snug ${
+                    String(item.value).length > 20 ? 'text-sm' : 'text-lg'
+                  }`}
+                >
+                  {item.value}
+                </div>
               </Card>
             ))}
           </div>
