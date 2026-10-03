@@ -25,7 +25,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
 
   const advantages = [
     ...bk.features,
-    `Минимальный депозит от ${bk.minDeposit}`,
+    'Минимальный депозит от 100₽',
     `Вывод средств ${bk.payout}`,
     `Лицензия ФНС и членство в ${bk.license}`,
     bk.bonusNote.charAt(0).toUpperCase() + bk.bonusNote.slice(1) + ` — ${bk.bonus}`,
