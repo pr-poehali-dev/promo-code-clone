@@ -45,7 +45,7 @@ const navLinks = [
   { label: 'Жалобы', href: '/section/complaints' },
   { label: 'Спорт', href: '/section/sport' },
   { label: 'Бизнес', href: '/section/business' },
-  { label: 'Новости', href: '/section/news' },
+  { label: 'Новости', href: 'https://ria.ru/sport/' },
   { label: 'Знания', href: '#faq' },
 ];
 
@@ -120,6 +120,9 @@ const Index = () => {
                   if (l.href === '#bonuses') {
                     e.preventDefault();
                     setBonusDialogOpen(true);
+                  } else if (l.href.startsWith('http')) {
+                    e.preventDefault();
+                    window.open(l.href, '_blank', 'noopener,noreferrer');
                   } else if (l.href.startsWith('/')) {
                     e.preventDefault();
                     navigate(l.href);
@@ -170,6 +173,9 @@ const Index = () => {
                   if (l.href === '#bonuses') {
                     e.preventDefault();
                     setBonusDialogOpen(true);
+                  } else if (l.href.startsWith('http')) {
+                    e.preventDefault();
+                    window.open(l.href, '_blank', 'noopener,noreferrer');
                   } else if (l.href.startsWith('/')) {
                     e.preventDefault();
                     navigate(l.href);

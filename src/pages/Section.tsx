@@ -45,6 +45,11 @@ const Section = () => {
   const navigate = useNavigate();
   const data = slug ? sections[slug] : undefined;
 
+  if (slug === 'news') {
+    window.location.replace('https://ria.ru/sport/');
+    return null;
+  }
+
   if (!data) return <Navigate to="/" replace />;
 
   return (
