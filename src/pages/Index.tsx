@@ -11,6 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { bookmakers, type Bookmaker } from '@/data/bookmakers';
+import { reviews } from '@/data/reviews';
 import BookmakerRow from '@/components/BookmakerRow';
 import RatingCategories from '@/components/RatingCategories';
 import RatingCriteria from '@/components/RatingCriteria';
@@ -22,18 +23,15 @@ type SortKey = 'rating' | 'bonus' | 'reviews' | 'deposit';
 const filters = [
   { id: 'all', label: 'Все БК', icon: 'List' },
   { id: 'bonus', label: 'Крупный бонус', icon: 'Gift' },
-  { id: 'lowdep', label: 'Депозит от 100₽', icon: 'Wallet' },
   { id: 'top', label: 'Топ-рейтинг', icon: 'Crown' },
 ];
 
 const categories = [
   { id: 'all', label: 'Все' },
-  { id: 'official', label: 'Официальные' },
   { id: 'top', label: 'Лучшие букмекеры' },
   { id: 'new', label: 'Новые букмекеры' },
   { id: 'fast', label: 'С быстрым выводом' },
   { id: 'esports', label: 'Киберспортивные букмекеры' },
-  { id: 'lowdep', label: 'Букмекеры с минимальным депозитом' },
   { id: 'odds', label: 'Конторы с высокими коэффициентами' },
   { id: 'bonus', label: 'Лучшие бонусы и фрибеты' },
 ];
@@ -41,7 +39,7 @@ const categories = [
 const navLinks = [
   { label: 'Рейтинг', href: '#rating' },
   { label: 'Все букмекеры', href: '#rating' },
-  { label: 'Бонусы', href: '#rating' },
+  { label: 'Бонусы', href: '#bonuses' },
   { label: 'Методика', href: '#criteria' },
   { label: 'Вопросы', href: '#faq' },
 ];
@@ -68,12 +66,17 @@ const Index = () => {
     );
 
     if (activeFilter === 'bonus') list = list.filter((bk) => num(bk.bonus) >= 10000);
-    if (activeFilter === 'lowdep') list = list.filter((bk) => num(bk.minDeposit) <= 100);
     if (activeFilter === 'top') list = list.filter((bk) => bk.rating >= 4.8);
 
     if (category === 'top') list = list.filter((bk) => bk.rating >= 4.6);
-    if (category === 'new') list = list.filter((bk) => bk.id >= 12);
-    if (category === 'lowdep') list = list.filter((bk) => num(bk.minDeposit) <= 100);
+    if (category === 'new') list = list.filter((bk) => (reviews[bk.route?.split('/').pop() ?? '']?.founded ?? '0') >= '2019');
+    if (category === 'fast') list = list.filter((bk) => bk.scores.payout >= 4.6);
+    if (category === 'esports')
+      list = list.filter((bk) =>
+        (reviews[bk.route?.split('/').pop() ?? '']?.about ?? []).some((t) => t.toLowerCase().includes('киберспорт')) ||
+        bk.features.some((f) => f.toLowerCase().includes('киберспорт')),
+      );
+    if (category === 'odds') list = list.filter((bk) => bk.scores.odds >= 4.6);
     if (category === 'bonus') list = list.filter((bk) => num(bk.bonus) >= 8000);
 
     return [...list].sort((a, b) => {
@@ -107,6 +110,12 @@ const Index = () => {
               <a
                 key={l.label}
                 href={l.href}
+                onClick={(e) => {
+                  if (l.href === '#bonuses') {
+                    e.preventDefault();
+                    setBonusDialogOpen(true);
+                  }
+                }}
                 className="whitespace-nowrap rounded-lg px-3 py-2 transition-colors hover:bg-muted hover:text-foreground"
               >
                 {l.label}
@@ -147,7 +156,13 @@ const Index = () => {
               <a
                 key={l.label}
                 href={l.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  setMenuOpen(false);
+                  if (l.href === '#bonuses') {
+                    e.preventDefault();
+                    setBonusDialogOpen(true);
+                  }
+                }}
                 className="flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium text-foreground hover:bg-muted"
               >
                 {l.label}
@@ -201,7 +216,7 @@ const Index = () => {
           <div className="grid grid-cols-4 gap-2 sm:grid-cols-2 sm:gap-3">
             {[
               { v: bookmakers.length.toString(), l: 'БК в рейтинге', i: 'Building2' },
-              { v: '12', l: 'критериев оценки', i: 'ListChecks' },
+              { v: '6', l: 'групп критериев', i: 'ListChecks' },
               {
                 v: bookmakers.reduce((s, b) => s + b.reviews, 0).toLocaleString('ru-RU'),
                 l: 'отзывов игроков',

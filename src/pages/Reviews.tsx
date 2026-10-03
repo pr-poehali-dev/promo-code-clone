@@ -42,19 +42,36 @@ const reviewTexts = [
   'Быстрая регистрация, не требуют лишних документов.'
 ];
 
-const generateReviews = (count: number, startId: number): Review[] => {
+const plural = (n: number) => {
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return 'день';
+  if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return 'дня';
+  return 'дней';
+};
+
+const seeded = (seed: number) => {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+};
+
+const hash = (s: string) => s.split('').reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7);
+
+const generateReviews = (count: number, startId: number, key = ''): Review[] => {
   const reviews: Review[] = [];
+  const base = hash(key);
   for (let i = 0; i < count; i++) {
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const randomText = reviewTexts[Math.floor(Math.random() * reviewTexts.length)];
-    const randomRating = Math.floor(Math.random() * 2) + 4;
-    const randomDaysAgo = Math.floor(Math.random() * 90) + 1;
+    const n = base + (startId + i) * 4;
+    const randomName = names[Math.floor(seeded(n) * names.length)];
+    const randomText = reviewTexts[Math.floor(seeded(n + 1) * reviewTexts.length)];
+    const randomRating = Math.floor(seeded(n + 2) * 2) + 4;
+    const randomDaysAgo = Math.min(90, Math.floor((startId + i) * 1.3 + seeded(n + 3) * 2) + 1);
     
     reviews.push({
       id: startId + i,
       author: randomName,
       rating: randomRating,
-      date: `${randomDaysAgo} ${randomDaysAgo === 1 ? 'день' : randomDaysAgo < 5 ? 'дня' : 'дней'} назад`,
+      date: `${randomDaysAgo} ${plural(randomDaysAgo)} назад`,
       text: randomText
     });
   }
@@ -64,11 +81,11 @@ const generateReviews = (count: number, startId: number): Review[] => {
 const Reviews = () => {
   const { bookmakerName } = useParams();
   const navigate = useNavigate();
-  const [reviews, setReviews] = useState<Review[]>(generateReviews(20, 1));
+  const [reviews, setReviews] = useState<Review[]>(() => generateReviews(20, 1, bookmakerName ?? ''));
   const [totalShown, setTotalShown] = useState(20);
 
   const loadMore = () => {
-    const newReviews = generateReviews(20, totalShown + 1);
+    const newReviews = generateReviews(20, totalShown + 1, bookmakerName ?? '');
     setReviews([...reviews, ...newReviews]);
     setTotalShown(totalShown + 20);
   };
@@ -133,7 +150,7 @@ const Reviews = () => {
       <footer className="bg-muted border-t py-8 mt-12">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center text-sm text-muted-foreground space-y-2">
-            <p>© 2026 Рейтинг Букмекеров. Информационный портал.</p>
+            <p>© 2026 БКрейтинг. Информационный портал.</p>
             <p className="text-xs">
               Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать зависимость.
             </p>

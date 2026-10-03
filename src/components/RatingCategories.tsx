@@ -11,8 +11,6 @@ interface Props {
   onSelect: (id: string) => void;
 }
 
-const groups = ['По видам спорта', 'Букмекерские конторы', 'Зарубежные букмекеры'];
-
 const RatingCategories = ({ items, active, onSelect }: Props) => (
   <>
     <div className="lg:hidden">
@@ -59,17 +57,6 @@ const RatingCategories = ({ items, active, onSelect }: Props) => (
         ))}
       </ul>
 
-      <div className="mt-4 space-y-2">
-        {groups.map((g) => (
-          <div
-            key={g}
-            className="flex items-center justify-between rounded-lg bg-muted/70 px-3 py-2.5 text-sm text-muted-foreground"
-          >
-            <span>{g}</span>
-            <Icon name="ChevronDown" size={16} />
-          </div>
-        ))}
-      </div>
     </aside>
   </>
 );
