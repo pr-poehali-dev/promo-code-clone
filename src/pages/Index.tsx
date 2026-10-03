@@ -62,8 +62,6 @@ const Index = () => {
     [],
   );
 
-  const bestOffer = bookmakers.find((b) => b.name === 'Fonbet' && b.siteUrl);
-
   const visible = useMemo(() => {
     let list: Bookmaker[] = bookmakers.filter((bk) =>
       bk.name.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -337,7 +335,7 @@ const Index = () => {
       </main>
       </div>
 
-      <footer className="mt-12 bg-[hsl(var(--navy))] pb-20 text-white sm:mt-16 lg:pb-0">
+      <footer className="mt-12 bg-[hsl(var(--navy))] text-white sm:mt-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm md:grid-cols-[1.4fr_1fr_1.4fr] md:gap-10 md:py-12">
           <div>
             <div className="mb-3 flex items-center gap-2.5">
@@ -382,28 +380,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-
-      {bestOffer && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-white/95 px-4 py-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-md lg:hidden">
-          <div className="flex items-center gap-3">
-            {bestOffer.image && (
-              <img src={bestOffer.image} alt={bestOffer.name} className="h-7 w-auto max-w-[90px] object-contain" />
-            )}
-            <div className="min-w-0 flex-1 leading-tight">
-              <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">Лучший бонус</div>
-              <div className="truncate text-sm font-extrabold text-[hsl(var(--violet))]">{bestOffer.bonus}</div>
-            </div>
-            <Button
-              asChild
-              className="h-11 shrink-0 rounded-xl bg-[hsl(var(--violet))] px-5 text-sm font-semibold text-white hover:bg-[hsl(var(--violet))]/90"
-            >
-              <a href={bestOffer.siteUrl} target="_blank" rel="noopener noreferrer">
-                Забрать
-              </a>
-            </Button>
-          </div>
-        </div>
-      )}
 
       <Dialog open={bonusDialogOpen} onOpenChange={setBonusDialogOpen}>
         <DialogContent className="max-w-md rounded-2xl bg-card text-card-foreground">

@@ -4,7 +4,7 @@ import SupportChat from '@/components/SupportChat';
 const SupportChatGate = () => {
   const { pathname } = useLocation();
   if (pathname.startsWith('/support-admin')) return null;
-  return <SupportChat liftOnMobile={pathname === '/'} />;
+  return <SupportChat />;
 };
 
 export default SupportChatGate;
