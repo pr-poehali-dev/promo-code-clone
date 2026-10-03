@@ -23,7 +23,7 @@ const getVisitorId = () => {
   return id;
 };
 
-const SupportChat = () => {
+const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
   const [open, setOpen] = useState(false);
   const [started, setStarted] = useState(false);
   const [connecting, setConnecting] = useState(false);
@@ -143,7 +143,7 @@ const SupportChat = () => {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+          className={`fixed right-5 z-40 w-14 h-14 ${liftOnMobile ? 'bottom-24 lg:bottom-5' : 'bottom-5'} rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center hover:scale-105 transition-transform`}
           aria-label="Открыть чат поддержки"
         >
           <Icon name="MessageCircle" size={26} />
@@ -151,7 +151,7 @@ const SupportChat = () => {
       )}
 
       {open && (
-        <div className="fixed bottom-5 right-5 z-40 w-[calc(100vw-2.5rem)] sm:w-[370px] h-[520px] max-h-[80vh] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4">
+        <div className="fixed bottom-5 right-5 z-50 w-[calc(100vw-2.5rem)] sm:w-[370px] h-[520px] max-h-[80vh] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4">
           <div className="bg-secondary px-4 py-3 flex items-center justify-between border-b border-border">
             <div className="flex items-center gap-2">
               <div className="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center">

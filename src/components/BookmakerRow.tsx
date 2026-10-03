@@ -42,13 +42,21 @@ const BookmakerRow = ({ bk, index }: Props) => {
         animationFillMode: 'both',
       }}
     >
-      <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-3 px-4 py-4">
-        <div className="col-span-2 lg:col-span-3 flex items-center gap-3">
+      {index < 3 && (
+        <span className="absolute -top-2.5 left-4 z-10 rounded-full bg-[hsl(var(--violet))] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm lg:hidden">
+          Топ-{index + 1}
+        </span>
+      )}
+      <div className="grid grid-cols-3 lg:grid-cols-12 items-center gap-x-3 gap-y-3 px-4 pb-4 pt-5 lg:py-4">
+        <div className="col-span-3 lg:col-span-3 flex items-center gap-3">
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-bold text-muted-foreground lg:hidden">
+            {index + 1}
+          </span>
           {bk.image ? (
             <img
               src={bk.image}
               alt={bk.name}
-              className="h-9 w-auto max-w-[150px] object-contain"
+              className="h-8 w-auto max-w-[130px] object-contain lg:h-9 lg:max-w-[150px]"
             />
           ) : (
             <div
@@ -57,35 +65,41 @@ const BookmakerRow = ({ bk, index }: Props) => {
               {bk.short}
             </div>
           )}
-          <span className="font-bold text-secondary-foreground lg:hidden">{bk.name}</span>
+          <span className="ml-auto truncate text-sm font-bold text-secondary-foreground lg:hidden">{bk.name}</span>
         </div>
 
-        <div className="lg:col-span-2">
-          <div className="text-[10px] uppercase text-muted-foreground lg:hidden">Бонус</div>
-          <div className="text-base font-bold text-secondary-foreground">{bk.bonus}</div>
+        <div className="rounded-xl bg-muted/70 px-3 py-2 lg:col-span-2 lg:bg-transparent lg:p-0">
+          <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground lg:hidden">Бонус</div>
+          <div className="text-[15px] font-extrabold text-[hsl(var(--violet))] lg:text-base lg:font-bold lg:text-secondary-foreground">{bk.bonus}</div>
         </div>
 
-        <div className="flex items-center gap-1 lg:col-span-2">
-          <span className="text-base font-bold text-secondary-foreground">
-            {bk.rating.toFixed(1)}
-          </span>
-          <Icon name="Star" size={15} className="fill-yellow-400 text-yellow-400" />
+        <div className="rounded-xl bg-muted/70 px-3 py-2 lg:col-span-2 lg:bg-transparent lg:p-0">
+          <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground lg:hidden">Рейтинг</div>
+          <div className="flex items-center gap-1">
+            <span className="text-[15px] font-extrabold text-secondary-foreground lg:text-base lg:font-bold">
+              {bk.rating.toFixed(1)}
+            </span>
+            <Icon name="Star" size={15} className="fill-yellow-400 text-yellow-400" />
+          </div>
         </div>
 
         <button
           onClick={() => navigate(`/reviews/${encodeURIComponent(bk.name)}`)}
-          className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-[hsl(var(--accent))] lg:col-span-1"
+          className="rounded-xl bg-muted/70 px-3 py-2 text-left text-muted-foreground transition-colors hover:text-[hsl(var(--accent))] lg:col-span-1 lg:bg-transparent lg:p-0"
         >
-          <Icon name="MessageSquare" size={15} />
-          <span className="text-sm font-medium">{bk.reviews}</span>
+          <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground lg:hidden">Отзывы</div>
+          <div className="flex items-center gap-1.5">
+            <Icon name="MessageSquare" size={15} />
+            <span className="text-[15px] font-bold text-secondary-foreground lg:text-sm lg:font-medium lg:text-muted-foreground">{bk.reviews}</span>
+          </div>
         </button>
 
-        <div className="col-span-2 flex items-center justify-end gap-2 lg:col-span-4">
+        <div className="col-span-3 flex items-center justify-end gap-2 lg:col-span-4">
           {bk.route && (
             <Button
               variant="outline"
               onClick={() => navigate(bk.route!)}
-              className="h-10 flex-1 lg:flex-none lg:h-9 rounded-lg border-border bg-transparent px-5 text-sm font-medium text-secondary-foreground hover:bg-muted"
+              className="h-11 flex-1 lg:flex-none lg:h-9 rounded-xl lg:rounded-lg border-border bg-transparent px-4 lg:px-5 text-sm font-medium text-secondary-foreground hover:bg-muted"
             >
               Обзор
             </Button>
@@ -94,7 +108,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
           {siteUrl ? (
             <Button
               asChild
-              className={`h-10 flex-1 lg:flex-none lg:h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-11 flex-[1.4] lg:flex-none lg:h-9 rounded-xl lg:rounded-lg px-6 text-sm font-semibold text-white ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'
@@ -106,7 +120,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             </Button>
           ) : (
             <Button
-              className={`h-10 flex-1 lg:flex-none lg:h-9 rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-11 flex-[1.4] lg:flex-none lg:h-9 rounded-xl lg:rounded-lg px-6 text-sm font-semibold text-white ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'
@@ -119,7 +133,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Подробнее"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted/70 text-muted-foreground transition-colors hover:bg-muted lg:h-9 lg:w-9 lg:rounded-lg lg:bg-transparent"
           >
             <Icon
               name="ChevronDown"
@@ -131,7 +145,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
       </div>
 
       {open && (
-        <div className="grid gap-6 border-t border-border px-5 py-5 sm:grid-cols-[minmax(0,260px)_1fr]">
+        <div className="grid gap-5 border-t border-border px-4 py-4 sm:px-5 sm:py-5 sm:grid-cols-[minmax(0,260px)_1fr]">
           <div>
             <h4 className="mb-3 font-bold text-secondary-foreground">Рейтинг</h4>
             <div className="flex flex-wrap gap-2">

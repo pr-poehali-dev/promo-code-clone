@@ -29,8 +29,8 @@ const faq = [
 ];
 
 const BettingFaq = () => (
-  <section id="faq" className="mt-14 scroll-mt-20">
-    <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-foreground">Частые вопросы</h2>
+  <section id="faq" className="mt-10 sm:mt-14 scroll-mt-16">
+    <h2 className="text-xl sm:text-3xl font-extrabold mb-2 text-foreground">Частые вопросы</h2>
     <p className="text-muted-foreground text-sm sm:text-base mb-5">
       Коротко о том, что чаще всего спрашивают начинающие игроки.
     </p>
@@ -38,11 +38,11 @@ const BettingFaq = () => (
     <Accordion
       type="single"
       collapsible
-      className="w-full rounded-2xl bg-white px-5 shadow-sm ring-1 ring-border"
+      className="w-full rounded-2xl bg-white px-4 sm:px-5 shadow-sm ring-1 ring-border"
     >
       {faq.map((item, i) => (
         <AccordionItem key={item.q} value={`item-${i}`}>
-          <AccordionTrigger className="text-left text-base text-secondary-foreground">
+          <AccordionTrigger className="text-left text-[15px] sm:text-base text-secondary-foreground">
             {item.q}
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground leading-relaxed">

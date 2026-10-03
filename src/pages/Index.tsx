@@ -62,6 +62,8 @@ const Index = () => {
     [],
   );
 
+  const bestOffer = bookmakers.find((b) => b.name === 'Fonbet' && b.siteUrl);
+
   const visible = useMemo(() => {
     let list: Bookmaker[] = bookmakers.filter((bk) =>
       bk.name.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -160,43 +162,45 @@ const Index = () => {
 
       <section className="relative overflow-hidden border-b border-border bg-white">
         <div className="bg-grid absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_top_left,black_20%,transparent_70%)]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.2fr_1fr]">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-4 pb-6 pt-7 sm:gap-10 sm:py-16 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground shadow-sm">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground shadow-sm">
               <span className="h-2 w-2 rounded-full bg-accent" />
               Обновлено: октябрь 2026
             </div>
-            <h1 className="mb-4 text-3xl font-extrabold leading-[1.1] text-foreground sm:text-5xl">
+            <h1 className="mb-3 text-[28px] font-extrabold leading-[1.1] text-foreground sm:mb-4 sm:text-5xl">
               Рейтинг легальных
               <br className="hidden sm:block" />{' '}
               <span className="text-[hsl(var(--violet))]">букмекеров России</span>
             </h1>
-            <p className="mb-7 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mb-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mb-7 sm:text-lg">
               Сравниваем бонусы, коэффициенты, скорость выплат и качество поддержки. Только
               конторы с лицензией ФНС и членством в ЕЦУПИС.
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
               <Button
                 asChild
-                className="h-12 rounded-xl bg-[hsl(var(--navy))] px-6 text-base font-semibold text-white hover:bg-[hsl(var(--navy))]/90"
+                className="h-12 rounded-xl bg-[hsl(var(--navy))] px-3 text-sm sm:px-6 sm:text-base font-semibold text-white hover:bg-[hsl(var(--navy))]/90"
               >
                 <a href="#rating">
-                  Смотреть рейтинг
+                  <span className="sm:hidden">Рейтинг</span>
+                  <span className="hidden sm:inline">Смотреть рейтинг</span>
                   <Icon name="ArrowRight" size={18} className="ml-1" />
                 </a>
               </Button>
               <Button
                 variant="outline"
                 onClick={() => setBonusDialogOpen(true)}
-                className="h-12 rounded-xl border-border bg-white px-6 text-base font-semibold text-foreground hover:bg-muted"
+                className="h-12 rounded-xl border-border bg-white px-3 text-sm sm:px-6 sm:text-base font-semibold text-foreground hover:bg-muted"
               >
                 <Icon name="Gift" size={18} className="mr-1 text-[hsl(var(--violet))]" />
-                Лучшие бонусы
+                <span className="sm:hidden">Бонусы</span>
+                <span className="hidden sm:inline">Лучшие бонусы</span>
               </Button>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-4 gap-2 sm:grid-cols-2 sm:gap-3">
             {[
               { v: bookmakers.length.toString(), l: 'БК в рейтинге', i: 'Building2' },
               { v: '12', l: 'критериев оценки', i: 'ListChecks' },
@@ -209,13 +213,13 @@ const Index = () => {
             ].map((s) => (
               <div
                 key={s.l}
-                className="rounded-2xl border border-border bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="rounded-xl border border-border bg-white p-2.5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md sm:rounded-2xl sm:p-5 sm:text-left"
               >
-                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--violet))]/10">
+                <div className="mb-3 hidden h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--violet))]/10 sm:flex">
                   <Icon name={s.i} size={18} className="text-[hsl(var(--violet))]" />
                 </div>
-                <div className="text-2xl font-extrabold text-foreground sm:text-3xl">{s.v}</div>
-                <div className="text-xs font-medium text-muted-foreground sm:text-sm">{s.l}</div>
+                <div className="text-base font-extrabold text-foreground sm:text-3xl">{s.v}</div>
+                <div className="text-[10px] font-medium leading-tight text-muted-foreground sm:text-sm">{s.l}</div>
               </div>
             ))}
           </div>
@@ -223,16 +227,16 @@ const Index = () => {
       </section>
 
       <div>
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div id="rating" className="scroll-mt-20 grid gap-6 lg:grid-cols-[1fr_300px]">
-          <div>
-            <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex flex-wrap gap-2">
+      <main className="max-w-7xl mx-auto px-4 py-5 sm:py-8">
+        <div id="rating" className="scroll-mt-16 grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-6">
+          <div className="min-w-0">
+            <div className="mb-4 flex flex-col gap-3 lg:mb-5 lg:flex-row lg:items-center lg:justify-between">
+              <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
                 {filters.map((f) => (
                   <button
                     key={f.id}
                     onClick={() => setActiveFilter(f.id)}
-                    className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-medium transition-colors ${
+                    className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 py-2 text-sm font-medium transition-colors ${
                       activeFilter === f.id
                         ? 'border-[hsl(var(--navy))] bg-[hsl(var(--navy))] text-white'
                         : 'border-border bg-white text-muted-foreground hover:border-foreground/30 hover:text-foreground'
@@ -283,7 +287,7 @@ const Index = () => {
               <div className="col-span-4 text-right">Действия</div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4 lg:space-y-3">
               {visible.map((bk, index) => (
                 <BookmakerRow key={bk.id} bk={bk} index={index} />
               ))}
@@ -297,7 +301,7 @@ const Index = () => {
             )}
           </div>
 
-          <div className="lg:sticky lg:top-20 lg:self-start">
+          <div className="order-first min-w-0 lg:order-none lg:sticky lg:top-20 lg:self-start">
             <RatingCategories items={categories} active={category} onSelect={setCategory} />
           </div>
         </div>
@@ -306,8 +310,8 @@ const Index = () => {
 
         <RatingCriteria />
 
-        <Card className="mt-10 rounded-2xl border-border bg-white p-6 shadow-sm">
-          <div className="flex flex-col sm:flex-row items-start gap-4">
+        <Card className="mt-10 rounded-2xl border-border bg-white p-4 sm:p-6 shadow-sm">
+          <div className="flex flex-row items-start gap-4">
             <div className="bg-[hsl(var(--violet))]/10 p-3 rounded-xl">
               <Icon name="Newspaper" size={28} className="text-[hsl(var(--violet))]" />
             </div>
@@ -333,8 +337,8 @@ const Index = () => {
       </main>
       </div>
 
-      <footer className="mt-16 bg-[hsl(var(--navy))] text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 text-sm md:grid-cols-[1.4fr_1fr_1.4fr]">
+      <footer className="mt-12 bg-[hsl(var(--navy))] pb-20 text-white sm:mt-16 lg:pb-0">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm md:grid-cols-[1.4fr_1fr_1.4fr] md:gap-10 md:py-12">
           <div>
             <div className="mb-3 flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
@@ -349,7 +353,7 @@ const Index = () => {
           </div>
           <div>
             <div className="mb-3 font-semibold">Разделы</div>
-            <ul className="space-y-2 text-white/60">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-white/60 md:grid-cols-1">
               <li><a href="#rating" className="transition-colors hover:text-white">Рейтинг БК</a></li>
               <li><a href="#criteria" className="transition-colors hover:text-white">Методика оценки</a></li>
               <li><a href="#faq" className="transition-colors hover:text-white">Частые вопросы</a></li>
@@ -378,6 +382,28 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {bestOffer && (
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-white/95 px-4 py-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-md lg:hidden">
+          <div className="flex items-center gap-3">
+            {bestOffer.image && (
+              <img src={bestOffer.image} alt={bestOffer.name} className="h-7 w-auto max-w-[90px] object-contain" />
+            )}
+            <div className="min-w-0 flex-1 leading-tight">
+              <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">Лучший бонус</div>
+              <div className="truncate text-sm font-extrabold text-[hsl(var(--violet))]">{bestOffer.bonus}</div>
+            </div>
+            <Button
+              asChild
+              className="h-11 shrink-0 rounded-xl bg-[hsl(var(--violet))] px-5 text-sm font-semibold text-white hover:bg-[hsl(var(--violet))]/90"
+            >
+              <a href={bestOffer.siteUrl} target="_blank" rel="noopener noreferrer">
+                Забрать
+              </a>
+            </Button>
+          </div>
+        </div>
+      )}
 
       <Dialog open={bonusDialogOpen} onOpenChange={setBonusDialogOpen}>
         <DialogContent className="max-w-md rounded-2xl bg-card text-card-foreground">

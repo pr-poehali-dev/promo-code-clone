@@ -41,18 +41,18 @@ const criteria = [
 ];
 
 const RatingCriteria = () => (
-  <section id="criteria" className="mt-14 scroll-mt-20">
+  <section id="criteria" className="mt-10 sm:mt-14 scroll-mt-16">
     <div className="mb-5">
-      <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-foreground">Как мы считаем рейтинг</h2>
+      <h2 className="text-xl sm:text-3xl font-extrabold mb-2 text-foreground">Как мы считаем рейтинг</h2>
       <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
         Итоговая оценка складывается из шести групп критериев. Данные пересматриваем
         ежемесячно, а также после каждой крупной жалобы игроков.
       </p>
     </div>
 
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="-mx-4 flex snap-x snap-mandatory scroll-pl-4 gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
       {criteria.map((c) => (
-        <Card key={c.title} className="p-5 rounded-2xl border-border bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+        <Card key={c.title} className="w-[78%] shrink-0 snap-start sm:w-auto p-5 rounded-2xl border-border bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex items-start gap-3">
             <div className="bg-[hsl(var(--violet))]/10 p-2 rounded-lg shrink-0">
               <Icon name={c.icon} size={20} className="text-[hsl(var(--violet))]" />
