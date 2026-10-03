@@ -33,8 +33,8 @@ const WhyUs = () => (
 
       <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
         {items.map((i) => (
-          <div key={i.title} className="flex flex-col gap-2 rounded-xl bg-white/5 p-3 sm:bg-transparent sm:p-0">
-            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-white/10 flex items-center justify-center">
+          <div key={i.title} className="group flex flex-col gap-2 rounded-xl bg-white/5 p-3 sm:bg-transparent sm:p-0">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-6 bg-white/10 flex items-center justify-center">
               <Icon name={i.icon} size={22} className="text-emerald-300" />
             </div>
             <h3 className="text-sm sm:text-base font-semibold leading-tight text-white">{i.title}</h3>

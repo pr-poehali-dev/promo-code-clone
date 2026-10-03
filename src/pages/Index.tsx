@@ -17,6 +17,9 @@ import RatingCategories from '@/components/RatingCategories';
 import RatingCriteria from '@/components/RatingCriteria';
 import BettingFaq from '@/components/BettingFaq';
 import WhyUs from '@/components/WhyUs';
+import BonusTicker from '@/components/BonusTicker';
+import CountUp from '@/components/CountUp';
+import useReveal from '@/hooks/use-reveal';
 
 type SortKey = 'rating' | 'bonus' | 'reviews' | 'deposit';
 
@@ -57,6 +60,7 @@ const Index = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [category, setCategory] = useState('all');
   const navigate = useNavigate();
+  useReveal();
 
   const num = (s: string) => parseInt(s.replace(/\D/g, ''), 10) || 0;
 
@@ -191,18 +195,22 @@ const Index = () => {
         )}
       </header>
 
+      <BonusTicker />
+
       <section className="relative overflow-hidden border-b border-border bg-white">
         <div className="bg-grid absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_top_left,black_20%,transparent_70%)]" />
+        <div className="blob -right-20 -top-24 h-72 w-72 bg-[hsl(var(--violet))]/15" />
+        <div className="blob bottom-[-120px] left-1/3 h-64 w-64 bg-emerald-400/15 [animation-delay:-6s]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-4 pb-6 pt-7 sm:gap-10 sm:py-16 lg:grid-cols-[1.2fr_1fr]">
-          <div>
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-accent" />
+              <span className="live-dot h-2 w-2 rounded-full bg-accent" />
               Обновлено: октябрь 2026
             </div>
             <h1 className="mb-3 text-[28px] font-extrabold leading-[1.1] text-foreground sm:mb-4 sm:text-5xl">
               Рейтинг легальных
               <br className="hidden sm:block" />{' '}
-              <span className="text-[hsl(var(--violet))]">букмекеров России</span>
+              <span className="bg-gradient-to-r from-[hsl(var(--violet))] via-sky-500 to-[hsl(var(--violet))] text-gradient-flow">букмекеров России</span>
             </h1>
             <p className="mb-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mb-7 sm:text-lg">
               Сравниваем бонусы, коэффициенты, скорость выплат и качество поддержки. Только
@@ -211,12 +219,12 @@ const Index = () => {
             <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
               <Button
                 asChild
-                className="h-12 rounded-xl bg-[hsl(var(--navy))] px-3 text-sm sm:px-6 sm:text-base font-semibold text-white hover:bg-[hsl(var(--navy))]/90"
+                className="btn-shine group h-12 rounded-xl bg-[hsl(var(--navy))] px-3 text-sm transition-transform active:scale-[0.98] sm:px-6 sm:text-base font-semibold text-white hover:bg-[hsl(var(--navy))]/90"
               >
                 <a href="#rating">
                   <span className="sm:hidden">Рейтинг</span>
                   <span className="hidden sm:inline">Смотреть рейтинг</span>
-                  <Icon name="ArrowRight" size={18} className="ml-1" />
+                  <Icon name="ArrowRight" size={18} className="ml-1 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
               <Button
@@ -231,7 +239,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-2 sm:grid-cols-2 sm:gap-3">
+          <div className="grid grid-cols-4 gap-2 animate-in fade-in slide-in-from-bottom-4 duration-700 [animation-delay:150ms] [animation-fill-mode:both] sm:grid-cols-2 sm:gap-3">
             {[
               { v: bookmakers.length.toString(), l: 'БК в рейтинге', i: 'Building2' },
               { v: '6', l: 'групп критериев', i: 'ListChecks' },
@@ -249,7 +257,7 @@ const Index = () => {
                 <div className="mb-3 hidden h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--violet))]/10 sm:flex">
                   <Icon name={s.i} size={18} className="text-[hsl(var(--violet))]" />
                 </div>
-                <div className="text-base font-extrabold text-foreground sm:text-3xl">{s.v}</div>
+                <div className="text-base font-extrabold text-foreground sm:text-3xl"><CountUp value={s.v} /></div>
                 <div className="text-[10px] font-medium leading-tight text-muted-foreground sm:text-sm">{s.l}</div>
               </div>
             ))}
@@ -337,11 +345,11 @@ const Index = () => {
           </div>
         </div>
 
-        <WhyUs />
+        <div className="reveal"><WhyUs /></div>
 
-        <RatingCriteria />
+        <div className="reveal"><RatingCriteria /></div>
 
-        <Card className="mt-10 rounded-2xl border-border bg-white p-4 sm:p-6 shadow-sm">
+        <Card className="reveal mt-10 rounded-2xl border-border bg-white p-4 sm:p-6 shadow-sm">
           <div className="flex flex-row items-start gap-4">
             <div className="bg-[hsl(var(--violet))]/10 p-3 rounded-xl">
               <Icon name="Newspaper" size={28} className="text-[hsl(var(--violet))]" />
@@ -364,7 +372,7 @@ const Index = () => {
           </div>
         </Card>
 
-        <BettingFaq />
+        <div className="reveal"><BettingFaq /></div>
       </main>
       </div>
 

@@ -111,3 +111,85 @@
     background-size: 48px 48px;
   }
 }
+
+@layer utilities {
+  .text-gradient-flow {
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientFlow 6s ease-in-out infinite alternate;
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    animation: shine 3.5s ease-in-out infinite;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    animation: float 14s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .live-dot {
+    position: relative;
+  }
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: inherit;
+    animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes gradientFlow {
+  from { background-position: 0% center; }
+  to { background-position: 100% center; }
+}
+@keyframes shine {
+  0%, 60% { left: -120%; }
+  100% { left: 160%; }
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.08); }
+}
+@keyframes ping {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee, .text-gradient-flow, .btn-shine::after, .blob, .live-dot::after { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

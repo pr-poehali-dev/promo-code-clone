@@ -52,9 +52,9 @@ const RatingCriteria = () => (
 
     <div className="-mx-4 flex snap-x snap-mandatory scroll-pl-4 gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
       {criteria.map((c) => (
-        <Card key={c.title} className="w-[78%] shrink-0 snap-start sm:w-auto p-5 rounded-2xl border-border bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+        <Card key={c.title} className="group w-[78%] shrink-0 snap-start sm:w-auto p-5 rounded-2xl border-border bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex items-start gap-3">
-            <div className="bg-[hsl(var(--violet))]/10 p-2 rounded-lg shrink-0">
+            <div className="bg-[hsl(var(--violet))]/10 p-2 rounded-lg shrink-0 transition-colors duration-300 group-hover:bg-[hsl(var(--violet))] [&_svg]:transition-colors group-hover:[&_svg]:text-white">
               <Icon name={c.icon} size={20} className="text-[hsl(var(--violet))]" />
             </div>
             <div>

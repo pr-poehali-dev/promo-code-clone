@@ -33,7 +33,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
 
   return (
     <div
-      className={`relative rounded-2xl bg-white shadow-sm transition-all hover:shadow-md animate-in fade-in slide-in-from-bottom-2 ${
+      className={`group/row relative rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg animate-in fade-in slide-in-from-bottom-2 ${
         highlight ? 'ring-2 ring-[hsl(var(--violet))]/70' : 'ring-1 ring-border'
       }`}
       style={{
@@ -56,7 +56,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             <img
               src={bk.image}
               alt={bk.name}
-              className="h-8 w-auto max-w-[130px] object-contain lg:h-9 lg:max-w-[150px]"
+              className="h-8 w-auto max-w-[130px] object-contain transition-transform duration-300 group-hover/row:scale-105 lg:h-9 lg:max-w-[150px]"
             />
           ) : (
             <div
@@ -79,7 +79,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             <span className="text-[15px] font-extrabold text-secondary-foreground lg:text-base lg:font-bold">
               {bk.rating.toFixed(1)}
             </span>
-            <Icon name="Star" size={15} className="fill-yellow-400 text-yellow-400" />
+            <Icon name="Star" size={15} className="fill-yellow-400 text-yellow-400 transition-transform duration-300 group-hover/row:rotate-[20deg] group-hover/row:scale-110" />
           </div>
         </div>
 
@@ -108,7 +108,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
           {siteUrl ? (
             <Button
               asChild
-              className={`h-11 flex-[1.4] lg:flex-none lg:h-9 rounded-xl lg:rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-11 flex-[1.4] lg:flex-none lg:h-9 rounded-xl lg:rounded-lg px-6 text-sm font-semibold text-white transition-transform active:scale-[0.97] ${highlight ? 'btn-shine' : ''} ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'
@@ -120,7 +120,7 @@ const BookmakerRow = ({ bk, index }: Props) => {
             </Button>
           ) : (
             <Button
-              className={`h-11 flex-[1.4] lg:flex-none lg:h-9 rounded-xl lg:rounded-lg px-6 text-sm font-semibold text-white ${
+              className={`h-11 flex-[1.4] lg:flex-none lg:h-9 rounded-xl lg:rounded-lg px-6 text-sm font-semibold text-white transition-transform active:scale-[0.97] ${highlight ? 'btn-shine' : ''} ${
                 highlight
                   ? 'bg-[hsl(var(--violet))] hover:bg-[hsl(var(--violet))]/90'
                   : 'bg-accent hover:bg-accent/90'
