@@ -81,9 +81,20 @@ const BookmakerReview = () => {
                 <div className="text-center bg-muted rounded-lg p-4 min-w-[160px]">
                   <div className="text-xs text-muted-foreground mb-1">Бонус новичкам</div>
                   <div className="text-2xl font-bold text-accent">{bk.bonus}</div>
-                  <Button className="mt-3 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                    Получить
-                  </Button>
+                  {bk?.siteUrl ? (
+                    <Button
+                      asChild
+                      className="mt-3 w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+                    >
+                      <a href={bk.siteUrl} target="_blank" rel="noopener noreferrer">
+                        Получить
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button className="mt-3 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                      Получить
+                    </Button>
+                  )}
                 </div>
               )}
             </div>
