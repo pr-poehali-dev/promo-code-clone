@@ -412,7 +412,7 @@ const Index = () => {
                     До <span className="text-accent">{p.bonus}</span>
                   </div>
                 </div>
-                {p.siteUrl && ['Winline', 'BetBoom', 'Марафон', 'Fonbet'].includes(p.name) ? (
+                {p.siteUrl && ['Winline', 'BetBoom', 'Марафон', 'Fonbet', 'Melbet'].includes(p.name) ? (
                   <Button
                     asChild
                     className="shrink-0 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent/90"
