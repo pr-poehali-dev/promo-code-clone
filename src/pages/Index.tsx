@@ -412,15 +412,31 @@ const Index = () => {
                     До <span className="text-accent">{p.bonus}</span>
                   </div>
                 </div>
-                <Button
-                  onClick={() => {
-                    setBonusDialogOpen(false);
-                    if (p.route) navigate(p.route);
-                  }}
-                  className="shrink-0 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent/90"
-                >
-                  ЗАБРАТЬ
-                </Button>
+                {p.siteUrl && ['Winline', 'BetBoom', 'Марафон', 'Fonbet'].includes(p.name) ? (
+                  <Button
+                    asChild
+                    className="shrink-0 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent/90"
+                  >
+                    <a
+                      href={p.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setBonusDialogOpen(false)}
+                    >
+                      ЗАБРАТЬ
+                    </a>
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      setBonusDialogOpen(false);
+                      if (p.route) navigate(p.route);
+                    }}
+                    className="shrink-0 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent/90"
+                  >
+                    ЗАБРАТЬ
+                  </Button>
+                )}
               </div>
             ))}
           </div>
