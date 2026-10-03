@@ -37,11 +37,16 @@ const categories = [
 ];
 
 const navLinks = [
-  { label: 'Рейтинг', href: '#rating' },
-  { label: 'Все букмекеры', href: '#rating' },
+  { label: 'Букмекеры', href: '#rating' },
   { label: 'Бонусы', href: '#bonuses' },
-  { label: 'Методика', href: '#criteria' },
-  { label: 'Вопросы', href: '#faq' },
+  { label: 'Матчи', href: '/section/matches' },
+  { label: 'Прогнозы', href: '/section/forecasts' },
+  { label: 'Конкурсы', href: '/section/contests' },
+  { label: 'Жалобы', href: '/section/complaints' },
+  { label: 'Спорт', href: '/section/sport' },
+  { label: 'Бизнес', href: '/section/business' },
+  { label: 'Новости', href: '/section/news' },
+  { label: 'Знания', href: '#faq' },
 ];
 
 const Index = () => {
@@ -90,7 +95,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-30 border-b border-border bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center gap-8 px-4 py-3">
+        <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-3">
           <a href="#rating" className="flex shrink-0 items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--navy))] text-white">
               <Icon name="ShieldCheck" size={18} />
@@ -105,18 +110,22 @@ const Index = () => {
             </span>
           </a>
 
-          <nav className="hidden flex-1 items-center gap-1 text-sm font-medium text-muted-foreground lg:flex">
+          <nav className="hidden flex-1 items-center gap-0.5 text-sm font-medium text-muted-foreground xl:flex">
             {navLinks.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 onClick={(e) => {
+                  setMenuOpen(false);
                   if (l.href === '#bonuses') {
                     e.preventDefault();
                     setBonusDialogOpen(true);
+                  } else if (l.href.startsWith('/')) {
+                    e.preventDefault();
+                    navigate(l.href);
                   }
                 }}
-                className="whitespace-nowrap rounded-lg px-3 py-2 transition-colors hover:bg-muted hover:text-foreground"
+                className="whitespace-nowrap rounded-lg px-2.5 py-2 transition-colors hover:bg-muted hover:text-foreground"
               >
                 {l.label}
               </a>
@@ -142,7 +151,7 @@ const Index = () => {
             </button>
             <button
               onClick={() => setMenuOpen((v) => !v)}
-              className="rounded-lg p-2 text-foreground transition-colors hover:bg-muted lg:hidden"
+              className="rounded-lg p-2 text-foreground transition-colors hover:bg-muted xl:hidden"
               aria-label="Меню"
             >
               <Icon name={menuOpen ? 'X' : 'Menu'} size={22} />
@@ -151,7 +160,7 @@ const Index = () => {
         </div>
 
         {menuOpen && (
-          <nav className="border-t border-border bg-white px-4 py-3 lg:hidden animate-in fade-in slide-in-from-top-2">
+          <nav className="grid grid-cols-2 gap-1 border-t border-border bg-white px-4 py-3 xl:hidden animate-in fade-in slide-in-from-top-2">
             {navLinks.map((l) => (
               <a
                 key={l.label}
@@ -161,6 +170,9 @@ const Index = () => {
                   if (l.href === '#bonuses') {
                     e.preventDefault();
                     setBonusDialogOpen(true);
+                  } else if (l.href.startsWith('/')) {
+                    e.preventDefault();
+                    navigate(l.href);
                   }
                 }}
                 className="flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium text-foreground hover:bg-muted"
