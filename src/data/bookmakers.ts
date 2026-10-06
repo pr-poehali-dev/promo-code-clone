@@ -7,7 +7,6 @@ export interface Bookmaker {
   short?: string;
   color?: string;
   route?: string;
-  siteUrl?: string;
   rating: number;
   bonus: string;
   bonusNote: string;
@@ -30,7 +29,6 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/4525a0ea-f40b-4528-b706-3a236ddfe490.png',
     wideLogo: true,
     route: '/bk/fonbet',
-    siteUrl: 'https://clck.ru/3VtMMk',
     rating: 4.9,
     bonus: '15 000₽',
     bonusNote: 'фрибет за первый депозит',
@@ -52,13 +50,12 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/8d6270e2-1647-4fdf-9a47-adce0f72b65c.png',
     wideLogo: true,
     route: '/bk/winline',
-    siteUrl: 'https://clck.ru/3VtMFT',
     rating: 4.9,
     bonus: '10 000₽',
     bonusNote: 'фрибет новичкам',
     bonusTerms:
       'Фрибет выдаётся после регистрации и первого пополнения от 100₽. Ставку можно сделать на любое событие с коэффициентом от 1.80, выигрыш зачисляется на основной счёт без вычета суммы фрибета.',
-    promo: 'START10000',
+    promo: 'START3000',
     reviews: 289,
     minDeposit: '100₽',
     payout: 'до 3 часов',
@@ -74,7 +71,6 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/ea087e06-1d7a-4562-8333-979f9ef17a88.png',
     wideLogo: true,
     route: '/bk/betboom',
-    siteUrl: 'https://clck.ru/3VtMVA',
     rating: 4.9,
     bonus: '10 000₽',
     bonusNote: 'бонус на первый депозит',
@@ -96,13 +92,12 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/7fe075d0-0cb7-4fd7-95d0-c3310a9f6e66.png',
     wideLogo: true,
     route: '/bk/leon',
-    siteUrl: 'https://leon.ru',
     rating: 4.6,
     bonus: '1 000₽',
     bonusNote: 'приветственный пакет',
     bonusTerms:
-      'Пакет фрибетов на общую сумму до 1 000₽ выдаётся частями: за регистрацию, за первое пополнение и за первую ставку. Каждый фрибет действует 7 дней.',
-    promo: 'LEON1000',
+      'Пакет из нескольких фрибетов на общую сумму до 40 000₽ выдаётся частями: за регистрацию, за первое пополнение и за первую ставку. Каждый фрибет действует 7 дней.',
+    promo: 'LEON40',
     reviews: 734,
     minDeposit: '100₽',
     payout: 'до 12 часов',
@@ -118,25 +113,23 @@ export const bookmakers: Bookmaker[] = [
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/aabf2f54-1325-4b18-9682-d8138a5d6248.png',
     wideLogo: true,
     route: '/bk/melbet',
-    siteUrl: 'https://clck.ru/3VtMKf',
     rating: 4.7,
     bonus: '30 000₽',
     bonusNote: 'бонус на первый депозит',
     bonusTerms:
-      'Стартовый бонус до 30 000₽ начисляется на бонусный счёт после пополнения от 100₽. Отыгрыш пятикратный, засчитываются экспрессы из трёх и более событий с коэффициентом от 1.40.',
+      'Стартовый бонус до 30 000₽ начисляется на бонусный счёт после пополнения от 50₽. Отыгрыш пятикратный, засчитываются экспрессы из трёх и более событий с коэффициентом от 1.40.',
     promo: 'MEL30',
     reviews: 456,
-    minDeposit: '100₽',
+    minDeposit: '50₽',
     payout: 'до 24 часов',
     license: 'ЕЦУПИС',
-    features: ['Киберспорт', 'Live-ставки', 'Промокоды'],
+    features: ['Киберспорт', 'Казино', 'Промокоды'],
     scores: { odds: 4.7, payout: 4.3, app: 4.6, support: 4.5 },
   },
   {
     id: 7,
     name: 'Париматч',
     route: '/bk/pari',
-    siteUrl: 'https://clck.ru/3VtMCv',
     logo: '🎪',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/00a4177a-1afb-4e61-b1a8-9a10ef9395ad.png',
@@ -160,7 +153,6 @@ export const bookmakers: Bookmaker[] = [
     id: 8,
     name: 'Лига Ставок',
     route: '/bk/ligastavok',
-    siteUrl: 'https://www.ligastavok.ru',
     logo: '🏅',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/b62536c7-77c8-4d46-9a63-86c4f9beeda1.png',
@@ -174,7 +166,7 @@ export const bookmakers: Bookmaker[] = [
       'Если первая ставка до 8 000₽ окажется проигрышной, сумма возвращается фрибетом. Условие — пройденная идентификация и коэффициент события не ниже 1.50.',
     promo: 'LS8000',
     reviews: 638,
-    minDeposit: '100₽',
+    minDeposit: '50₽',
     payout: 'до 6 часов',
     license: 'ЕЦУПИС',
     features: ['Официальный партнёр РФС', 'Клубные ставки', 'Бонусная программа'],
@@ -184,7 +176,6 @@ export const bookmakers: Bookmaker[] = [
     id: 9,
     name: 'Betcity',
     route: '/bk/betcity',
-    siteUrl: 'https://betcity.ru',
     logo: '🌆',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/671cb343-0526-43bc-9a85-6f37e64a742a.png',
@@ -208,7 +199,6 @@ export const bookmakers: Bookmaker[] = [
     id: 10,
     name: 'Марафон',
     route: '/bk/marathon',
-    siteUrl: 'https://clck.ru/3VtM9s',
     logo: '🏃',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/daa7a66f-c360-435e-b09d-51867b3e2d6d.png',
@@ -232,7 +222,6 @@ export const bookmakers: Bookmaker[] = [
     id: 12,
     name: 'Олимпбет',
     route: '/bk/olimpbet',
-    siteUrl: 'https://www.olimp.bet',
     logo: '🔥',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/622ad6e2-e39f-4b68-8035-b02b03563832.png',
@@ -256,7 +245,6 @@ export const bookmakers: Bookmaker[] = [
     id: 15,
     name: 'BetM',
     route: '/bk/betm',
-    siteUrl: 'https://bet-m.ru/',
     logo: '🅱️',
     image:
       'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/913163ae-8a81-412e-adfa-f426d36cd2b3.png',
@@ -275,29 +263,5 @@ export const bookmakers: Bookmaker[] = [
     license: 'ЕЦУПИС',
     features: ['Удобное приложение', 'Быстрые выплаты', 'Частые акции'],
     scores: { odds: 4.3, payout: 4.4, app: 4.4, support: 4.2 },
-  },
-  {
-    id: 16,
-    name: 'Балтбет',
-    route: '/bk/baltbet',
-    siteUrl: 'https://baltbet.ru/',
-    logo: '🟢',
-    image:
-      'https://cdn.poehali.dev/projects/a62754ae-1012-417c-a1c5-8b7da123f178/bucket/0dee2a2b-2e22-4083-ae84-a57e8fc9de18.png',
-    wideLogo: true,
-    short: 'ББ',
-    color: 'bg-green-600',
-    rating: 4.4,
-    bonus: '8 000₽',
-    bonusNote: 'фрибет за первый депозит',
-    bonusTerms:
-      'Фрибет до 8 000₽ начисляется после регистрации, идентификации и первого пополнения от 100₽. Ставку нужно сделать в течение 14 дней на событие с коэффициентом от 1.50.',
-    promo: 'BALT8000',
-    reviews: 398,
-    minDeposit: '100₽',
-    payout: 'до 6 часов',
-    license: 'ЕЦУПИС',
-    features: ['Пункты приема ставок', 'Экспресс дня', 'Кэшаут'],
-    scores: { odds: 4.4, payout: 4.5, app: 4.3, support: 4.4 },
   },
 ];

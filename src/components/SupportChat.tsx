@@ -23,7 +23,7 @@ const getVisitorId = () => {
   return id;
 };
 
-const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
+const SupportChat = () => {
   const [open, setOpen] = useState(false);
   const [started, setStarted] = useState(false);
   const [connecting, setConnecting] = useState(false);
@@ -31,10 +31,8 @@ const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [text, setText] = useState('');
   const [status, setStatus] = useState('waiting');
-  const [closed, setClosed] = useState(false);
   const lastId = useRef(0);
   const bottom = useRef<HTMLDivElement>(null);
-  const reload = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem(CHAT_KEY);
@@ -59,20 +57,7 @@ const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
         const data = await res.json();
         if (data.messages?.length) {
           lastId.current = data.messages[data.messages.length - 1].id;
-          setMessages((prev) => {
-            const known = new Set(prev.map((m) => m.id));
-            const fresh = (data.messages as Message[]).filter((m) => !known.has(m.id));
-            if (!fresh.length) return prev;
-            const texts = new Set(fresh.map((m) => `${m.sender}|${m.text}`));
-            const cleaned = prev.filter(
-              (m) => m.id > 0 || !texts.has(`${m.sender}|${m.text}`),
-            );
-            return [...cleaned, ...fresh];
-          });
-        }
-        if (data.status === 'closed') {
-          setClosed(true);
-          return;
+          setMessages((prev) => [...prev, ...data.messages]);
         }
         if (data.status) setStatus(data.status);
       } catch {
@@ -80,28 +65,10 @@ const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
       }
     };
 
-    reload.current = load;
     load();
     const timer = setInterval(load, 3000);
     return () => clearInterval(timer);
   }, [chatId, open]);
-
-  useEffect(() => {
-    if (!closed) return;
-    const t = setTimeout(() => resetChat(), 8000);
-    return () => clearTimeout(t);
-  }, [closed]);
-
-  const resetChat = () => {
-    localStorage.removeItem(CHAT_KEY);
-    lastId.current = 0;
-    setChatId(null);
-    setMessages([]);
-    setStarted(false);
-    setClosed(false);
-    setStatus('waiting');
-    setText('');
-  };
 
   const startChat = async () => {
     setConnecting(true);
@@ -135,7 +102,6 @@ const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chatId, sender: 'user', text: value }),
     });
-    reload.current?.();
   };
 
   return (
@@ -143,7 +109,7 @@ const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className={`fixed right-5 z-40 w-14 h-14 ${liftOnMobile ? 'bottom-24 lg:bottom-5' : 'bottom-5'} rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center hover:scale-105 transition-transform`}
+          className="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
           aria-label="Открыть чат поддержки"
         >
           <Icon name="MessageCircle" size={26} />
@@ -151,7 +117,7 @@ const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
       )}
 
       {open && (
-        <div className="fixed bottom-5 right-5 z-50 w-[calc(100vw-2.5rem)] sm:w-[370px] h-[520px] max-h-[80vh] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4">
+        <div className="fixed bottom-5 right-5 z-40 w-[calc(100vw-2.5rem)] sm:w-[370px] h-[520px] max-h-[80vh] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4">
           <div className="bg-secondary px-4 py-3 flex items-center justify-between border-b border-border">
             <div className="flex items-center gap-2">
               <div className="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center">
@@ -176,25 +142,7 @@ const SupportChat = ({ liftOnMobile = false }: { liftOnMobile?: boolean }) => {
             </button>
           </div>
 
-          {closed ? (
-            <div className="flex-1 flex flex-col items-center justify-center gap-4 px-6 text-center">
-              <div className="w-16 h-16 rounded-full bg-green-500/15 flex items-center justify-center">
-                <Icon name="CheckCheck" size={30} className="text-green-500" />
-              </div>
-              <div>
-                <h3 className="font-bold mb-1">Диалог завершён</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Спасибо за обращение! Если появятся вопросы — пишите снова.
-                </p>
-              </div>
-              <Button
-                onClick={resetChat}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground w-full"
-              >
-                Новое обращение
-              </Button>
-            </div>
-          ) : !started ? (
+          {!started ? (
             <div className="flex-1 flex flex-col items-center justify-center gap-4 px-6 text-center">
               <div className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center">
                 <Icon name="MessagesSquare" size={30} className="text-accent" />

@@ -9,17 +9,12 @@
       "bodyMatcher": "partial"
     },
     {
-      "name": "Chats require admin key",
+      "name": "List chats for operator",
       "method": "GET",
       "path": "/?action=chats",
-      "expectedStatus": 401
-    },
-    {
-      "name": "Login rejects wrong password",
-      "method": "POST",
-      "path": "/?action=login",
-      "body": {"action": "login", "password": "wrong-password-test"},
-      "expectedStatus": 401
+      "expectedStatus": 200,
+      "expectedBody": {"chats": "array"},
+      "bodyMatcher": "partial"
     },
     {
       "name": "CORS preflight",

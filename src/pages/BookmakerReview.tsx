@@ -23,26 +23,23 @@ const BookmakerReview = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-white/85 backdrop-blur-md border-b border-border py-5">
+      <header className="bg-secondary border-b border-border py-5">
         <div className="max-w-4xl mx-auto px-4 flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate('/')}
-            className="text-foreground hover:bg-muted"
-          >
+          <Button variant="ghost" size="icon" onClick={() => navigate('/')}>
             <Icon name="ArrowLeft" size={22} />
           </Button>
           <div className="flex-1">
-            <h1 className="text-2xl font-extrabold text-foreground">{data.name}</h1>
-            <p className="text-sm text-muted-foreground">Букмекерская контора: обзор и отзывы</p>
+            <h1 className="text-2xl font-bold">{data.name}</h1>
+            <p className="text-sm text-muted-foreground">
+              Букмекерская контора: обзор и отзывы
+            </p>
           </div>
         </div>
       </header>
 
-      <div className="border-b border-border bg-white py-10">
+      <div className="border-b border-border bg-gradient-to-b from-secondary/60 to-background py-10">
         <div className="max-w-4xl mx-auto px-4">
-          <Card className="p-6 sm:p-8 shadow-sm">
+          <Card className="p-6 sm:p-8">
             <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
               {bk?.image ? (
                 <img
@@ -81,20 +78,9 @@ const BookmakerReview = () => {
                 <div className="text-center bg-muted rounded-lg p-4 min-w-[160px]">
                   <div className="text-xs text-muted-foreground mb-1">Бонус новичкам</div>
                   <div className="text-2xl font-bold text-accent">{bk.bonus}</div>
-                  {bk?.siteUrl ? (
-                    <Button
-                      asChild
-                      className="mt-3 w-full bg-accent hover:bg-accent/90 text-accent-foreground"
-                    >
-                      <a href={bk.siteUrl} target="_blank" rel="noopener noreferrer">
-                        Получить
-                      </a>
-                    </Button>
-                  ) : (
-                    <Button className="mt-3 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                      Получить
-                    </Button>
-                  )}
+                  <Button className="mt-3 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                    Получить
+                  </Button>
                 </div>
               )}
             </div>
@@ -104,25 +90,19 @@ const BookmakerReview = () => {
 
       <main className="max-w-4xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-extrabold mb-4 text-foreground">Общая информация</h2>
+          <h2 className="text-2xl font-bold mb-4">Общая информация</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {generalInfo.map((item) => (
               <Card key={item.label} className="p-4 text-center">
                 <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
-                <div
-                  className={`font-bold leading-snug ${
-                    String(item.value).length > 20 ? 'text-sm' : 'text-lg'
-                  }`}
-                >
-                  {item.value}
-                </div>
+                <div className="font-bold text-lg">{item.value}</div>
               </Card>
             ))}
           </div>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-extrabold mb-4 text-foreground">Детальный рейтинг</h2>
+          <h2 className="text-2xl font-bold mb-4">Детальный рейтинг</h2>
           <Card className="p-6">
             <div className="space-y-4">
               {data.ratings.map((c) => (
@@ -212,9 +192,9 @@ const BookmakerReview = () => {
         </div>
       </main>
 
-      <footer className="bg-[hsl(var(--navy))] py-8 mt-12">
-        <div className="max-w-4xl mx-auto px-4 text-center text-sm text-white/50 space-y-2">
-          <p>© 2026 БКрейтинг. Информационный портал.</p>
+      <footer className="bg-secondary border-t border-border py-8 mt-12">
+        <div className="max-w-4xl mx-auto px-4 text-center text-sm text-muted-foreground space-y-2">
+          <p>© 2026 Рейтинг Букмекеров. Информационный портал.</p>
           <p className="text-xs">
             Ставки на спорт доступны лицам старше 18 лет. Азартные игры могут вызывать
             зависимость.

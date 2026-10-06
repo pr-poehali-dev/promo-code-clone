@@ -24,21 +24,21 @@ const items = [
 ];
 
 const WhyUs = () => (
-  <section className="mt-10 sm:mt-14">
-    <div className="rounded-2xl bg-[hsl(var(--navy))] p-5 sm:p-10 text-white">
-      <h2 className="text-xl sm:text-2xl font-bold mb-1 text-white">Почему нам можно доверять</h2>
-      <p className="text-white/60 text-sm mb-5 sm:mb-6 max-w-2xl">
+  <section className="mt-14">
+    <div className="rounded-xl border border-border bg-gradient-to-br from-secondary to-background p-6 sm:p-8">
+      <h2 className="text-2xl font-bold mb-1">Почему нам можно доверять</h2>
+      <p className="text-muted-foreground text-sm mb-6 max-w-2xl">
         Мы ведём рейтинг для игроков, а не для букмекеров.
       </p>
 
-      <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((i) => (
-          <div key={i.title} className="group flex flex-col gap-2 rounded-xl bg-white/5 p-3 sm:bg-transparent sm:p-0">
-            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-6 bg-white/10 flex items-center justify-center">
-              <Icon name={i.icon} size={22} className="text-emerald-300" />
+          <div key={i.title} className="flex flex-col gap-2">
+            <div className="w-11 h-11 rounded-lg bg-accent/15 flex items-center justify-center">
+              <Icon name={i.icon} size={22} className="text-accent" />
             </div>
-            <h3 className="text-sm sm:text-base font-semibold leading-tight text-white">{i.title}</h3>
-            <p className="text-[11px] sm:text-xs text-white/60 leading-snug sm:leading-relaxed">{i.text}</p>
+            <h3 className="font-semibold">{i.title}</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">{i.text}</p>
           </div>
         ))}
       </div>
