@@ -9,6 +9,7 @@ import Reviews from "./pages/Reviews";
 import BookmakerReview from "./pages/BookmakerReview";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
+import Section from "./pages/Section";
 import SupportAdmin from "./pages/SupportAdmin";
 import CookieNotice from "./components/CookieNotice";
 import SupportChatGate from "./components/SupportChatGate";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/bk/:slug" element={<BookmakerReview />} />
           <Route path="/reviews/:bookmakerName" element={<Reviews />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/section/:slug" element={<Section />} />
           <Route path="/support-admin" element={<SupportAdmin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
