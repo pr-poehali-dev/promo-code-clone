@@ -44,10 +44,7 @@ const navLinks = [
   { label: 'Бонусы', href: '#bonuses' },
   { label: 'Матчи', href: '/section/matches' },
   { label: 'Прогнозы', href: '/section/forecasts' },
-  { label: 'Конкурсы', href: '/section/contests' },
-  { label: 'Жалобы', href: '/section/complaints' },
   { label: 'Спорт', href: '/section/sport' },
-  { label: 'Бизнес', href: '/section/business' },
   { label: 'Новости', href: '/section/news' },
   { label: 'Знания', href: '#faq' },
 ];
