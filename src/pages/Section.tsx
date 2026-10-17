@@ -1,27 +1,29 @@
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import FeedList from '@/components/sections/FeedList';
+import MatchList from '@/components/sections/MatchList';
 
 const sections: Record<string, { title: string; icon: string; text: string }> = {
   matches: {
     title: 'Матчи',
     icon: 'CalendarDays',
-    text: 'Расписание ближайших матчей по футболу, хоккею, баскетболу и теннису с лучшими коэффициентами легальных букмекеров.',
+    text: 'Расписание и счёт матчей РПЛ, КХЛ, НХЛ, еврокубков и топовых европейских лиг на ближайшие дни.',
   },
   forecasts: {
     title: 'Прогнозы',
     icon: 'TrendingUp',
-    text: 'Экспертные прогнозы на главные спортивные события с разбором формы команд и статистики.',
+    text: 'Свежие прогнозы экспертов на матчи РПЛ, КХЛ, НХЛ, еврокубков и топовых лиг.',
   },
   sport: {
     title: 'Спорт',
     icon: 'Volleyball',
-    text: 'Главные спортивные новости, которые влияют на линию и коэффициенты букмекеров.',
+    text: 'Лента спортивных событий: футбол, хоккей, теннис, единоборства и другие виды спорта.',
   },
   news: {
     title: 'Новости',
     icon: 'Newspaper',
-    text: 'Свежие новости букмекерских контор: новые бонусы, акции, обновления приложений и сервисов.',
+    text: 'Главные новости спорта и беттинга из ведущих спортивных изданий.',
   },
 };
 
@@ -48,36 +50,28 @@ const Section = () => {
         </div>
       </header>
 
-      <main className="mx-auto max-w-4xl px-4 py-10 sm:py-16">
-        <div className="rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-border sm:p-10">
-          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[hsl(var(--violet))]/10">
-            <Icon name={data.icon} fallback="LayoutGrid" size={28} className="text-[hsl(var(--violet))]" />
+      <main className="mx-auto max-w-4xl px-4 py-8 sm:py-10">
+        <div className="mb-6 flex items-start gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[hsl(var(--violet))]/10">
+            <Icon name={data.icon} fallback="LayoutGrid" size={24} className="text-[hsl(var(--violet))]" />
           </div>
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
-            <span className="h-2 w-2 rounded-full bg-amber-500" />
-            Раздел скоро откроется
+          <div>
+            <div className="mb-1 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+              Онлайн
+            </div>
+            <p className="text-sm text-muted-foreground sm:text-base">{data.text}</p>
           </div>
-          <h2 className="mb-3 text-2xl font-extrabold text-foreground sm:text-3xl">{data.title}</h2>
-          <p className="mx-auto mb-7 max-w-xl text-muted-foreground">
-            {data.text}
-            {slug === 'news' && (
-              <>
-                {' '}А пока свежие спортивные новости можно читать на{' '}
-                <a
-                  href="https://ria.ru/sport/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[hsl(var(--violet))] underline underline-offset-2 hover:opacity-80"
-                >
-                  РИА Новости
-                </a>
-                .
-              </>
-            )}
-          </p>
+        </div>
+
+        {slug === 'matches' ? <MatchList /> : <FeedList type={slug as 'news' | 'sport' | 'forecasts'} />}
+
+        <div className="mt-10 rounded-2xl bg-[hsl(var(--navy))] p-6 text-center text-white sm:p-8">
+          <h3 className="mb-2 text-lg font-extrabold sm:text-xl">Где поставить на эти матчи?</h3>
+          <p className="mb-5 text-sm text-white/70">Сравните бонусы и условия легальных букмекеров</p>
           <Button
             onClick={() => navigate('/')}
-            className="h-12 rounded-xl bg-[hsl(var(--navy))] px-6 text-base font-semibold text-white hover:bg-[hsl(var(--navy))]/90"
+            className="h-12 rounded-xl bg-accent px-6 text-base font-semibold text-white hover:bg-accent/90"
           >
             Смотреть рейтинг букмекеров
           </Button>

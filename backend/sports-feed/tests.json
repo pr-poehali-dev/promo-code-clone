@@ -1,0 +1,66 @@
+{
+  "tests": [
+    {
+      "name": "News feed",
+      "method": "GET",
+      "path": "/?type=news",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "type": "news"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Forecasts feed",
+      "method": "GET",
+      "path": "/?type=forecasts",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "type": "forecasts"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Sport feed",
+      "method": "GET",
+      "path": "/?type=sport",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "type": "sport"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Matches",
+      "method": "GET",
+      "path": "/?type=matches&day=0",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "type": "matches"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Matches tomorrow",
+      "method": "GET",
+      "path": "/?type=matches&day=1",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "type": "matches"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Unknown type",
+      "method": "GET",
+      "path": "/?type=xxx",
+      "expectedStatus": 400
+    },
+    {
+      "name": "CORS",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
