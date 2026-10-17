@@ -65,7 +65,12 @@ const Index = () => {
   const num = (s: string) => parseInt(s.replace(/\D/g, ''), 10) || 0;
 
   const topBonuses = useMemo(
-    () => [...bookmakers].sort((a, b) => num(b.bonus) - num(a.bonus)).slice(0, 6),
+    () => {
+      const sorted = [...bookmakers].sort((a, b) => num(b.bonus) - num(a.bonus)).slice(0, 6);
+      const wl = bookmakers.find((b) => b.name === 'Winline');
+      if (!wl) return sorted;
+      return [wl, ...sorted.filter((b) => b.name !== 'Winline')].slice(0, 6);
+    },
     [],
   );
 
@@ -492,13 +497,6 @@ const Index = () => {
                       </Button>
                     )}
                   </div>
-                  {p.promo && (
-                    <div className="mt-3 flex items-center gap-2 border-t border-dashed border-border pt-3 text-xs text-muted-foreground">
-                      <Icon name="Ticket" size={14} className="text-[hsl(var(--violet))]" />
-                      Промокод:
-                      <span className="rounded-md bg-secondary px-2 py-0.5 font-mono font-bold text-foreground">{p.promo}</span>
-                    </div>
-                  )}
                 </div>
               );
             })}
