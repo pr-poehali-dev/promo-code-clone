@@ -423,65 +423,89 @@ const Index = () => {
       </footer>
 
       <Dialog open={bonusDialogOpen} onOpenChange={setBonusDialogOpen}>
-        <DialogContent className="max-w-md rounded-2xl bg-card text-card-foreground">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Icon name="Gift" size={20} />
-              Акции и бонусы от букмекеров
-            </DialogTitle>
+        <DialogContent className="max-w-md overflow-hidden rounded-3xl border-0 bg-card p-0 text-card-foreground [&>button]:z-10 [&>button]:!bg-transparent [&>button]:!text-white">
+          <DialogHeader className="relative overflow-hidden bg-gradient-to-br from-[hsl(var(--violet))] to-[hsl(var(--navy))] px-6 pb-6 pt-7 text-left text-white">
+            <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10" />
+            <div className="pointer-events-none absolute -bottom-10 right-16 h-24 w-24 rounded-full bg-white/5" />
+            <div className="relative flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15">
+                <Icon name="Gift" size={22} />
+              </div>
+              <div>
+                <DialogTitle className="text-lg font-bold text-white">Бонусы для новых игроков</DialogTitle>
+                <p className="mt-0.5 text-xs text-white/70">Проверенные предложения легальных букмекеров</p>
+              </div>
+            </div>
           </DialogHeader>
 
-          <div className="space-y-3 mt-4 max-h-[60vh] overflow-y-auto pr-1">
-            {topBonuses.map((p) => (
-              <div
-                key={p.id}
-                className="flex items-center justify-between gap-3 rounded-xl bg-secondary p-4"
-              >
-                <div className="flex items-center gap-3 flex-1 min-w-0">
-                  {p.image ? (
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="h-8 w-auto max-w-[90px] object-contain shrink-0"
-                    />
-                  ) : (
-                    <div
-                      className={`w-9 h-9 shrink-0 rounded-lg flex items-center justify-center text-white font-black text-xs ${p.color ?? 'bg-muted'}`}
-                    >
-                      {p.short}
+          <div className="max-h-[60vh] space-y-3 overflow-y-auto px-4 pb-5 pt-4">
+            {topBonuses.map((p, i) => {
+              const external = p.siteUrl && ['Winline', 'BetBoom', 'Марафон', 'Fonbet', 'Melbet'].includes(p.name);
+              const btnClass =
+                'shrink-0 rounded-xl bg-accent px-4 py-2 text-xs font-bold text-white shadow-sm transition-transform hover:scale-105 hover:bg-accent/90';
+              return (
+                <div
+                  key={p.id}
+                  className={`relative rounded-2xl border p-4 transition-shadow hover:shadow-md ${
+                    i === 0 ? 'border-accent/40 bg-accent/5' : 'border-border bg-white'
+                  }`}
+                >
+                  {i === 0 && (
+                    <span className="absolute -top-2.5 left-4 rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                      Лучший бонус
+                    </span>
+                  )}
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-20 shrink-0 items-center justify-center rounded-xl bg-secondary p-1.5">
+                      {p.image ? (
+                        <img src={p.image} alt={p.name} className="max-h-full max-w-full object-contain" />
+                      ) : (
+                        <div
+                          className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-black text-white ${p.color ?? 'bg-muted'}`}
+                        >
+                          {p.short}
+                        </div>
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs font-medium text-muted-foreground">{p.name}</div>
+                      <div className="text-lg font-extrabold leading-tight text-foreground">
+                        до <span className="text-accent">{p.bonus}</span>
+                      </div>
+                      <div className="truncate text-xs text-muted-foreground">{p.bonusNote}</div>
+                    </div>
+                    {external ? (
+                      <Button asChild className={btnClass}>
+                        <a href={p.siteUrl} target="_blank" rel="noopener noreferrer" onClick={() => setBonusDialogOpen(false)}>
+                          Забрать
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          setBonusDialogOpen(false);
+                          if (p.route) navigate(p.route);
+                        }}
+                        className={btnClass}
+                      >
+                        Забрать
+                      </Button>
+                    )}
+                  </div>
+                  {p.promo && (
+                    <div className="mt-3 flex items-center gap-2 border-t border-dashed border-border pt-3 text-xs text-muted-foreground">
+                      <Icon name="Ticket" size={14} className="text-[hsl(var(--violet))]" />
+                      Промокод:
+                      <span className="rounded-md bg-secondary px-2 py-0.5 font-mono font-bold text-foreground">{p.promo}</span>
                     </div>
                   )}
-                  <div className="text-sm font-semibold truncate">
-                    До <span className="text-accent">{p.bonus}</span>
-                  </div>
                 </div>
-                {p.siteUrl && ['Winline', 'BetBoom', 'Марафон', 'Fonbet', 'Melbet'].includes(p.name) ? (
-                  <Button
-                    asChild
-                    className="shrink-0 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent/90"
-                  >
-                    <a
-                      href={p.siteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setBonusDialogOpen(false)}
-                    >
-                      ЗАБРАТЬ
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => {
-                      setBonusDialogOpen(false);
-                      if (p.route) navigate(p.route);
-                    }}
-                    className="shrink-0 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent/90"
-                  >
-                    ЗАБРАТЬ
-                  </Button>
-                )}
-              </div>
-            ))}
+              );
+            })}
+            <p className="flex items-center justify-center gap-1.5 pt-1 text-[11px] text-muted-foreground">
+              <Icon name="ShieldCheck" size={13} />
+              Только лицензированные букмекеры · 18+
+            </p>
           </div>
         </DialogContent>
       </Dialog>
